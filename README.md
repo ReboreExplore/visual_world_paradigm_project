@@ -1,5 +1,5 @@
-# **Course project:** Title
-**Authors:** *Author 1*, *Author 2* & *Author 3*
+# **Course project:** Visual Word Paradigm
+**Authors:*Kapil Mulchandani*, *Kazem Abdi Dehnoei*,*Manpa Barman*, *Pritom Gogoi* (The authors are alphabetically ordered.)
 
 **Course:** *Acquisition and analysis of eye-tracking data*
 
