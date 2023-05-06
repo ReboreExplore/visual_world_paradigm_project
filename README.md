@@ -1,12 +1,12 @@
 # **Course project:** Visual Word Paradigm
-**Authors**: Kapil Mulchandani, Kazem Abdi Dehnoei, Manpa Barman, Pritom Gogoi. (*The authors are alphabetically ordered.*)
+**Authors**: Kapil Mulchandani, Manpa Barman, Pritom Gogoi. (*The authors are alphabetically ordered.*)
 
 **Course:** *Acquisition and analysis of eye-tracking data*
 
 **Semester:** *Summer semester 2023*
 
 ## Project Description
-> Please provide a short description of the main goals. 
+A classical visual world study showing how people predict upcoming words.
 
 ## Instruction for a new student
 >If a fellow student wants to reproduce all your results. What scripts, in which order, with which data need to be run?
@@ -23,7 +23,7 @@
 │
 ├── report           <- Report PDF
 |
-├── presentation     <- Final presentation slides (PDFs; optionally also .pptx etc)
+├── presentation     <- Final presentation slides (PDFs; optionally also .pptx etc.
 |
 ├── _research        <- WIP scripts, code, notes, comments,
 │                       to-dos and anything in a preliminary state.
@@ -56,3 +56,8 @@
 ```
 ## Note on sharing your recorded data
 If your data is <1GB you can add it to the data folder in your Git repository. Otherwise, only include it in the project package that you submit on Ilias at the end of the term.
+
+## Resources
+1. https://people.ku.edu/~sjpa/Classes/CBS592/EyeTracking/visual-world-paradigm.html
+2. https://osdoc.cogsci.nl/3.3/tutorials/visual-world/
+3. https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584
