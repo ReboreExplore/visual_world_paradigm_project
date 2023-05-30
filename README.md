@@ -18,40 +18,44 @@ A classical visual world study showing how people predict upcoming words.
 ## Overview of Folder Structure 
 
 ```
-│projectdir          <- Project's main folder. It is initialized as a Git
+│projectdir             <- Project's main folder. It is initialized as a Git
 │                       repository with a reasonable .gitignore file.
 │
-├── report           <- Report PDF
+├── report              <- Report PDF
 |
-├── presentation     <- Final presentation slides (PDFs; optionally also .pptx etc.
+├── presentation        <- Final presentation slides (PDFs; optionally also .pptx etc.)
 |
-├── _research        <- WIP scripts, code, notes, comments,
+├── _research           <- WIP scripts, code, notes, comments,
 │                       to-dos and anything in a preliminary state.
 │
-├── plots            <- All exported plots go here, best in date folders.
+├── plots               <- All exported plots go here, best in date folders.
 |                       Note that to ensure reproducibility it is required that all plots can be
 |                       recreated using the plotting scripts in the scripts folder.
 │
-├── scripts          <- Various scripts, e.g. analysis and plotting.
+├── scripts             <- Various scripts, e.g. analysis and plotting.
 │                       The scripts use the `src` folder for their base code.
 │
-├── src              <- Source code for use in this project. Contains functions,
+├── src                 <- Source code for use in this project. Contains functions,
 │                       structures and modules that are used throughout
 │                       the project and in multiple scripts.
 │
-├── experiment       <- OpenSesame file to run the experiment; where applicable also stimuli, randomization
+├── project_milestones  <- Project progress slides
+│
+├── sample_data         <- dummy_data used for test run
+│
+├── experiment          <- OpenSesame file to run the experiment; where applicable also stimuli, randomization
 |
-├── data             <- **If they have a reasonable file size**
-|   ├── raw          <- Raw eye-tracking data
-|   ├── preprocessed <- Data resulting from preprocessing
+├── data                <- **If they have a reasonable file size**
+|   ├── raw                 <- Raw eye-tracking data
+|   ├── preprocessed        <- Data resulting from preprocessing
 |
-├── README.md        <- Top-level README. Fellow students need to be able to
+├── README.md           <- Top-level README. Fellow students need to be able to
 |                       reproduce your project. Think about them!
 |
-├── .gitignore       <- List of files that you don’t want Git to automatically add
+├── .gitignore          <- List of files that you don’t want Git to automatically add
 |                       (default Python .gitignore was used)
 │
-└── (requirements.txt)<- List of modules and packages that are used for your project
+└── (requirements.txt)  <- List of modules and packages that are used for your project
                      
 ```
 ## Note on sharing your recorded data
