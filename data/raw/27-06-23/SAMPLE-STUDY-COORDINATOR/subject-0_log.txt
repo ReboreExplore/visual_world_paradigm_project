@@ -1,0 +1,55 @@
+pygaze initiation report start
+display resolution: 1920x1080
+display size in cm: 33.8x27.1
+samplerate: 60.0 Hz
+sampletime: 16.666666666666668 ms
+fixation threshold: 1.5 degrees
+speed threshold: 35 degrees/second
+acceleration threshold: 9500 degrees/second**2
+pygaze initiation report end
+start_exp
+start_trial: 0 t: collar.png r: handle.png b: basket.png l: dollar.png
+fixate_center_audio_onset, cond: 8 target: dollar
+centre_gaze_start
+instruction_to_click_onset
+log_audio_target_start
+log_audio_target_end
+click_response_end
+final_fixation_start, selected: dollar.png
+final_fixation_end
+start_trial: 1 t: carriage.png r: carrot.png b: parrot.png l: sandwich.png
+fixate_center_audio_onset, cond: 3 target: parrot
+centre_gaze_start
+instruction_to_click_onset
+log_audio_target_start
+log_audio_target_end
+click_response_end
+final_fixation_start, selected: parrot.png
+final_fixation_end
+start_trial: 2 t: padlock.png r: dollar.png b: paddle.png l: saddle.png
+fixate_center_audio_onset, cond: 2 target: padlock
+centre_gaze_start
+instruction_to_click_onset
+log_audio_target_start
+log_audio_target_end
+click_response_end
+final_fixation_start, selected: padlock.png
+final_fixation_end
+start_trial: 3 t: speaker.png r: castle.png b: beetle.png l: beaker.png
+fixate_center_audio_onset, cond: 1 target: beaker
+centre_gaze_start
+instruction_to_click_onset
+log_audio_target_start
+log_audio_target_end
+click_response_end
+final_fixation_start, selected: beaker.png
+final_fixation_end
+start_trial: 4 t: speaker.png r: pickle.png b: nickel.png l: picture.png
+fixate_center_audio_onset, cond: 2 target: picture
+centre_gaze_start
+instruction_to_click_onset
+log_audio_target_start
+log_audio_target_end
+click_response_end
+final_fixation_start, selected: picture.png
+final_fixation_end
