@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani">
-<meta name="dcterms.date" content="2023-08-20">
+<meta name="dcterms.date" content="2023-08-21">
 
 <title>Visual World Paradigm</title>
 <style>
@@ -120,11 +120,16 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#visual-world-paradigm" id="toc-visual-world-paradigm" class="nav-link" data-scroll-target="#visual-world-paradigm"><span class="header-section-number">1.1</span> Visual World Paradigm</a></li>
   <li><a href="#objective-of-our-project" id="toc-objective-of-our-project" class="nav-link" data-scroll-target="#objective-of-our-project"><span class="header-section-number">1.2</span> Objective of our project</a></li>
-  <li><a href="#second-subsection" id="toc-second-subsection" class="nav-link" data-scroll-target="#second-subsection"><span class="header-section-number">1.3</span> Second subsection</a></li>
   </ul></li>
-  <li><a href="#material-and-methods" id="toc-material-and-methods" class="nav-link" data-scroll-target="#material-and-methods"><span class="header-section-number">2</span> Material and methods</a></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">3</span> Results</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4</span> Discussion</a></li>
+  <li><a href="#preprocessing-and-analysis" id="toc-preprocessing-and-analysis" class="nav-link" data-scroll-target="#preprocessing-and-analysis"><span class="header-section-number">2</span> Preprocessing and Analysis</a>
+  <ul class="collapse">
+  <li><a href="#organizing-the-raw-data-into-trial-wise-data" id="toc-organizing-the-raw-data-into-trial-wise-data" class="nav-link" data-scroll-target="#organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">2.1</span> Organizing the raw data into trial-wise data</a></li>
+  <li><a href="#extracting-trial-information" id="toc-extracting-trial-information" class="nav-link" data-scroll-target="#extracting-trial-information"><span class="header-section-number">2.2</span> Extracting trial information</a></li>
+  <li><a href="#second-subsection" id="toc-second-subsection" class="nav-link" data-scroll-target="#second-subsection"><span class="header-section-number">2.3</span> Second subsection</a></li>
+  </ul></li>
+  <li><a href="#material-and-methods" id="toc-material-and-methods" class="nav-link" data-scroll-target="#material-and-methods"><span class="header-section-number">3</span> Material and methods</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">4</span> Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">5</span> Discussion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -160,7 +165,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 20, 2023</p>
+      <p class="date">August 21, 2023</p>
     </div>
   </div>
   
@@ -202,9 +207,115 @@ div.csl-indent {
 </div>
 <p>In this figure we have the probability of fixation on four words: - Referent (e.g beaker) : Target Word - Cohort (e.g beetle) : Similar Sounding Word - Rhyme (e.g speaker) : Rhyming word - Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)</p>
 <p>In the beginning the participants hear [bi], which could be the beginning of <em>beaker</em> but also could be the beginning of <em>beetle</em>. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e.&nbsp;now they are hearing [bik], thus they discard their choice of <em>beetle</em> and stop looking at it. But by the time they’ve heard the whole word <em>beaker</em>, they might realize that <em>beaker</em> rhymes almost exactly with <em>speaker</em> and get confused about if they heard <em>speaker</em> at the very first place. For the last word carriage the pronunciation is totally unrelated to the target <em>beaker</em>, so there is a very less probability of the participant actually fixation at the unrelated word.</p>
+</section>
+</section>
+<section id="preprocessing-and-analysis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Preprocessing and Analysis</h1>
+<!-- TODO: add introduction to this section -->
+<section id="organizing-the-raw-data-into-trial-wise-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">2.1</span> Organizing the raw data into trial-wise data</h2>
+<p>The basic unit of analysis in the visual world paradigm experiment is a trial. A trial is a single instance of the experiment. The first task was to organize the raw data into trial-wise data. Here the raw data was present in the .tsv files. Each file contained the data for a single participant. The data was read into a pandas dataframe named <code>df_interest</code> and then the columns that were not required were dropped. The columns, <code>TIME</code>, <code>BPOGX</code>, <code>BPOGY</code>, <code>FPOGD</code>, <code>FPOGX</code>, <code>FPOGY</code>, <code>FPOGV</code> and <code>USER</code> were relevant for our analysis so these were the columns remaining in the dataframe.</p>
+<p>In order to organize the entries of the dataframe into trials, the rows corresponding to the start and end of the trials needed to be identified. After acquiring the indices of the corresponding rows, the dataframe was split into multiple dataframes, each corresponding to a single trial.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of the rows where the user column contains the phrase 'START_TRIAL'</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>start_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'START_TRIAL'</span>)].index</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of the rows where the user column contains the phrase 'FINAL_FIXATION_END'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>end_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FINAL_FIXATION_END'</span>)].index</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># split the dataframe based on the start and end indices</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df_list <span class="op">=</span> [df_interest.iloc[start_indices[i]:end_indices[i]] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(start_indices))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the <code>USER</code> column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings <code>LOG_AUDIO_TARGET_START</code> and <code>CLICK_RESPONSE_END</code> respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named <code>audio_df_list</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>audio_start_index <span class="op">=</span> selected_df[selected_df[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'LOG_AUDIO_TARGET_START'</span>)].index[<span class="dv">0</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_END'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>audio_end_index <span class="op">=</span> selected_df[selected_df[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'CLICK_RESPONSE_END'</span>)].index[<span class="dv">0</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># split the dataframe based on the audio start and end indices</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># store the split dataframe in a list</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>audio_df_list.append(selected_df.iloc[audio_start_index:audio_end_index <span class="op">+</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extracting-trial-information" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="extracting-trial-information"><span class="header-section-number">2.2</span> Extracting trial information</h2>
+<p>The logs present in the .tsv files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown.</p>
+<pre class="text"><code>START_EXP
+START_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG
+FIXATE_CENTER_AUDIO_ONSET, COND: 12 TARGET: CANDY
+CENTRE_GAZE_START
+INSTRUCTION_TO_CLICK_ONSET
+LOG_AUDIO_TARGET_START
+LOG_AUDIO_TARGET_END
+CLICK_RESPONSE_END
+FINAL_FIXATION_START, SELECTED: CANDY.PNG
+FINAL_FIXATION_END
+….
+….
+….
+….
+STOP_EXP</code></pre>
+<p>The logs are in the form of a sequence of events. Each log event is a line in the log file. Out of these log events, the following ones are relevant for our analysis:</p>
+<ul>
+<li><code>START_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG</code> : This line contains the information about the trial. The trial number is 0. The images on the left, right, top and bottom of the target image are <code>SADDLE.PNG</code>, <code>PICKLE.PNG</code>, <code>PADLOCK.PNG</code> and <code>CANDY.PNG</code> respectively.</li>
+<li><code>FIXATE_CENTER_AUDIO_ONSET, COND: 12 TARGET: CANDY</code>: Other than indicating the onset of the audio for fixation, this line also contains the target word and the condition number. In this case, the target word is <code>CANDY</code> and the condition number is 12.</li>
+<li><code>FINAL_FIXATION_START, SELECTED: CANDY.PNG</code>: This line indicates the onset of the final fixation on the target image and the stimulus that was selected. The participant selected the image <code>CANDY.PNG</code> as the target image.</li>
+</ul>
+<p>Following the slicing procedure mentioned the previous section, the indices of the rows corresponding to these three log events are retrieved.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all rows whose indices are stored in start_indices</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># will be used to extract the position of the stimuli</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>trial_strings <span class="op">=</span> df_interest.iloc[start_indices][<span class="st">'USER'</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of rows that contain the phrase 'FIXATE_CENTER_AUDIO_ONSET'</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>target_row_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FIXATE_CENTER_AUDIO_ONSET'</span>)].index</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>target_rows <span class="op">=</span> df_interest.iloc[target_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">'USER'</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of rows that contain the phrase 'FINAL_FIXATION_START'</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>fixation_row_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FINAL_FIXATION_START'</span>)].index</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fixation_rows <span class="op">=</span> df_interest.iloc[fixation_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">'USER'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The retrieved data were all of the datatype string so regex was used to extract the data points of interest. This consisted of the name of the stimulus at the top, bottom, left and right positions of the grid, the target word, the condition number and the selected stimulus. The extracted data were stored in a python dictionary named <code>stimuli_loc_dict</code> with appropriate keys.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the number afer 'COND:'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cond_numbers <span class="op">=</span> [re.findall(<span class="vs">r'COND: (\d+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the word after 'TARGET:'</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>target_words <span class="op">=</span> [re.findall(<span class="vs">r'TARGET: (\w+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the word after 'SELECTED: '</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>selected_words <span class="op">=</span> [re.findall(<span class="vs">r'SELECTED: (\w+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> fixation_rows]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the image names at the top, bottom, right and left positions</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>top_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'T: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>bottom_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'B: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>right_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'R: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>left_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'\sL: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The gaze data contained in <code>audio_df_list</code> provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The functions <code>shift_coordinate_system</code> and <code>shift_coordinate_system_single</code> were defined for this purpose. The function <code>shift_coordinate_system</code> accepted a dictionary of coordinates while the function <code>shift_coordinate_system_single</code> accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shift the origin from (0, 0) to (-960, 540)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># perform the same on outer_points and inner_points</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shift_coordinate_system(coord_dict):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> coord_dict.items():</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        coord_dict[key] <span class="op">=</span> (value[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">960</span>, <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> value[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">540</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># scale to [0, 1]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        coord_dict[key] <span class="op">=</span> (coord_dict[key][<span class="dv">0</span>] <span class="op">/</span> <span class="dv">1920</span>, coord_dict[key][<span class="dv">1</span>] <span class="op">/</span> <span class="dv">1080</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> coord_dict</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shift_coordinate_system_single(coord):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    coord <span class="op">=</span> (coord[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">960</span>, <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> coord[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">540</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    coord <span class="op">=</span> (coord[<span class="dv">0</span>] <span class="op">/</span> <span class="dv">1920</span>, coord[<span class="dv">1</span>] <span class="op">/</span> <span class="dv">1080</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> coord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>shift_coordinate_system</code> function can convert OpenSesame UI coordinates to the cartesian coordinate system (origin on the bottom left corner) and scale them to the range <code>[0, 1]</code>. The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system in order to enable comparison with the transformed OpenSesame UI coordinates, the function <code>shift_coordinate_system_bottom_left_to_top_left</code><!-- TODO: fix incorrect name of function --> was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as <em>matplotlib</em> and <em>seaborn</em>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> shift_coordinate_system_bottom_left_to_top_left(x, y):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x, <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> y <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota Bene
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The GP3 gaze data coordinates are in the range <code>[0, 1]</code> so no scaling is required.</p>
+</div>
+</div>
 <hr>
 <p>References: <span class="citation" data-cites="Vitay2017">(<a href="#ref-Vitay2017" role="doc-biblioref">Vitay, 2017</a>)</span></p>
-<p>See <a href="#fig-matrix">Figure&nbsp;1</a> and <a href="#sec-results">Section&nbsp;3</a>.</p>
+<p>See <a href="#fig-matrix">Figure&nbsp;1</a> and <a href="#sec-results">Section&nbsp;4</a>.</p>
 <p><span class="math display">
     \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
 </span></p>
@@ -221,33 +332,39 @@ Nota Bene
 <p>Important information.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="second-subsection" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="second-subsection"><span class="header-section-number">1.3</span> Second subsection</h2>
+<section id="second-subsection" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="second-subsection"><span class="header-section-number">2.3</span> Second subsection</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tPgf_btTFlc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 </section>
-<section id="material-and-methods" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Material and methods</h1>
+<section id="material-and-methods" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Material and methods</h1>
 </section>
-<section id="sec-results" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Results</h1>
+<section id="sec-results" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
 </section>
-<section id="discussion" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Discussion</h1>
+<section id="discussion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
 </section>
 <section id="references" class="level1 unnumbered">
 
 
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Vitay2017" class="csl-entry" role="listitem">
 Vitay, J. (2017). On the role of dopamine in motivated behavior: A neuro-computational approach. Available at: <a href="https://julien-vitay.net/publication/vitay2017/">https://julien-vitay.net/publication/vitay2017/</a>.
 </div>
-</div></section></div></main>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

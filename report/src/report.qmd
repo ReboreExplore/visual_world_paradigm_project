@@ -45,6 +45,8 @@ In this figure we have the probability of fixation on four words:
 
 In the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
 
+{{< include _pritom.qmd >}}
+
 ------------------------------------
 
 References: [@Vitay2017]

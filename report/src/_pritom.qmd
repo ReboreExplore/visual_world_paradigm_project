@@ -1,0 +1,124 @@
+# Preprocessing and Analysis
+
+<!-- TODO: add introduction to this section -->
+
+## Organizing the raw data into trial-wise data
+
+The basic unit of analysis in the visual world paradigm experiment is a trial. A trial is a single instance of the experiment. The first task was to organize the raw data into trial-wise data. Here the raw data was present in the .tsv files. Each file contained the data for a single participant. The data was read into a pandas dataframe named `df_interest` and then the columns that were not required were dropped. The columns, `TIME`, `BPOGX`, `BPOGY`, `FPOGD`, `FPOGX`, `FPOGY`, `FPOGV` and `USER` were relevant for our analysis so these were the columns remaining in the dataframe.
+
+In order to organize the entries of the dataframe into trials, the rows corresponding to the start and end of the trials needed to be identified. After acquiring the indices of the corresponding rows, the dataframe was split into multiple dataframes, each corresponding to a single trial. 
+
+```python
+# get the indices of the rows where the user column contains the phrase 'START_TRIAL'
+start_indices = df_interest[df_interest['USER'].str.contains('START_TRIAL')].index
+
+# get the indices of the rows where the user column contains the phrase 'FINAL_FIXATION_END'
+end_indices = df_interest[df_interest['USER'].str.contains('FINAL_FIXATION_END')].index
+
+# split the dataframe based on the start and end indices
+df_list = [df_interest.iloc[start_indices[i]:end_indices[i]] for i in range(len(start_indices))]
+```
+
+At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named `audio_df_list`.
+
+```python
+# extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'
+audio_start_index = selected_df[selected_df['USER'].str.contains('LOG_AUDIO_TARGET_START')].index[0]
+# extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_END'
+audio_end_index = selected_df[selected_df['USER'].str.contains('CLICK_RESPONSE_END')].index[0]
+# split the dataframe based on the audio start and end indices
+# store the split dataframe in a list
+audio_df_list.append(selected_df.iloc[audio_start_index:audio_end_index + 1])
+```
+
+## Extracting trial information
+
+The logs present in the .tsv files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown. 
+
+```text
+START_EXP
+START_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG
+FIXATE_CENTER_AUDIO_ONSET, COND: 12 TARGET: CANDY
+CENTRE_GAZE_START
+INSTRUCTION_TO_CLICK_ONSET
+LOG_AUDIO_TARGET_START
+LOG_AUDIO_TARGET_END
+CLICK_RESPONSE_END
+FINAL_FIXATION_START, SELECTED: CANDY.PNG
+FINAL_FIXATION_END
+….
+….
+….
+….
+STOP_EXP
+```
+
+The logs are in the form of a sequence of events. Each log event is a line in the log file. Out of these log events, the following ones are relevant for our analysis:
+
+* `START_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG` : This line contains the information about the trial. The trial number is 0. The images on the left, right, top and bottom of the target image are `SADDLE.PNG`, `PICKLE.PNG`, `PADLOCK.PNG` and `CANDY.PNG` respectively.
+* `FIXATE_CENTER_AUDIO_ONSET, COND: 12 TARGET: CANDY`: Other than indicating the onset of the audio for fixation, this line also contains the target word and the condition number. In this case, the target word is `CANDY` and the condition number is 12.
+* `FINAL_FIXATION_START, SELECTED: CANDY.PNG`: This line indicates the onset of the final fixation on the target image and the stimulus that was selected. The participant selected the image `CANDY.PNG` as the target image.
+
+Following the slicing procedure mentioned the previous section, the indices of the rows corresponding to these three log events are retrieved.
+
+```python
+# get all rows whose indices are stored in start_indices
+# will be used to extract the position of the stimuli
+trial_strings = df_interest.iloc[start_indices]['USER'].reset_index(drop=True)
+
+# get the indices of rows that contain the phrase 'FIXATE_CENTER_AUDIO_ONSET'
+target_row_indices = df_interest[df_interest['USER'].str.contains('FIXATE_CENTER_AUDIO_ONSET')].index
+target_rows = df_interest.iloc[target_row_indices].reset_index(drop=True)['USER']
+
+# get the indices of rows that contain the phrase 'FINAL_FIXATION_START'
+fixation_row_indices = df_interest[df_interest['USER'].str.contains('FINAL_FIXATION_START')].index
+fixation_rows = df_interest.iloc[fixation_row_indices].reset_index(drop=True)['USER']
+```
+
+The retrieved data were all of the datatype string so regex was used to extract the data points of interest. This consisted of the name of the stimulus at the top, bottom, left and right positions of the grid, the target word, the condition number and the selected stimulus. The extracted data were stored in a python dictionary named `stimuli_loc_dict` with appropriate keys.
+
+```python
+# use regex to extract the number afer 'COND:'
+cond_numbers = [re.findall(r'COND: (\d+)', row)[0] for row in target_rows]
+# use regex to extract the word after 'TARGET:'
+target_words = [re.findall(r'TARGET: (\w+)', row)[0] for row in target_rows]
+# use regex to extract the word after 'SELECTED: '
+selected_words = [re.findall(r'SELECTED: (\w+)', row)[0] for row in fixation_rows]
+
+# use regex to extract the image names at the top, bottom, right and left positions
+top_stimuli = [re.findall(r'T: (\w+)', trial_string)[0] for trial_string in trial_strings]
+bottom_stimuli = [re.findall(r'B: (\w+)', trial_string)[0] for trial_string in trial_strings]
+right_stimuli = [re.findall(r'R: (\w+)', trial_string)[0] for trial_string in trial_strings]
+left_stimuli = [re.findall(r'\sL: (\w+)', trial_string)[0] for trial_string in trial_strings]
+```
+
+The gaze data contained in `audio_df_list` provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]^[The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.]. The functions `shift_coordinate_system` and `shift_coordinate_system_single` were defined for this purpose. The function `shift_coordinate_system` accepted a dictionary of coordinates while the function `shift_coordinate_system_single` accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.
+
+```python
+# shift the origin from (0, 0) to (-960, 540)
+# perform the same on outer_points and inner_points
+def shift_coordinate_system(coord_dict):
+    for key, value in coord_dict.items():
+        coord_dict[key] = (value[0] + 960, -1 * value[1] + 540)
+    
+        # scale to [0, 1]
+        coord_dict[key] = (coord_dict[key][0] / 1920, coord_dict[key][1] / 1080)
+    return coord_dict
+
+def shift_coordinate_system_single(coord):
+    coord = (coord[0] + 960, -1 * coord[1] + 540)
+    coord = (coord[0] / 1920, coord[1] / 1080)
+    return coord
+```
+
+The `shift_coordinate_system` function can convert OpenSesame UI coordinates to the cartesian coordinate system (origin on the bottom left corner) and scale them to the range `[0, 1]`. The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system in order to enable comparison with the transformed OpenSesame UI coordinates, the function `shift_coordinate_system_bottom_left_to_top_left`<!-- TODO: fix incorrect name of function --> was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as *matplotlib* and *seaborn*. 
+
+```python
+def shift_coordinate_system_bottom_left_to_top_left(x, y):
+    return (x, -1 * y + 1)
+```
+
+::: {.callout-note}
+## Nota Bene
+The GP3 gaze data coordinates are in the range `[0, 1]` so no scaling is required.
+:::
