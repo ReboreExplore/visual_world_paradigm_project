@@ -235,11 +235,7 @@
 \subtitle{\emph{A classical visual world study showing how people
 predict upcoming words with the help of Gazepoint eye tracker}}
 \author{Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani}
-<<<<<<< HEAD
 \date{2023-08-21}
-=======
-\date{2023-08-20}
->>>>>>> e730125 (added 50% experiment section to report)
 
 \begin{document}
 \maketitle
@@ -258,11 +254,7 @@ validates the hypothesis that the existence of such competitors leads to
 an increased number of fixations on them, reflecting the participants'
 evolving predictions of the upcoming word.
 \end{abstract}
-<<<<<<< HEAD
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, interior hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, enhanced]}{\end{tcolorbox}}\fi
-=======
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, frame hidden]}{\end{tcolorbox}}\fi
->>>>>>> e730125 (added 50% experiment section to report)
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, boxrule=0pt, interior hidden, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -271,11 +263,7 @@ evolving predictions of the upcoming word.
 \tableofcontents
 }
 \setstretch{1.25}
-<<<<<<< HEAD
-\href{./report/docs/report.pdf}{Download the pdf version.}
-=======
 \href{report/docs/report.pdf}{Download the pdf version.}
->>>>>>> e730125 (added 50% experiment section to report)
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -333,7 +321,7 @@ similar structure of the experiment and found the following results:
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\textwidth,height=\textheight]{img/ref_graph.png}
+{\centering \includegraphics[width=0.9\textwidth,height=\textheight]{img/ref_graph.png}
 
 }
 
@@ -342,10 +330,21 @@ over time in the full competitor condition}
 
 \end{figure}
 
-In this figure we have the probability of fixation on four words: -
-Referent (e.g beaker) : Target Word - Cohort (e.g beetle) : Similar
-Sounding Word - Rhyme (e.g speaker) : Rhyming word - Unrelated (e.g
-carriage) : Unrelated word to the rest (phonetically or semantically.)
+In this figure we have the probability of fixation on four words:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Referent (e.g beaker) : Target Word
+\item
+  Cohort (e.g beetle) : Similar Sounding Word
+\item
+  Rhyme (e.g speaker) : Rhyming word
+\item
+  Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or
+  semantically.)
+\end{enumerate}
 
 In the beginning the participants hear {[}bi{]}, which could be the
 beginning of \emph{beaker} but also could be the beginning of
@@ -360,18 +359,298 @@ For the last word carriage the pronunciation is totally unrelated to the
 target \emph{beaker}, so there is a very less probability of the
 participant actually fixation at the unrelated word.
 
-<<<<<<< HEAD
+\hypertarget{experiment}{%
+\section{Experiment}\label{experiment}}
+
+\hypertarget{software-and-hardware}{%
+\subsection{Software and Hardware}\label{software-and-hardware}}
+
+\begin{itemize}
+\item
+  \textbf{Software} : The experiment is designed in
+  \href{https://osdoc.cogsci.nl/}{OpenSesame} which is a open source
+  software to create experiments for psychology, neuroscience, and
+  experimental economics.
+\item
+  \textbf{Language} : Python was used along with the OpenSesame GUI to
+  create the experiment. Libraries like Pandas, Numpy, Matplotlib were
+  used to analyze the data. For backend processing in the OpenSesame
+  GUI, PsychoPy was used.
+\item
+  \textbf{Eye Tracker}: The experiment is conducted using the GazePoint
+  GP3+ eye tracker. It is a binocular eye tracker that can record at 150
+  Hz The eye tracker is connected to the computer and the participants
+  are seated at a distance of 60 cm from the screen. The experiment was
+  conducted in a dimly lit laboratory setup to avoid any external light
+  source that might interfere with the eye tracking.
+\end{itemize}
+
+\hypertarget{structure-of-the-stimulus}{%
+\subsection{Structure of the Stimulus}\label{structure-of-the-stimulus}}
+
+The experiment is designed to test the participants' ability to predict
+the upcoming word in a spoken instruction. The experiment is designed in
+such a way that the participants are presented with a visual display of
+four objects in a grid and they are instructed to click on the object
+that matches the spoken instruction.
+
+A trial in the experiment means the response to one spoken instruction.
+
+The following User Interface is presented to the participants:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{img/stim_grid.png}
+
+}
+
+\caption{\label{fig-ui}User Interface of one trial - In each trial we
+have a 3x3 grid structure with four objects in it. Each trial has four
+stimulus displayed. The four stimulus are a combination of referent,
+cohort, rhyme and unrelated words. All or atleast two of the
+combinations are present in each trial according to the condition set
+(Full competitor, Rhyme competitor, Unrelated competitor etc.), which
+will be referred in the later part of the report. The stimulus used are
+only line drawings of the objects, to remove anmibuity in the visual
+display. The dot in the center grid is the fixation point for the
+participants.}
+
+\end{figure}
+
+\hypertarget{design-of-the-experiment}{%
+\subsection{Design of the Experiment}\label{design-of-the-experiment}}
+
+The experiment follows the following structure in OpenSesame:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Introduction to the experiment} : It contains some preliminary
+  instructions for the participants to understand the experiment. It
+  also mentions that each progression will require a mouse click. The
+  foreground color of the text is set to black and the background color
+  is set to white throughout the experiment.
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\textwidth,height=\textheight]{img/intro_script.png}
+
+}
+
+\caption{\label{fig-ui}Introduction}
+
+\end{figure}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Initialization of variables} : The position variables (Top,
+  Buttom, Left and Right) are initialized and are used to set the
+  position of the objects in the grid. The pygaze module is also
+  intialized to record the eye movements of the participants.
+\item
+  \textbf{Trial Loop Items} : This loop runs the experiment for 24
+  trials. The trial loop contains the following sequence of events:
+
+  \begin{itemize}
+  \item
+    \textbf{Fixation Cross} : A fixation cross is displayed at the
+    center of the screen. The fixation cross is a black dot on a white
+    background. The fixation cross is displayed to ensure that the
+    participants are looking at the center of the screen before the
+    spoken instruction is played. The fixation cross is displayed using
+    the sketchpad item in OpenSesame.
+  \item
+    \textbf{Stimulus} :
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \tightlist
+    \item
+      The visual stimulus for each trial is loaded from the
+      \texttt{stimuli.csv} file. The csv file contains information about
+      the four objects that are displayed in the grid. The csv file
+      contains the following information:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \textbf{Stimulus} : The name of the objects that is displayed in
+        the grid.
+      \item
+        \textbf{Type} : The type of the object. The type can be
+        referent, cohort, rhyme or unrelated. The type of the object is
+        used to determine the condition of the trial.
+      \item
+        \textbf{Condition} : The condition of the trial.
+      \item
+        \textbf{Target} : The target object that the participants have
+        to click on. You can find the stimuli.csv file
+        \href{stimuli/stimuli-final.csv}{here}.
+      \end{itemize}
+    \item
+      We also have accompaning audio stimuli for each trial. The audio
+      is digitally recorded. The audio stimuli are recorded in the
+      following format:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        \textbf{Instruction} : `Fixate at the center' , `Now click on
+        the \{target\}'
+      \item
+        \textbf{Target} : The target object that the participants have
+        to click on. You can find the audio stimuli
+        \href{stimuli/audio-stimuli}{here}. Each response is captured
+        with a mouse click. The mouse click is recorded and logged using
+        the mouse\_response item in OpenSesame.
+      \end{itemize}
+    \end{enumerate}
+  \item
+    \textbf{Logging} : The onset and offset of the fixation cross and
+    the stimulus (both audio and visual) is logged for each trail. We
+    also log the position of the mouse click and the target object along
+    with its position (top,right, buttom, left) that the participants
+    clicked on. (\emph{More details will be proviided in the
+    preprocessing and analysis section}.)
+  \item
+    \textbf{Gaze Contingency} : Two fixation audio prompts which says
+    \emph{`Fixate at the center'} and `\emph{Now fixate at the center}'
+    and marks the beginning and end of one trail.The fixation audio
+    prompt is played to ensure that the participants are looking at the
+    center of the screen before the spoken instruction is played. This
+    is implemented by introducing a delay of 1.1s after the prompt.
+    \includegraphics[width=0.9\textwidth,height=\textheight]{img/trial_timeline.png}
+  \end{itemize}
+\item
+  \textbf{End of Experiment} : The experiment ends with a thank you
+  message for the participants.
+\end{enumerate}
+
+\hypertarget{logic-of-the-experiment}{%
+\subsection{Logic of the experiment}\label{logic-of-the-experiment}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Stimuli are chosen as per the different pairs of sets included in the
+  reference paper by Paul D.Allopenna, James S. Magnuson and Michael K.
+  Tanenhaus.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For eg. One criteria of choosing those words are based on frequency
+    per million words in the Kucera and Francis, 1967, corpus.
+  \end{itemize}
+\item
+  A fixation at any point on the screen indicates that the participant
+  is paying attention to it. Thus we record the fixations throughout the
+  experiment to deduce the attention of the pariticipant when we
+  instruct them to fixate or look at a certain point of the canvas.
+\item
+  Noting timestamps of the samples is essential. Our experiment is
+  designed to record how a participants attends to the stimuli and how
+  they respond to the spoken instruction while the instruction is
+  unfolding. Thus we record the timestamps of the samples to understand
+  the chronology of the fixation events.
+\item
+  Fixations at the centre of the screen marks the start and end of a
+  trial. This is to make sure we don't overlap the data of two trials
+  while recording the data since each participant will have different
+  response times and thus a fixed duration for each trial for timeout
+  will not be feasible.
+\end{enumerate}
+
+\hypertarget{stimulus-design}{%
+\section{Stimulus Design}\label{stimulus-design}}
+
+\hypertarget{conditions}{%
+\section{Conditions}\label{conditions}}
+
+\hypertarget{randomization-and-quality-control}{%
+\section{Randomization and Quality
+Control}\label{randomization-and-quality-control}}
+
+\hypertarget{experiment-organization}{%
+\section{Experiment Organization}\label{experiment-organization}}
+
 \hypertarget{preprocessing-and-analysis}{%
 \section{Preprocessing and Analysis}\label{preprocessing-and-analysis}}
 
-\hypertarget{extracting-relevant-data-from-the-log-files}{%
-\subsection{Extracting relevant data from the log
-files}\label{extracting-relevant-data-from-the-log-files}}
+\hypertarget{preprocessing-and-analysis-1}{%
+\section{Preprocessing and
+Analysis}\label{preprocessing-and-analysis-1}}
+
+\hypertarget{organizing-the-raw-data-into-trial-wise-data}{%
+\subsection{Organizing the raw data into trial-wise
+data}\label{organizing-the-raw-data-into-trial-wise-data}}
+
+The basic unit of analysis in the visual world paradigm experiment is a
+trial. A trial is a single instance of the experiment. The first task
+was to organize the raw data into trial-wise data. Here the raw data was
+present in the .tsv files. Each file contained the data for a single
+participant. The data was read into a pandas dataframe named
+\texttt{df\_interest} and then the columns that were not required were
+dropped. The columns, \texttt{TIME}, \texttt{BPOGX}, \texttt{BPOGY},
+\texttt{FPOGD}, \texttt{FPOGX}, \texttt{FPOGY}, \texttt{FPOGV} and
+\texttt{USER} were relevant for our analysis so these were the columns
+remaining in the dataframe.
+
+In order to organize the entries of the dataframe into trials, the rows
+corresponding to the start and end of the trials needed to be
+identified. After acquiring the indices of the corresponding rows, the
+dataframe was split into multiple dataframes, each corresponding to a
+single trial.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# get the indices of the rows where the user column contains the phrase \textquotesingle{}START\_TRIAL\textquotesingle{}}
+\NormalTok{start\_indices }\OperatorTok{=}\NormalTok{ df\_interest[df\_interest[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}START\_TRIAL\textquotesingle{}}\NormalTok{)].index}
+
+\CommentTok{\# get the indices of the rows where the user column contains the phrase \textquotesingle{}FINAL\_FIXATION\_END\textquotesingle{}}
+\NormalTok{end\_indices }\OperatorTok{=}\NormalTok{ df\_interest[df\_interest[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}FINAL\_FIXATION\_END\textquotesingle{}}\NormalTok{)].index}
+
+\CommentTok{\# split the dataframe based on the start and end indices}
+\NormalTok{df\_list }\OperatorTok{=}\NormalTok{ [df\_interest.iloc[start\_indices[i]:end\_indices[i]] }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(start\_indices))]}
+\end{Highlighting}
+\end{Shaded}
+
+At this point, the dataframes corresponding to the individual trials
+were ready. Our analysis is mainly concerned with the gaze data from the
+point of onset of the audio stimilus up till the point at which the
+participant clicks on a stimulus. So, the dataframes were further sliced
+to retain only the data from the specified interval. In order to perform
+this, the \texttt{USER} column was used. The rows corresponding to the
+start of the audio stimulus and the end of the click response were
+identified by the strings \texttt{LOG\_AUDIO\_TARGET\_START} and
+\texttt{CLICK\_RESPONSE\_END} respectively. The rows between these two
+rows were sliced and the resulting dataframes were stored in a list
+named \texttt{audio\_df\_list}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# extract the row index where the user column contains the phrase \textquotesingle{}LOG\_AUDIO\_TARGET\_START\textquotesingle{}}
+\NormalTok{audio\_start\_index }\OperatorTok{=}\NormalTok{ selected\_df[selected\_df[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}LOG\_AUDIO\_TARGET\_START\textquotesingle{}}\NormalTok{)].index[}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# extract the row index where the user column contains the phrase \textquotesingle{}LOG\_AUDIO\_TARGET\_END\textquotesingle{}}
+\NormalTok{audio\_end\_index }\OperatorTok{=}\NormalTok{ selected\_df[selected\_df[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}CLICK\_RESPONSE\_END\textquotesingle{}}\NormalTok{)].index[}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# split the dataframe based on the audio start and end indices}
+\CommentTok{\# store the split dataframe in a list}
+\NormalTok{audio\_df\_list.append(selected\_df.iloc[audio\_start\_index:audio\_end\_index }\OperatorTok{+} \DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{extracting-trial-information}{%
+\subsection{Extracting trial
+information}\label{extracting-trial-information}}
 
 The logs present in the .tsv files are important for our analysis. Apart
 from containing the data recordings from the experiments, they also
 contain the information about the individual trials. In the text block
-below, a logs for a sample trial are shown.
+below, the logs for a sample trial are shown.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -393,9 +672,160 @@ below, a logs for a sample trial are shown.
 \end{Highlighting}
 \end{Shaded}
 
-=======
->>>>>>> e730125 (added 50% experiment section to report)
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+The logs are in the form of a sequence of events. Each log event is a
+line in the log file. Out of these log events, the following ones are
+relevant for our analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{START\_TRIAL:\ 0\ T:\ SADDLE.PNG\ R:\ PICKLE.PNG\ B:\ PADLOCK.PNG\ L:\ CANDY.PNG}
+  : This line contains the information about the trial. The trial number
+  is 0. The images on the left, right, top and bottom of the target
+  image are \texttt{SADDLE.PNG}, \texttt{PICKLE.PNG},
+  \texttt{PADLOCK.PNG} and \texttt{CANDY.PNG} respectively.
+\item
+  \texttt{FIXATE\_CENTER\_AUDIO\_ONSET,\ COND:\ 12\ TARGET:\ CANDY}:
+  Other than indicating the onset of the audio for fixation, this line
+  also contains the target word and the condition number. In this case,
+  the target word is \texttt{CANDY} and the condition number is 12.
+\item
+  \texttt{FINAL\_FIXATION\_START,\ SELECTED:\ CANDY.PNG}: This line
+  indicates the onset of the final fixation on the target image and the
+  stimulus that was selected. The participant selected the image
+  \texttt{CANDY.PNG} as the target image.
+\end{itemize}
+
+Following the slicing procedure mentioned the previous section, the
+indices of the rows corresponding to these three log events are
+retrieved.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# get all rows whose indices are stored in start\_indices}
+\CommentTok{\# will be used to extract the position of the stimuli}
+\NormalTok{trial\_strings }\OperatorTok{=}\NormalTok{ df\_interest.iloc[start\_indices][}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].reset\_index(drop}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\CommentTok{\# get the indices of rows that contain the phrase \textquotesingle{}FIXATE\_CENTER\_AUDIO\_ONSET\textquotesingle{}}
+\NormalTok{target\_row\_indices }\OperatorTok{=}\NormalTok{ df\_interest[df\_interest[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}FIXATE\_CENTER\_AUDIO\_ONSET\textquotesingle{}}\NormalTok{)].index}
+\NormalTok{target\_rows }\OperatorTok{=}\NormalTok{ df\_interest.iloc[target\_row\_indices].reset\_index(drop}\OperatorTok{=}\VariableTok{True}\NormalTok{)[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{]}
+
+\CommentTok{\# get the indices of rows that contain the phrase \textquotesingle{}FINAL\_FIXATION\_START\textquotesingle{}}
+\NormalTok{fixation\_row\_indices }\OperatorTok{=}\NormalTok{ df\_interest[df\_interest[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{\textquotesingle{}FINAL\_FIXATION\_START\textquotesingle{}}\NormalTok{)].index}
+\NormalTok{fixation\_rows }\OperatorTok{=}\NormalTok{ df\_interest.iloc[fixation\_row\_indices].reset\_index(drop}\OperatorTok{=}\VariableTok{True}\NormalTok{)[}\StringTok{\textquotesingle{}USER\textquotesingle{}}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+The retrieved data were all of the datatype string so regex was used to
+extract the data points of interest. This consisted of the name of the
+stimulus at the top, bottom, left and right positions of the grid, the
+target word, the condition number and the selected stimulus. The
+extracted data were stored in a python dictionary named
+\texttt{stimuli\_loc\_dict} with appropriate keys.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# use regex to extract the number afer \textquotesingle{}COND:\textquotesingle{}}
+\NormalTok{cond\_numbers }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}COND: (\textbackslash{}d+)\textquotesingle{}}\NormalTok{, row)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ row }\KeywordTok{in}\NormalTok{ target\_rows]}
+\CommentTok{\# use regex to extract the word after \textquotesingle{}TARGET:\textquotesingle{}}
+\NormalTok{target\_words }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}TARGET: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, row)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ row }\KeywordTok{in}\NormalTok{ target\_rows]}
+\CommentTok{\# use regex to extract the word after \textquotesingle{}SELECTED: \textquotesingle{}}
+\NormalTok{selected\_words }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}SELECTED: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, row)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ row }\KeywordTok{in}\NormalTok{ fixation\_rows]}
+
+\CommentTok{\# use regex to extract the image names at the top, bottom, right and left positions}
+\NormalTok{top\_stimuli }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}T: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, trial\_string)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ trial\_string }\KeywordTok{in}\NormalTok{ trial\_strings]}
+\NormalTok{bottom\_stimuli }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}B: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, trial\_string)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ trial\_string }\KeywordTok{in}\NormalTok{ trial\_strings]}
+\NormalTok{right\_stimuli }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}R: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, trial\_string)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ trial\_string }\KeywordTok{in}\NormalTok{ trial\_strings]}
+\NormalTok{left\_stimuli }\OperatorTok{=}\NormalTok{ [re.findall(}\VerbatimStringTok{r\textquotesingle{}\textbackslash{}sL: (\textbackslash{}w+)\textquotesingle{}}\NormalTok{, trial\_string)[}\DecValTok{0}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ trial\_string }\KeywordTok{in}\NormalTok{ trial\_strings]}
+\end{Highlighting}
+\end{Shaded}
+
+The gaze data contained in \texttt{audio\_df\_list} provided the
+coordinates where the participant was fixating at a given timestamp but
+for our task we needed to know which stimulus the participant was
+fixating at. The coordinates of the grid boxes were noted from the
+OpenSesame experiment UI. But one issues with this data is that these
+coordinates had the origin at the center of the screen whereas the gaze
+data had the origin at the top left corner of the screen. So, the
+coordinates of the grid boxes were converted to the coordinate system of
+the gaze data and then scaled to the range {[}0, 1{]}\footnote{The
+  scaling is performed with regard to the resolution of a screen
+  resolution of 1920x1080. Hence, a maximum value of 1 along height and
+  width correspond to 1080 and 1920 respectively.}. The functions
+\texttt{shift\_coordinate\_system} and
+\texttt{shift\_coordinate\_system\_single} were defined for this
+purpose. The function \texttt{shift\_coordinate\_system} accepted a
+dictionary of coordinates while the function
+\texttt{shift\_coordinate\_system\_single} accepted a single set of
+coordinates (tuple). The functions returned the shifted coordinates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# shift the origin from (0, 0) to ({-}960, 540)}
+\CommentTok{\# perform the same on outer\_points and inner\_points}
+\KeywordTok{def}\NormalTok{ shift\_coordinate\_system(coord\_dict):}
+    \ControlFlowTok{for}\NormalTok{ key, value }\KeywordTok{in}\NormalTok{ coord\_dict.items():}
+\NormalTok{        coord\_dict[key] }\OperatorTok{=}\NormalTok{ (value[}\DecValTok{0}\NormalTok{] }\OperatorTok{+} \DecValTok{960}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1} \OperatorTok{*}\NormalTok{ value[}\DecValTok{1}\NormalTok{] }\OperatorTok{+} \DecValTok{540}\NormalTok{)}
+    
+        \CommentTok{\# scale to [0, 1]}
+\NormalTok{        coord\_dict[key] }\OperatorTok{=}\NormalTok{ (coord\_dict[key][}\DecValTok{0}\NormalTok{] }\OperatorTok{/} \DecValTok{1920}\NormalTok{, coord\_dict[key][}\DecValTok{1}\NormalTok{] }\OperatorTok{/} \DecValTok{1080}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ coord\_dict}
+
+\KeywordTok{def}\NormalTok{ shift\_coordinate\_system\_single(coord):}
+\NormalTok{    coord }\OperatorTok{=}\NormalTok{ (coord[}\DecValTok{0}\NormalTok{] }\OperatorTok{+} \DecValTok{960}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1} \OperatorTok{*}\NormalTok{ coord[}\DecValTok{1}\NormalTok{] }\OperatorTok{+} \DecValTok{540}\NormalTok{)}
+\NormalTok{    coord }\OperatorTok{=}\NormalTok{ (coord[}\DecValTok{0}\NormalTok{] }\OperatorTok{/} \DecValTok{1920}\NormalTok{, coord[}\DecValTok{1}\NormalTok{] }\OperatorTok{/} \DecValTok{1080}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ coord}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{shift\_coordinate\_system} function can convert OpenSesame
+UI coordinates to the cartesian coordinate system (origin on the bottom
+left corner) and scale them to the range \texttt{{[}0,\ 1{]}}. The gaze
+data acquired from the GP3 eye tracker follows a different coordinate
+system. The origin of the gaze data coordinate system is at the top left
+corner of the screen. Additionally, the y-axis is inverted, meaning that
+the y-coordinate increases as the participant looks down. In order to
+convert the gaze data to the cartesian coordinate system in order to
+enable comparison with the transformed OpenSesame UI coordinates, the
+function \texttt{shift\_coordinate\_system\_bottom\_left\_to\_top\_left}
+was defined. The scaled version of the cartesian coordinates was chosen
+in order to enable use with plotting libraries such as \emph{matplotlib}
+and \emph{seaborn}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ shift\_coordinate\_system\_bottom\_left\_to\_top\_left(x, y):}
+    \ControlFlowTok{return}\NormalTok{ (x, }\OperatorTok{{-}}\DecValTok{1} \OperatorTok{*}\NormalTok{ y }\OperatorTok{+} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, breakable, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, colframe=quarto-callout-note-color-frame, arc=.35mm, opacityback=0, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, titlerule=0mm, opacitybacktitle=0.6, bottomtitle=1mm, rightrule=.15mm, toprule=.15mm, left=2mm, coltitle=black]
+
+The GP3 gaze data coordinates are in the range \texttt{{[}0,\ 1{]}} so
+no scaling is required.
+
+\end{tcolorbox}
+
+\hypertarget{challenges-and-limitations}{%
+\section{Challenges and Limitations}\label{challenges-and-limitations}}
+
+\hypertarget{challenges}{%
+\subsection{Challenges}\label{challenges}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Balancing of trials}: Our stimuli had a total of \emph{23
+  unique visual stimuli}, \emph{12 different conditions} and \emph{4
+  different types}. Adhering to proper randomization and balancing of
+  trials was a challenge as we had to ensure that each participant saw
+  the same number of trials for each condition and each type and such
+  that each object appeared equal number of times. Although we started
+  tith a python script to generate the trials, we had to revert to
+  manual creation of trials as the script was not able to generate
+  balanced trials which was a primary requirement for our experiment.
+\end{enumerate}
 
 References: (Vitay, 2017)
 
@@ -405,11 +835,7 @@ See Figure~\ref{fig-matrix} and Section~\ref{sec-results}.
     \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
 \]
 
-<<<<<<< HEAD
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, opacitybacktitle=0.6, coltitle=black, bottomtitle=1mm, rightrule=.15mm, colback=white, opacityback=0, leftrule=.75mm, arc=.35mm, toptitle=1mm, left=2mm, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, breakable, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, toprule=.15mm]
-=======
-\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, breakable, colback=white, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, left=2mm, bottomrule=.15mm, arc=.35mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, toptitle=1mm, rightrule=.15mm, toprule=.15mm, leftrule=.75mm, coltitle=black]
->>>>>>> e730125 (added 50% experiment section to report)
+\begin{tcolorbox}[enhanced jigsaw, colback=white, breakable, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, colframe=quarto-callout-note-color-frame, arc=.35mm, opacityback=0, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, titlerule=0mm, opacitybacktitle=0.6, bottomtitle=1mm, rightrule=.15mm, toprule=.15mm, left=2mm, coltitle=black]
 
 Important information.
 

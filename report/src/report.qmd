@@ -37,22 +37,18 @@ Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"T
 ![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-matrix width=90%}
 
 In this figure we have the probability of fixation on four words:
-- Referent (e.g beaker) : Target Word
-- Cohort (e.g beetle) : Similar Sounding Word
-- Rhyme (e.g speaker) : Rhyming word
-- Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)
+
+1. Referent (e.g beaker) : Target Word
+2. Cohort (e.g beetle) : Similar Sounding Word
+3. Rhyme (e.g speaker) : Rhyming word
+4. Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)
 
 In the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
 
-<<<<<<< HEAD
-{{< include _pritom.qmd >}}
 
-------------------------------------
-=======
+# Experiment 
 
-## Experiment 
-
-### Software and Hardware
+## Software and Hardware
 
 - **Software** : The experiment is designed in [OpenSesame](https://osdoc.cogsci.nl/) which is a open source software to create experiments for psychology, neuroscience, and experimental economics. 
 
@@ -60,7 +56,7 @@ In the beginning the participants hear [bi], which could be the beginning of *be
 
 - **Eye Tracker**: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz  The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.
 
-### Structure of the Stimulus
+## Structure of the Stimulus
 
 The experiment is designed to test the participants' ability to predict the upcoming word in a spoken instruction. The experiment is designed in such a way that the participants are presented with a visual display of four objects in a grid and they are instructed to click on the object that matches the spoken instruction.
 
@@ -68,22 +64,112 @@ A trial in the experiment means the response to one spoken instruction.
 
 The following User Interface is presented to the participants:
 
-![User Interface of one trial - In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.](img/stim_grid.png){#fig-ui width=90%}
+![User Interface of one trial - In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.](img/stim_grid.png){#fig-ui width=70%}
 
-### Design of the Experiment
+## Design of the Experiment
 
 The experiment follows the following structure in OpenSesame:
+
 1. **Introduction to the experiment** : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
 
-![Introduction](img/intro_script.png.png){#fig-ui width=90%}
+![Introduction](img/intro_script.png){#fig-ui width=50%}
 
 2. **Initialization of variables** : The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.
 
+3. **Trial Loop Items** : This loop runs the experiment for 24 trials. The trial loop contains the following sequence of events:
+    - **Fixation Cross** : A fixation cross is displayed at the center of the screen. The fixation cross is a black dot on a white background. The fixation cross is displayed to ensure that the participants are looking at the center of the screen before the spoken instruction is played. The fixation cross is displayed using the sketchpad item in OpenSesame.
+    
+    - **Stimulus** : 
+        1. The visual stimulus for each trial is loaded from the ```stimuli.csv``` file. The csv file contains information about the four objects that are displayed in the grid. The csv file contains the following information:
+            - **Stimulus** : The name of the objects that is displayed in the grid.
+            - **Type** : The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.
+            - **Condition** : The condition of the trial.
+            - **Target** : The target object that the participants have to click on.
+            You can find the stimuli.csv file [here](stimuli/stimuli-final.csv).
+        2. We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
+            - **Instruction** : 'Fixate at the center' , 'Now click on the {target}'
+            - **Target** : The target object that the participants have to click on.
+            You can find the audio stimuli [here](stimuli/audio-stimuli).
+            Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.
+    
+    - **Logging** : The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (_More details will be proviided in the preprocessing and analysis section_.)
+    
+    - **Gaze Contingency** : Two fixation audio prompts which says _'Fixate at the center'_ and '_Now fixate at the center_' and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. 
+    ![Timeline of a trial](img/trial_timeline.png){#fig-ui width=90%}
 
+4. **End of Experiment** : The experiment ends with a thank you message for the participants.
+
+## Logic of the experiment
+
+1. Stimuli are chosen as per the different pairs of sets included in the reference paper by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus.
+    - For eg. One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.
+
+2. A fixation at any point on the screen indicates that the participant is paying attention to it. Thus we record the fixations throughout the experiment to deduce the attention of the pariticipant when we instruct them to fixate or look at a certain point of the canvas.
+
+3. Noting timestamps of the samples is essential. Our experiment is designed to record how a participants attends to the stimuli and how they respond to the spoken instruction while the instruction is unfolding. Thus we record the timestamps of the samples to understand the chronology of the fixation events.
+
+4. Fixations at the centre of the screen marks the start and end of a trial. This is to make sure we don't overlap the data of two trials while recording the data since each participant will have different response times and thus a fixed duration for each trial for timeout will not be feasible.
+
+# Stimulus Design
+
+# Conditions
+
+# Randomization and Quality Control
+
+# Experiment Organization
+
+
+# Preprocessing and Analysis
+{{< include _pritom.qmd >}}
+
+
+# Challenges and Limitations
+
+## Challenges
+    
+1. **Balancing of trials**: 
+    - **Challenge** :Our stimuli had a total of _23 unique visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
+    - **Solution** : Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
+
+2. **Random ‘freezes’ during experiment** : 
+    - **Challenge** : The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.
+    
+    - **Trails** : 
+
+        1. While True loop
+        ```
+            while True:
+            gazepos = eyetracker.sample()
+        ```
+        2. Periodic sampling
+        ```
+		    while True:
+                if clock.time() - check_timer > diff:
+                    gazepos = eyetracker.sample()
+        ```
+        3. Switching backend to PsychoPy
+                Made the sample rates of all the audio samples equal to work with the PsychoPy backend.
+        
+        4. Number of trials
+                Reduced the number of trials to 24 from 12 to reduce the time of the experiment but the problem still persisted.
+
+    - **Solution** : Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
+
+3. **Eye tracker calibration** :
+    - **Challenge** : The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
+    - **Solution** : THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
+
+## Limitations
+
+1. Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus might have been biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e the participants might have been able to predict the target word based on the previous trials.
+
+2. Generalizability is affected as our study participants only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the  field of cognitive psychology.
+
+3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
 
 References: [@Vitay2017]
-
+linguistics and
 See @fig-matrix and @sec-results.
 
 
