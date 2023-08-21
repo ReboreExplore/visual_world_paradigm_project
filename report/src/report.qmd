@@ -3,7 +3,6 @@ title: "**Visual World Paradigm**"
 subtitle: "*A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker*"
 author:
   - name: Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani
-    url: https://julien-vitay.net
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
 date: today
@@ -12,7 +11,7 @@ toc: true
 bibliography: biblio.bib
 ---
 
-[Download the pdf version.](./report/docs/report.pdf)
+[Download the pdf version.](report/docs/report.pdf)
 
 # Introduction
 
@@ -35,7 +34,7 @@ We aim to explore two fundamental conclusions concerning spoken word recognition
 
 Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* investigated a similar structure of the experiment and found the following results: 
 
-![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-matrix width=50%}
+![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-matrix width=90%}
 
 In this figure we have the probability of fixation on four words:
 - Referent (e.g beaker) : Target Word
@@ -45,9 +44,43 @@ In this figure we have the probability of fixation on four words:
 
 In the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
 
+<<<<<<< HEAD
 {{< include _pritom.qmd >}}
 
 ------------------------------------
+=======
+
+## Experiment 
+
+### Software and Hardware
+
+- **Software** : The experiment is designed in [OpenSesame](https://osdoc.cogsci.nl/) which is a open source software to create experiments for psychology, neuroscience, and experimental economics. 
+
+- **Language** : Python was used along with the OpenSesame GUI to create the experiment. Libraries like Pandas, Numpy, Matplotlib were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used.
+
+- **Eye Tracker**: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz  The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.
+
+### Structure of the Stimulus
+
+The experiment is designed to test the participants' ability to predict the upcoming word in a spoken instruction. The experiment is designed in such a way that the participants are presented with a visual display of four objects in a grid and they are instructed to click on the object that matches the spoken instruction.
+
+A trial in the experiment means the response to one spoken instruction.
+
+The following User Interface is presented to the participants:
+
+![User Interface of one trial - In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.](img/stim_grid.png){#fig-ui width=90%}
+
+### Design of the Experiment
+
+The experiment follows the following structure in OpenSesame:
+1. Introduction to the experiment : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
+
+![Introduction](img/stim_grid.png){#fig-ui width=90%}
+
+
+
+
+>>>>>>> e730125 (added 50% experiment section to report)
 
 References: [@Vitay2017]
 

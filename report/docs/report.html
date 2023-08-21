@@ -120,6 +120,16 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#visual-world-paradigm" id="toc-visual-world-paradigm" class="nav-link" data-scroll-target="#visual-world-paradigm"><span class="header-section-number">1.1</span> Visual World Paradigm</a></li>
   <li><a href="#objective-of-our-project" id="toc-objective-of-our-project" class="nav-link" data-scroll-target="#objective-of-our-project"><span class="header-section-number">1.2</span> Objective of our project</a></li>
+<<<<<<< HEAD
+=======
+  <li><a href="#experiment" id="toc-experiment" class="nav-link" data-scroll-target="#experiment"><span class="header-section-number">1.3</span> Experiment</a>
+  <ul class="collapse">
+  <li><a href="#software-and-hardware" id="toc-software-and-hardware" class="nav-link" data-scroll-target="#software-and-hardware"><span class="header-section-number">1.3.1</span> Software and Hardware</a></li>
+  <li><a href="#experiment-stimulus" id="toc-experiment-stimulus" class="nav-link" data-scroll-target="#experiment-stimulus"><span class="header-section-number">1.3.2</span> Experiment Stimulus</a></li>
+  </ul></li>
+  <li><a href="#one-trial-consists-of-the-following-steps" id="toc-one-trial-consists-of-the-following-steps" class="nav-link" data-scroll-target="#one-trial-consists-of-the-following-steps"><span class="header-section-number">1.4</span> One trial consists of the following steps:</a></li>
+  <li><a href="#second-subsection" id="toc-second-subsection" class="nav-link" data-scroll-target="#second-subsection"><span class="header-section-number">1.5</span> Second subsection</a></li>
+>>>>>>> e730125 (added 50% experiment section to report)
   </ul></li>
   <li><a href="#preprocessing-and-analysis" id="toc-preprocessing-and-analysis" class="nav-link" data-scroll-target="#preprocessing-and-analysis"><span class="header-section-number">2</span> Preprocessing and Analysis</a>
   <ul class="collapse">
@@ -181,7 +191,7 @@ div.csl-indent {
 
 </header>
 
-<p><a href="./report/docs/report.pdf">Download the pdf version.</a></p>
+<p><a href="report/docs/report.pdf">Download the pdf version.</a></p>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <section id="visual-world-paradigm" class="level2" data-number="1.1">
@@ -201,13 +211,14 @@ div.csl-indent {
 <p>Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> investigated a similar structure of the experiment and found the following results:</p>
 <div id="fig-matrix" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="img/ref_graph.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="img/ref_graph.png" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Probability of fixating on each item type over time in the full competitor condition</figcaption>
 </figure>
 </div>
 <p>In this figure we have the probability of fixation on four words: - Referent (e.g beaker) : Target Word - Cohort (e.g beetle) : Similar Sounding Word - Rhyme (e.g speaker) : Rhyming word - Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)</p>
 <p>In the beginning the participants hear [bi], which could be the beginning of <em>beaker</em> but also could be the beginning of <em>beetle</em>. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e.&nbsp;now they are hearing [bik], thus they discard their choice of <em>beetle</em> and stop looking at it. But by the time they’ve heard the whole word <em>beaker</em>, they might realize that <em>beaker</em> rhymes almost exactly with <em>speaker</em> and get confused about if they heard <em>speaker</em> at the very first place. For the last word carriage the pronunciation is totally unrelated to the target <em>beaker</em>, so there is a very less probability of the participant actually fixation at the unrelated word.</p>
 </section>
+<<<<<<< HEAD
 </section>
 <section id="preprocessing-and-analysis" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Preprocessing and Analysis</h1>
@@ -314,6 +325,33 @@ Nota Bene
 </div>
 </div>
 <hr>
+=======
+<section id="experiment" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="experiment"><span class="header-section-number">1.3</span> Experiment</h2>
+<section id="software-and-hardware" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="software-and-hardware"><span class="header-section-number">1.3.1</span> Software and Hardware</h3>
+<ul>
+<li><p><strong>Software</strong> : The experiment is designed in <a href="https://osdoc.cogsci.nl/">OpenSesame</a> which is a open source software to create experiments for psychology, neuroscience, and experimental economics.</p></li>
+<li><p><strong>Language</strong> : Python was used along with the OpenSesame GUI to create the experiment. Libraries like Pandas, Numpy, Matplotlib were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used.</p></li>
+<li><p><strong>Eye Tracker</strong>: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.</p></li>
+</ul>
+</section>
+<section id="experiment-stimulus" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="experiment-stimulus"><span class="header-section-number">1.3.2</span> Experiment Stimulus</h3>
+<p>The experiment is designed to test the participants’ ability to predict the upcoming word in a spoken instruction. The experiment is designed in such a way that the participants are presented with a visual display of four objects in a grid and they are instructed to click on the object that matches the spoken instruction.</p>
+<p>A trial in the experiment means the response to one spoken instruction.</p>
+<p>The following User Interface is presented to the participants:</p>
+<div id="fig-ui" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/stim_grid.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: User Interface of one trial : Here we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="one-trial-consists-of-the-following-steps" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="one-trial-consists-of-the-following-steps"><span class="header-section-number">1.4</span> One trial consists of the following steps:</h2>
+>>>>>>> e730125 (added 50% experiment section to report)
 <p>References: <span class="citation" data-cites="Vitay2017">(<a href="#ref-Vitay2017" role="doc-biblioref">Vitay, 2017</a>)</span></p>
 <p>See <a href="#fig-matrix">Figure&nbsp;1</a> and <a href="#sec-results">Section&nbsp;4</a>.</p>
 <p><span class="math display">
@@ -335,8 +373,13 @@ Nota Bene
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<<<<<<< HEAD
 <section id="second-subsection" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="second-subsection"><span class="header-section-number">2.3</span> Second subsection</h2>
+=======
+<section id="second-subsection" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="second-subsection"><span class="header-section-number">1.5</span> Second subsection</h2>
+>>>>>>> e730125 (added 50% experiment section to report)
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tPgf_btTFlc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 </section>
