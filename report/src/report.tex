@@ -217,7 +217,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Visual World Paradigm},
-  pdfauthor={Julien Vitay},
+  pdfauthor={Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -234,15 +234,27 @@
 \makeatother
 \subtitle{\emph{A classical visual world study showing how people
 predict upcoming words with the help of Gazepoint eye tracker}}
-\author{Julien Vitay}
-\date{2023-08-20}
+\author{Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani}
+\date{2023-08-21}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-This is the abstract of the report. It can span multiple lines.
+The study presented in this paper explores the dynamics of predictive
+language processing through the visual world paradigm (VWP), a widely
+employed method in cognitive psychology. The primary objective of the
+research is to unwind how individuals anticipate or predict forthcoming
+words during the unfolding of the spoken instructions, leveraging the
+Gazepoint eye tracker for precise gaze pattern analysis. The
+investigation delves into the impact of competitor words on gaze
+patterns, to study the cognitive mechanisms underlying real-time
+language comprehension. Our experiment uses a collection of competitor
+words sharing phonetic or semantic similarities with the target, and
+validates the hypothesis that the existence of such competitors leads to
+an increased number of fixations on them, reflecting the participants'
+evolving predictions of the upcoming word.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, interior hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -251,41 +263,134 @@ This is the abstract of the report. It can span multiple lines.
 \tableofcontents
 }
 \setstretch{1.25}
-\href{report.pdf}{Download the pdf version.}
+\href{./report/docs/report.pdf}{Download the pdf version.}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-\hypertarget{first-subsection}{%
-\subsection{First subsection}\label{first-subsection}}
+\hypertarget{visual-world-paradigm}{%
+\subsection{Visual World Paradigm}\label{visual-world-paradigm}}
 
-The Basal Ganglia (BG) are a set of nuclei located in the basal
-forebrain, receiving inputs mostly from the cerebral cortex and
-projecting to various motor centers, as well as back to the cortex
-through the thalamus, forming a closed-loop. It is involved in major
-functions such as reinforcement learning, habit formation, planning and
-motor control, but also in diseases such as Parkinson's disease or
-Tourette syndrome.
+The visual world paradigm is an experimental framework that investigates
+language processing by monitoring participants' eye movements while they
+interact with visual stimuli. Introduced by psychologists Richard Cooper
+and Thomas P. McDermott in the late 1990s, this paradigm have been
+continuosly refined and expanded, adapting it to different research
+questions and using advancements in eye-tracking technology to gain
+deeper insights into real-time language comprehension and visual
+attention processes. Through this framework the researchers try to
+simulate the integration of spoken language and visual information as
+they naturally occur in everyday situations so that we can draw
+inferences on the attention focus on specific objects in their visual
+display over time.
+
+\hypertarget{objective-of-our-project}{%
+\subsection{Objective of our project}\label{objective-of-our-project}}
+
+We try to answer the research question:
+
+\emph{Does the presence of similar-sounding words influence our tendency
+to focus on those words apart from the target words as the word
+unfolds?}
+
+Our project is to study the nature of spoken word recognition as the
+word unfolds. Here the key aspect of the visual world paradigm is that
+participants' eye movements serve as an index of their ongoing language
+processing and interpretation.
+
+We aim to explore two fundamental conclusions concerning spoken word
+recognition and the underlying models, building upon the established
+research in this domain:
+
+\begin{itemize}
+\tightlist
+\item
+  Spoken word recognition is dynamic in nature which suggests that
+  listeners continuously update and refine their interpretations as more
+  information becomes available.
+\item
+  Spoken word recognition models make assumptions that multiple
+  candidates compete for recognition during the unfolding of the spoken
+  word.
+\end{itemize}
+
+Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their
+paper \emph{``Tracking the Time Course of Spoken Word Recognition Using
+Eye Movements: Evidence for Continuous Mapping Models''} investigated a
+similar structure of the experiment and found the following results:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\textwidth,height=\textheight]{img/ref_graph.png}
+
+}
+
+\caption{\label{fig-matrix}Probability of fixating on each item type
+over time in the full competitor condition}
+
+\end{figure}
+
+In this figure we have the probability of fixation on four words: -
+Referent (e.g beaker) : Target Word - Cohort (e.g beetle) : Similar
+Sounding Word - Rhyme (e.g speaker) : Rhyming word - Unrelated (e.g
+carriage) : Unrelated word to the rest (phonetically or semantically.)
+
+In the beginning the participants hear {[}bi{]}, which could be the
+beginning of \emph{beaker} but also could be the beginning of
+\emph{beetle}. So during the first 400 ms the particpants start looking
+at both of those words, more than they look at the others. After some
+time as they hear the {[}k{]} i.e.~now they are hearing {[}bik{]}, thus
+they discard their choice of \emph{beetle} and stop looking at it. But
+by the time they've heard the whole word \emph{beaker}, they might
+realize that \emph{beaker} rhymes almost exactly with \emph{speaker} and
+get confused about if they heard \emph{speaker} at the very first place.
+For the last word carriage the pronunciation is totally unrelated to the
+target \emph{beaker}, so there is a very less probability of the
+participant actually fixation at the unrelated word.
+
+\hypertarget{preprocessing-and-analysis}{%
+\section{Preprocessing and Analysis}\label{preprocessing-and-analysis}}
+
+\hypertarget{extracting-relevant-data-from-the-log-files}{%
+\subsection{Extracting relevant data from the log
+files}\label{extracting-relevant-data-from-the-log-files}}
+
+The logs present in the .tsv files are important for our analysis. Apart
+from containing the data recordings from the experiments, they also
+contain the information about the individual trials. In the text block
+below, a logs for a sample trial are shown.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{START\_EXP}
+\NormalTok{START\_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG}
+\NormalTok{FIXATE\_CENTER\_AUDIO\_ONSET, COND: 12 TARGET: CANDY}
+\NormalTok{CENTRE\_GAZE\_START}
+\NormalTok{INSTRUCTION\_TO\_CLICK\_ONSET}
+\NormalTok{LOG\_AUDIO\_TARGET\_START}
+\NormalTok{LOG\_AUDIO\_TARGET\_END}
+\NormalTok{CLICK\_RESPONSE\_END}
+\NormalTok{FINAL\_FIXATION\_START, SELECTED: CANDY.PNG}
+\NormalTok{FINAL\_FIXATION\_END}
+\NormalTok{….}
+\NormalTok{….}
+\NormalTok{….}
+\NormalTok{….}
+\NormalTok{STOP\_EXP}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 References: (Vitay, 2017)
 
 See Figure~\ref{fig-matrix} and Section~\ref{sec-results}.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\textwidth,height=\textheight]{img/dopamine.jpg}
-
-}
-
-\caption{\label{fig-matrix}Afferent system to VTA. (Vitay, 2017)}
-
-\end{figure}
-
 \[
     \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, left=2mm, coltitle=black, titlerule=0mm, toptitle=1mm, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, leftrule=.75mm, colback=white, toprule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, rightrule=.15mm, opacitybacktitle=0.6, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, opacitybacktitle=0.6, coltitle=black, bottomtitle=1mm, rightrule=.15mm, colback=white, opacityback=0, leftrule=.75mm, arc=.35mm, toptitle=1mm, left=2mm, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, breakable, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, toprule=.15mm]
 
 Important information.
 
