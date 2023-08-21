@@ -73,14 +73,14 @@ The following User Interface is presented to the participants:
 ### Design of the Experiment
 
 The experiment follows the following structure in OpenSesame:
-1. Introduction to the experiment : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
+1. **Introduction to the experiment** : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
 
-![Introduction](img/stim_grid.png){#fig-ui width=90%}
+![Introduction](img/intro_script.png.png){#fig-ui width=90%}
+
+2. **Initialization of variables** : The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.
 
 
 
-
->>>>>>> e730125 (added 50% experiment section to report)
 
 References: [@Vitay2017]
 
