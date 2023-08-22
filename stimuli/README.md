@@ -14,7 +14,7 @@ The stimuli collected needed to be preprocessed before they could be used in the
 
 1. Resizing the line drawings into 256x256 pixels. The OpenCV library was was used to read and resize the images. 
 
-[![Code](https://img.shields.io/badge/code-008000)](scripts/resize_imgs.py)
+[![Code](https://img.shields.io/badge/code-008000)](../scripts/resize_imgs.py)
 
 ```python
     img = cv2.resize(img, size)
@@ -22,7 +22,7 @@ The stimuli collected needed to be preprocessed before they could be used in the
 
 2. Converting the audio files to ```.wav``` format. The audio files were generated in ```.mp3``` format. 
 
-[![Code](https://img.shields.io/badge/code-008000)](scripts/conv_to_wav.sh)
+[![Code](https://img.shields.io/badge/code-008000)](../scripts/conv_to_wav.sh)
         
 ```bash
         for file in $DIRPATH/*.mp3; do
@@ -34,7 +34,7 @@ The stimuli collected needed to be preprocessed before they could be used in the
 
 3. A trailing silence after each audio was observed which would affect the response time of the participants. The silence was removed using the ```pydub``` library.
 
-[![Code](https://img.shields.io/badge/code-008000)](scripts/remove_trailing_silence.py)
+[![Code](https://img.shields.io/badge/code-008000)](../scripts/remove_trailing_silence.py)
 
 ```python
     def detect_leading_silence(sound, silence_threshold, chunk_size=10):
@@ -49,7 +49,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 5. Run all. 
 
-[![Code](https://img.shields.io/badge/code-008000)](scripts/run_py_for_all.sh)
+[![Code](https://img.shields.io/badge/code-008000)](../scripts/run_py_for_all.sh)
 
 This will generate the preprocessed stimuli in the ```stimuli``` folder.
 
