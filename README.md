@@ -94,7 +94,7 @@ _The experiments will run for 24 trials and will take around 5 minutes to comple
 
 ## :closed_book: Experiment Guidelines
 
-It is necessary to follow the guidelines mentioned below to ensure that the experiment runs smoothly. Follow the documents below [here](docs/experiment/) to know more about the experiment guidelines.
+It is necessary to follow the guidelines mentioned below to ensure that the experiment runs smoothly. Follow the documents below to know more about the experiment guidelines.
 
 1. [Before the Experiment](docs/experiment/before_the_experiment.md)
 2. [Consent Form](docs/experiment/consent_form.pdf)
