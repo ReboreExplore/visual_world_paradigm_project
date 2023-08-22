@@ -9,10 +9,10 @@
 
 **Semester:** *Summer semester 2023*
 
-## Project Abstract
+## :bulb: Project Abstract
  The study presented in this paper explores the dynamics of predictive language processing through the visual world paradigm (VWP), a widely employed method in cognitive psychology. The primary objective of the research is to unwind how individuals anticipate or predict forthcoming words during the unfolding of the spoken instructions, leveraging the Gazepoint eye tracker for precise gaze pattern analysis. The investigation delves into the impact of competitor words on gaze patterns, to study the cognitive mechanisms underlying real-time language comprehension. Our experiment uses a collection of competitor words sharing phonetic or semantic similarities with the target, and validates the hypothesis that the existence of such competitors leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word.
 
-## Installations
+## :computer: Installations
 
 Software requirements: 
 - [Python 3.7](https://www.python.org/downloads/)
@@ -24,7 +24,48 @@ Hardware requirements:
 
 Our report is created using [Quarto](report/README.md). You can install Quarto from [here](https://quarto.org/docs/get-started/).
 
-## How to run the experiment
+
+## :page_facing_up: Overview of Folder Structure 
+
+```bash
+.
+├── docs # Contains the documentation for the project.
+│   ├── analysis
+│   └── experiment
+├── experiment # Contains the Opensesame experiment file for the project.
+├── plots  # Contains all the plots generated during the analysis
+│   ├── agg_plot_square.png
+│   ├── final
+│   └── fixation
+├── presentation # Contains the final presentation for the project.
+├── project_milestones # Contains the project milestones for the project.
+├── README.md
+├── report # Contains the report files for the project.
+│   ├── custom.scss
+│   ├── docs
+│   ├── frontiers.csl
+│   ├── Makefile
+│   ├── README.md
+│   └── src
+├── _research 
+├── scripts # Contains all the scripts used for preprocessing the stimuli
+│   ├── conv_to_wav.sh
+│   ├── remove_trailing_silence.py
+│   ├── resize_imgs.py
+│   └── run_py_for_all.sh
+├── src # Contains all the source code for the analysis
+│   ├── generate_fixation_plots.py
+│   └── run_analysis.py
+├──  stimuli # Contains all the stimuli files used in the experiment
+│    ├── audio-stimuli
+│    ├── grid.png
+│    ├── image-stimuli
+│    ├── README-md
+│   └── stimuli-final.csv
+├── LICENSE
+
+```
+## :bar_chart: How to run the experiment
 
 1. Clone the repository 
         
@@ -34,7 +75,7 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 2. Download the experiment file from the ```experiment``` folder and open it in OpenSesame.
 
     > [!NOTE]  
-    > For the next two steps (3 and 4), it is already available in the experiment file. However if you wish to desgn the experiment from scratch, you can follow the next two steps to load the stimuli,  otherwise directly jump to step 5 .
+    > For the next two steps (3 and 4), the stimuli files are already available in the experiment file downloaded. However if you wish to design the experiment from scratch, you can follow the next two steps to load the stimuli,  otherwise directly jump to step 5 .
 
 3. Load the ```audio-stimuli``` files and the ```image-stimuli``` files in the Opensesame file pool. The files are available in the ```stimuli``` folder.
 4. Load the randomization file named ```stimuli-final.csv``` file in the loop item. The file is available in the ```stimuli``` folder.
@@ -47,10 +88,20 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 _The experiments will run for 24 trials and will take around 5 minutes to complete.You are required to calibrate the eye tracker before starting the experiment independently for each participant, according to the eye tracker manual._
 
 > [!IMPORTANT]  
-> If you use some other stimuli files, make sure you follow the stimuli preprocessing steps mentioned in the [stimuli](stimuli/README.md) folder, prior to running the experiment.
+> If you use some other stimuli files or generate your own stimuli, make sure you follow the stimuli preprocessing steps mentioned in the [stimuli](stimuli/README.md) folder, prior to running the experiment.
 
-## :folder Overview of Folder Structure 
+## :closed_book: Experiment Guidelines
 
+It is necessary to follow the guidelines mentioned below to ensure that the experiment runs smoothly. Follow the documents below [here](docs/experiment/)to know more about the experiment guidelines.
+
+1. [Before the Experiment](before_the_experiment.md)
+2. [Consent Form](Consent_form.md)
+3. [After the Experiment](after_the_experiment.md)
+4. [Study Information Sheet](study_subject_information_and_questionnaire.md)
+
+## :chart_with_upwards_trend: How to run the analysis
+
+1. 
 
 ## :pencil: License
 
