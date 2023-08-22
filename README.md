@@ -1,4 +1,4 @@
-<h1 align="center">Visual Word Paradigm</h1>
+<h1 align="center">Visual World Paradigm</h1>
 <p align="center"><i>A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker.</i></p>
 
 
