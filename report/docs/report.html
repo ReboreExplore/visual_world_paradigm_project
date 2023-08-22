@@ -56,26 +56,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="report_files/libs/clipboard/clipboard.min.js"></script>
@@ -89,22 +70,6 @@ div.csl-indent {
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -144,13 +109,11 @@ div.csl-indent {
   </ul></li>
   <li><a href="#challenges-and-limitations" id="toc-challenges-and-limitations" class="nav-link" data-scroll-target="#challenges-and-limitations"><span class="header-section-number">10</span> Challenges and Limitations</a>
   <ul class="collapse">
-  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="header-section-number">10.1</span> Challenges</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">10.2</span> Limitations</a></li>
-  <li><a href="#second-subsection" id="toc-second-subsection" class="nav-link" data-scroll-target="#second-subsection"><span class="header-section-number">10.3</span> Second subsection</a></li>
+  <li><a href="#what-we-did-not-replicate-from-the-reference-paper" id="toc-what-we-did-not-replicate-from-the-reference-paper" class="nav-link" data-scroll-target="#what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">10.1</span> What we did not replicate from the reference paper?</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="header-section-number">10.2</span> Challenges</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">10.3</span> Limitations</a></li>
   </ul></li>
-  <li><a href="#material-and-methods" id="toc-material-and-methods" class="nav-link" data-scroll-target="#material-and-methods"><span class="header-section-number">11</span> Material and methods</a></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">12</span> Results</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">13</span> Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -202,7 +165,7 @@ div.csl-indent {
 
 </header>
 
-<p><a href="report/docs/report.pdf">Download the pdf version.</a></p>
+<p><a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf">Download the pdf version.</a></p>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <section id="visual-world-paradigm" class="level2" data-number="1.1">
@@ -234,6 +197,7 @@ div.csl-indent {
 <li>Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)</li>
 </ol>
 <p>In the beginning the participants hear [bi], which could be the beginning of <em>beaker</em> but also could be the beginning of <em>beetle</em>. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e.&nbsp;now they are hearing [bik], thus they discard their choice of <em>beetle</em> and stop looking at it. But by the time they’ve heard the whole word <em>beaker</em>, they might realize that <em>beaker</em> rhymes almost exactly with <em>speaker</em> and get confused about if they heard <em>speaker</em> at the very first place. For the last word carriage the pronunciation is totally unrelated to the target <em>beaker</em>, so there is a very less probability of the participant actually fixation at the unrelated word.</p>
+<p>Through we try to replicate the results obtained by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> and validate their hypothesis.</p>
 </section>
 </section>
 <section id="experiment" class="level1" data-number="2">
@@ -282,12 +246,11 @@ div.csl-indent {
 <li><strong>Stimulus</strong> : The name of the objects that is displayed in the grid.</li>
 <li><strong>Type</strong> : The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.</li>
 <li><strong>Condition</strong> : The condition of the trial.</li>
-<li><strong>Target</strong> : The target object that the participants have to click on. You can find the stimuli.csv file <a href="stimuli/stimuli-final.csv">here</a>.</li>
+<li><strong>Target</strong> : The target object that the participants have to click on. You can find the stimuli.csv file <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv">here</a>.</li>
 </ul></li>
 <li>We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
 <ul>
-<li><strong>Instruction</strong> : ‘Fixate at the center’ , ‘Now click on the {target}’</li>
-<li><strong>Target</strong> : The target object that the participants have to click on. You can find the audio stimuli <a href="stimuli/audio-stimuli">here</a>. Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.</li>
+<li><strong>Instruction</strong> : ’FixateHow to run the analysisbject that the participants have to click on. You can find the audio stimuli <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli">here</a>. Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.</li>
 </ul></li>
 </ol></li>
 <li><p><strong>Logging</strong> : The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (<em>More details will be proviided in the preprocessing and analysis section</em>.)</p></li>
@@ -331,7 +294,7 @@ div.csl-indent {
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            trim_ms <span class="op">+=</span> chunk_size</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> trim_ms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The function analyzes an audio snippet to find the duration of the silence at the beginning of the signal. It iterates over chunks of the audio and measuring the volume (dBFS) in each chunk until the volume exceeds the provided silence threshold. The accumulated time of trimmed silence is then returned as the result and then removed using the <code>sound[trim_ms:]</code> function, spectifying the start and the end trim duration.</p></li>
-<li><p>The sampling rate of all the audio samples was also made equal to work with the <code>PsychoPy</code> backend. The sampling rate was changed to &lt;&gt; using the &lt;&gt;.</p></li>
+<li><p>The sampling rate of all the audio samples was also made equal to work with the <code>PsychoPy</code> backend. The sampling rate was changed to 48Hz.</p></li>
 </ol>
 </section>
 <section id="conditions" class="level1" data-number="5">
@@ -518,12 +481,26 @@ Nota Bene
 </section>
 <section id="challenges-and-limitations" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Challenges and Limitations</h1>
-<section id="challenges" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="challenges"><span class="header-section-number">10.1</span> Challenges</h2>
+<section id="what-we-did-not-replicate-from-the-reference-paper" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">10.1</span> What we did not replicate from the reference paper?</h2>
+<ol type="1">
+<li><p>Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to as it was more comprehensible for the participants.</p>
+<ul>
+<li>The average duration was calculated by taking the average of the duration of all the audio stimuli which can be found <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/analysis">here</a>.</li>
+</ul></li>
+<li><p>Number of trials for each participant was reduced from 96 to 24. It was done to reduce the time of the experiment and to avoid recalibration of the eye tracker in between the experiment.</p></li>
+<li><p>Audio stimuli were digital (instead of analog). It was done to avoid any noise in the audio stimuli and also to have no influence of the experimenterś accent on the participants.</p></li>
+<li><p>Participants respond with mouse clicks instead of <em>drag-and-drop to the correct box</em> function as does not support drag-and-drop functionality.</p></li>
+<li><p>Use of a 3x3 grid instead of 5x5 as we didin’t require the additional boxes for the drag-and-drop functionality as in the original paper.</p></li>
+<li><p>No calibration functionality after each trial was added until the participant was moving their head or eyes too much.</p></li>
+</ol>
+</section>
+<section id="challenges" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="challenges"><span class="header-section-number">10.2</span> Challenges</h2>
 <ol type="1">
 <li><strong>Balancing of trials</strong>:
 <ul>
-<li><strong>Challenge</strong> :Our stimuli had a total of <em>23 unique visual stimuli</em>, <em>12 different conditions</em> and <em>4 different types</em>. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times.</li>
+<li><strong>Challenge</strong> :Our stimuli had a total of <em>23 unique` visual stimuli</em>, <em>12 different conditions</em> and <em>4 different types</em>. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times.</li>
 <li><strong>Solution</strong> : Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.</li>
 </ul></li>
 <li><strong>Random ‘freezes’ during experiment</strong> :
@@ -554,58 +531,31 @@ Nota Bene
 </ul></li>
 </ol>
 </section>
-<section id="limitations" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">10.2</span> Limitations</h2>
+<section id="limitations" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">10.3</span> Limitations</h2>
 <ol type="1">
 <li><p>Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus might have been biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e the participants might have been able to predict the target word based on the previous trials.</p></li>
 <li><p>Generalizability is affected as our study participants only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the field of cognitive psychology.</p></li>
 <li><p>The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.</p></li>
 </ol>
-<p>References: <span class="citation" data-cites="Vitay2017">(<a href="#ref-Vitay2017" role="doc-biblioref">Vitay, 2017</a>)</span> linguistics and See <a href="#fig-matrix">Figure&nbsp;1</a> and <a href="#sec-results">Section&nbsp;12</a>.</p>
-<p><span class="math display">
-    \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
-</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota Bene
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Important information.</p>
-</div>
-</div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="second-subsection" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="second-subsection"><span class="header-section-number">10.3</span> Second subsection</h2>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tPgf_btTFlc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 </section>
-<section id="material-and-methods" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Material and methods</h1>
-</section>
-<section id="sec-results" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Results</h1>
-</section>
-<section id="discussion" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Discussion</h1>
+<section id="conclusion" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Conclusion</h1>
+<p>In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants’ evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.</p>
+<p>We summarize our conclusions as follows: 1. The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.</p>
+<ol start="2" type="1">
+<li><p>Eye movement tracking is a reliable tool for investigating the time course of spoken word recognition and capturing the mapping process while the spoken word unfolds.</p></li>
+<li><p>The results and plots obtained by us provide an empirical support for continuous and incremental mapping models of word recognition and proves that word processing is not a discrete and all-or-nothing process.</p></li>
+<li><p>Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.</p></li>
+</ol>
 </section>
 <section id="references" class="level1 unnumbered">
-
-
+<h1 class="unnumbered">References</h1>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-Vitay2017" class="csl-entry" role="listitem">
-Vitay, J. (2017). On the role of dopamine in motivated behavior: A neuro-computational approach. Available at: <a href="https://julien-vitay.net/publication/vitay2017/">https://julien-vitay.net/publication/vitay2017/</a>.
-</div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

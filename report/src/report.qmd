@@ -11,7 +11,7 @@ toc: true
 bibliography: biblio.bib
 ---
 
-[Download the pdf version.](report/docs/report.pdf)
+[Download the pdf version.](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf)
 
 # Introduction
 
@@ -45,6 +45,7 @@ In this figure we have the probability of fixation on four words:
 
 In the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
 
+Through we try to replicate the  results obtained by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* and validate their hypothesis.
 
 # Experiment 
 
@@ -85,11 +86,10 @@ The experiment follows the following structure in OpenSesame:
             - **Type** : The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.
             - **Condition** : The condition of the trial.
             - **Target** : The target object that the participants have to click on.
-            You can find the stimuli.csv file [here](stimuli/stimuli-final.csv).
+            You can find the stimuli.csv file [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv).
         2. We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
-            - **Instruction** : 'Fixate at the center' , 'Now click on the {target}'
-            - **Target** : The target object that the participants have to click on.
-            You can find the audio stimuli [here](stimuli/audio-stimuli).
+            - **Instruction** : 'FixateHow to run the analysisbject that the participants have to click on.
+            You can find the audio stimuli [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli).
             Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.
     
     - **Logging** : The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (_More details will be proviided in the preprocessing and analysis section_.)
@@ -159,6 +159,22 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 # Challenges and Limitations
 
+## What we did not replicate from the reference paper?
+
+1. Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to as it was more comprehensible for the participants.
+    - The average duration was calculated by taking the average of the duration of all the audio stimuli which can be found [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/analysis).
+
+2. Number of trials for each participant was reduced from 96 to 24. It was done to reduce the time of the experiment and to avoid recalibration of the eye tracker in between the experiment.
+
+3. Audio stimuli were digital (instead of analog). It was done to avoid any noise in the audio stimuli and also to have no influence of the experimenterś accent on the participants.
+
+4. Participants respond with mouse clicks instead of _drag-and-drop to the correct box_ function as does not support drag-and-drop functionality.
+
+5. Use of a 3x3 grid instead of 5x5 as we didin't require the additional boxes for the drag-and-drop functionality as in the original paper.
+
+6. No calibration functionality after each trial was added until the participant was moving their head or eyes too much.
+
+
 ## Challenges
     
 1. **Balancing of trials**: 
@@ -202,35 +218,17 @@ The function analyzes an audio snippet to find the duration of the silence at th
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
 
-References: [@Vitay2017]
-linguistics and
-See @fig-matrix and @sec-results.
+# Conclusion
+In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
 
+We summarize our conclusions as follows:
+1. The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.
 
+2. Eye movement tracking is a reliable tool for investigating the time course of spoken word recognition and capturing the mapping process while the spoken word unfolds.
 
-$$
-    \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
-$$
+3. The results and plots obtained by us provide an empirical support for continuous and incremental mapping models of word recognition and proves that word processing is not a discrete and all-or-nothing process.
 
-::: {.callout-note}
-## Nota Bene
+4. Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.
 
-Important information.
-:::
-
-```python
-for i in range(10):
-    print(i)
-```
-
-## Second subsection
-
-{{< video https://www.youtube.com/embed/tPgf_btTFlc >}}
-
-# Material and methods
-
-# Results {#sec-results}
-
-# Discussion
 
 # References {.unnumbered}
