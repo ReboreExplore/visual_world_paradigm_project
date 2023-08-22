@@ -235,7 +235,7 @@
 \subtitle{\emph{A classical visual world study showing how people
 predict upcoming words with the help of Gazepoint eye tracker}}
 \author{Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani}
-\date{2023-08-21}
+\date{2023-08-22}
 
 \begin{document}
 \maketitle
@@ -254,7 +254,7 @@ validates the hypothesis that the existence of such competitors leads to
 an increased number of fixations on them, reflecting the participants'
 evolving predictions of the upcoming word.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, boxrule=0pt, interior hidden, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, enhanced, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -568,6 +568,64 @@ The experiment follows the following structure in OpenSesame:
 \hypertarget{stimulus-design}{%
 \section{Stimulus Design}\label{stimulus-design}}
 
+\hypertarget{stimuli-preprocessing}{%
+\section{Stimuli Preprocessing}\label{stimuli-preprocessing}}
+
+The stimuli collected needed to be preprocessed before they could be
+used in the experiment. The preprocessing steps are as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Resizing the line drawings into 256x256 pixels. The OpenCV library was
+  was used to read and resize the images.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{img }\OperatorTok{=}\NormalTok{ cv2.resize(img, size)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Converting the audio files to \texttt{.wav} format. The audio files
+  were generated in \texttt{.mp3} format. The
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{for}\NormalTok{ file }\KeywordTok{in} \VariableTok{$DIRPATH}\NormalTok{/}\PreprocessorTok{*}\NormalTok{.mp3}\KeywordTok{;} \ControlFlowTok{do}
+        \VariableTok{filename}\OperatorTok{=}\VariableTok{$(}\FunctionTok{basename} \StringTok{"}\VariableTok{$file}\StringTok{"}\VariableTok{)}
+        \VariableTok{filename}\OperatorTok{=}\StringTok{"}\VariableTok{$\{filename}\OperatorTok{\%}\NormalTok{.}\PreprocessorTok{*}\VariableTok{\}}\StringTok{"}
+        \ExtensionTok{ffmpeg} \AttributeTok{{-}i} \VariableTok{$file} \VariableTok{$OUTDIR}\NormalTok{/}\VariableTok{$filename}\NormalTok{.wav}
+    \ControlFlowTok{done}
+\end{Highlighting}
+\end{Shaded}
+\item
+  A trailing silence after each audio was observed which would affect
+  the response time of the participants. The silence was removed using
+  the \texttt{pydub} library.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{def}\NormalTok{ detect\_leading\_silence(sound, silence\_threshold, chunk\_size}\OperatorTok{=}\DecValTok{10}\NormalTok{):}
+\NormalTok{        trim\_ms }\OperatorTok{=} \DecValTok{0} \CommentTok{\# ms}
+        \ControlFlowTok{while}\NormalTok{ sound[trim\_ms:trim\_ms}\OperatorTok{+}\NormalTok{chunk\_size].dBFS }\OperatorTok{\textless{}}\NormalTok{ silence\_threshold:}
+\NormalTok{            trim\_ms }\OperatorTok{+=}\NormalTok{ chunk\_size}
+        \ControlFlowTok{return}\NormalTok{ trim\_ms}
+\end{Highlighting}
+\end{Shaded}
+
+  The function analyzes an audio snippet to find the duration of the
+  silence at the beginning of the signal. It iterates over chunks of the
+  audio and measuring the volume (dBFS) in each chunk until the volume
+  exceeds the provided silence threshold. The accumulated time of
+  trimmed silence is then returned as the result and then removed using
+  the \texttt{sound{[}trim\_ms:{]}} function, spectifying the start and
+  the end trim duration.
+\item
+  The sampling rate of all the audio samples was also made equal to work
+  with the \texttt{PsychoPy} backend. The sampling rate was changed to
+  \textless\textgreater{} using the \textless\textgreater.
+\end{enumerate}
+
 \hypertarget{conditions}{%
 \section{Conditions}\label{conditions}}
 
@@ -799,12 +857,141 @@ and \emph{seaborn}.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, breakable, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, colframe=quarto-callout-note-color-frame, arc=.35mm, opacityback=0, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, titlerule=0mm, opacitybacktitle=0.6, bottomtitle=1mm, rightrule=.15mm, toprule=.15mm, left=2mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, opacitybacktitle=0.6, left=2mm, toptitle=1mm, leftrule=.75mm, opacityback=0, breakable, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm, coltitle=black, bottomtitle=1mm, toprule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, arc=.35mm]
 
 The GP3 gaze data coordinates are in the range \texttt{{[}0,\ 1{]}} so
 no scaling is required.
 
 \end{tcolorbox}
+
+\hypertarget{fixation-plots}{%
+\subsection{Fixation plots}\label{fixation-plots}}
+
+The preprocessing steps described in the previous sections are performed
+on the recorded data, it is possible to plot the fixations of the
+participants . Such plots allow us visualize the fixations of the
+participants and identify any outliers. The plot elements can be
+classified into two groups:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Overlay elements: These elements are plotted in order to provide
+  reference for the position of the grid and indicate the stimulus image
+  in each grid box element. The condition number and the target word are
+  also displayed in the plot. The function \texttt{draw\_grid} is used
+  to draw the grid.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ draw\_grid(inn, out, ax):}
+    \CommentTok{\# draw line from A to B}
+\NormalTok{    ax.plot([out[}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{], out[}\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{]], [out[}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{], out[}\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]], color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+    \CommentTok{\# draw line from B to C}
+\NormalTok{    ax.plot([out[}\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{], out[}\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{]], [out[}\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{], out[}\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{]], color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, alpha}\OperatorTok{=}\FloatTok{0.3}\NormalTok{)}
+    \CommentTok{\# draw line from C to D}
+\NormalTok{    ...}
+\NormalTok{    ...}
+    \CommentTok{\# create a tiny circle at the center}
+\NormalTok{    ax.scatter(inn[}\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{], inn[}\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{][}\DecValTok{1}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, s}\OperatorTok{=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The text elements are plotted using \texttt{matplotlib.pyplot.text()}
+function. See example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# top stimuli}
+\NormalTok{ax.text(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8685}\NormalTok{, stimuli\_dict[i][}\DecValTok{0}\NormalTok{].lower(), transform}\OperatorTok{=}\NormalTok{ax.transAxes, fontsize}\OperatorTok{=}\DecValTok{10}\NormalTok{,}
+\NormalTok{    verticalalignment}\OperatorTok{=}\StringTok{\textquotesingle{}top\textquotesingle{}}\NormalTok{, bbox}\OperatorTok{=}\NormalTok{props, ha}\OperatorTok{=}\StringTok{\textquotesingle{}center\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Fixation elements: These elements are plotted in order to indicate the
+  fixations of the participants. As indicated in the code block below,
+  the matplotlib scatter function is used.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# new\_fpog\_x and new\_fpog\_y are the x and y coordinates of the fixations}
+\NormalTok{ax.scatter(new\_fpog\_x, new\_fpog\_y, color}\OperatorTok{=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, s}\OperatorTok{=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, colback=white, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, opacitybacktitle=0.6, left=2mm, toptitle=1mm, leftrule=.75mm, opacityback=0, breakable, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm, coltitle=black, bottomtitle=1mm, toprule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, arc=.35mm]
+
+The fixation plots can be generated by running the script
+\texttt{generate\_fixation\_plots.py} in the \texttt{src} directory.
+
+\end{tcolorbox}
+
+\hypertarget{deduce-location-of-fixations}{%
+\subsection{Deduce location of
+fixations}\label{deduce-location-of-fixations}}
+
+Using the coordinates of the edges of the grid boxes, it is possible to
+deduce the location of the fixations. The gridbox has four boxes that
+where a stimulus can be placed. The coordinates of the fixations and the
+coordinates of the stimulus boxes are converted to the scaled cartesian
+coordinate system. The function \texttt{check\_if\_within\_rect} accepts
+the x and y coordinates of the fixation and the coordinates of the
+stimulus box and returns a boolean value indicating whether the fixation
+is within the stimulus box. The function
+\texttt{check\_if\_within\_rect} is called for each stimulus box and the
+stimulus box for which the function returns \texttt{True} is the
+stimulus box where the participant was fixating.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ get\_rect(x, y):}
+    \ControlFlowTok{if}\NormalTok{ check\_if\_within\_rect(x, y, top\_rect):}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}top\textquotesingle{}}
+    \ControlFlowTok{elif}\NormalTok{ check\_if\_within\_rect(x, y, right\_rect):}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}right\textquotesingle{}}
+    \ControlFlowTok{elif}\NormalTok{ check\_if\_within\_rect(x, y, bottom\_rect):}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}bottom\textquotesingle{}}
+    \ControlFlowTok{elif}\NormalTok{ check\_if\_within\_rect(x, y, left\_rect):}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}left\textquotesingle{}}
+    \ControlFlowTok{elif}\NormalTok{ check\_if\_within\_rect(x, y, centre\_rect):}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}centre\textquotesingle{}}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{return} \StringTok{\textquotesingle{}outside\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+The function \texttt{get\_rect} is applied to each row of the dataframe
+using the \texttt{df.apply} function. The resulting column is named
+\texttt{rect}. At the point, for each data point, we know at which
+stimulus box the participant was fixating.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# use df.apply to apply the get\_rect function to each row}
+\NormalTok{audio\_df\_valid\_fixation[}\StringTok{\textquotesingle{}rect\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ audio\_df\_valid\_fixation.}\BuiltInTok{apply}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ row: get\_rect(row[}\StringTok{\textquotesingle{}FPOGX\textquotesingle{}}\NormalTok{], row[}\StringTok{\textquotesingle{}FPOGY\textquotesingle{}}\NormalTok{]), axis}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mapping-stimulus-location-to-stimulus-type}{%
+\subsection{Mapping stimulus location to stimulus
+type}\label{mapping-stimulus-location-to-stimulus-type}}
+
+The analysis plot is concerned with the stimulus type rather than the
+stimulus location. As the fixations have been mapped to the stimulus
+location, using the data available in the csv logfile, it is possible to
+map the stimulus location to the stimulus type for each trial. The csv
+logfile contains the following columns, \emph{referant, cohort, rhyme,
+distractor, target, trial number} and \emph{condition number}. Each row
+indicates the names of the stimulus that was assigned the role of
+referant, cohort, rhyme, etc., for a given trial.
 
 \hypertarget{challenges-and-limitations}{%
 \section{Challenges and Limitations}\label{challenges-and-limitations}}
@@ -816,26 +1003,135 @@ no scaling is required.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Balancing of trials}: Our stimuli had a total of \emph{23
-  unique visual stimuli}, \emph{12 different conditions} and \emph{4
-  different types}. Adhering to proper randomization and balancing of
-  trials was a challenge as we had to ensure that each participant saw
-  the same number of trials for each condition and each type and such
-  that each object appeared equal number of times. Although we started
-  tith a python script to generate the trials, we had to revert to
-  manual creation of trials as the script was not able to generate
-  balanced trials which was a primary requirement for our experiment.
+  \textbf{Balancing of trials}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Challenge} :Our stimuli had a total of \emph{23 unique
+    visual stimuli}, \emph{12 different conditions} and \emph{4
+    different types}. Adhering to proper randomization and balancing of
+    trials was a challenge as we had to ensure that each participant saw
+    the same number of trials for each condition and each type and such
+    that each object appeared equal number of times.
+  \item
+    \textbf{Solution} : Although we started tith a python script to
+    generate the trials, we had to revert to manual creation of trials
+    as the script was not able to generate balanced trials which was a
+    primary requirement for our experiment.
+  \end{itemize}
+\item
+  \textbf{Random `freezes' during experiment} :
+
+  \begin{itemize}
+  \item
+    \textbf{Challenge} : The experiment encountered random freezes
+    during its run. The freezes were random and could not be reproduced.
+    This was a major challenge as we had to restart the experiment from
+    the beginning. The most frequent freezes was found on the \emph{gaze
+    contingency} check, which allowed the experiment to move forward
+    only when the participant was looking at the center of the screen.
+  \item
+    \textbf{Trails} :
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \tightlist
+    \item
+      While True loop
+    \end{enumerate}
+
+\begin{verbatim}
+    while True:
+    gazepos = eyetracker.sample()
+\end{verbatim}
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \setcounter{enumii}{1}
+    \tightlist
+    \item
+      Periodic sampling
+    \end{enumerate}
+
+\begin{verbatim}
+    while True:
+        if clock.time() - check_timer > diff:
+            gazepos = eyetracker.sample()
+\end{verbatim}
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \setcounter{enumii}{2}
+    \item
+      Switching backend to PsychoPy Made the sample rates of all the
+      audio samples equal to work with the PsychoPy backend.
+    \item
+      Number of trials Reduced the number of trials to 24 from 12 to
+      reduce the time of the experiment but the problem still persisted.
+    \end{enumerate}
+  \item
+    \textbf{Solution} : Removal of gaze contingent features and instead
+    introducing a delay to ensure that the participants are looking at
+    the center of the screen before the spoken instruction is played.
+    This was implemented by introducing a delay of 1.1s after the
+    prompt.
+  \end{itemize}
+\item
+  \textbf{Eye tracker calibration} :
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Challenge} : The eye tracker calibration was a challenge as
+    the participants were not able to calibrate the eye tracker
+    properly, due to many reasons like contact lenses, glasses, height
+    of the participants, body posture during the experiment etc.
+  \item
+    \textbf{Solution} : THe number of participants were increased to 16
+    to ensure that we have atleast 12 participants with proper
+    calibration and the timing of one full experiment was reduced to a
+    maximum of 8 minutes to avoid recalibration in between the
+    experiments. The participants were also given a practice trial to
+    ensure that they are comfortable with the experiment and the eye
+    tracker calibration.
+  \end{itemize}
 \end{enumerate}
 
-References: (Vitay, 2017)
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
 
-See Figure~\ref{fig-matrix} and Section~\ref{sec-results}.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Since Visual World Paradigm is a well known experimental framework, it
+  is possible that the participants might have been aware of the purpose
+  of the experiment and thus might have been biased in their responses
+  despite the large number of filler trials. Also, we used a relatively
+  small set of pictures, which might have led to a learning effect i.e
+  the participants might have been able to predict the target word based
+  on the previous trials.
+\item
+  Generalizability is affected as our study participants only include
+  university students of a specific age group, which does not fully
+  represent the complexities and variations of real-world spoken word
+  recognition scenarios. The results may not be applicable to other age
+  groups or people with different educational backgrounds who might have
+  more or less exposure to the field of cognitive psychology.
+\item
+  The study also may not fully address the universality of the observed
+  effects across different languages as the original study as well as
+  our replication is in English.
+\end{enumerate}
+
+References: (Vitay, 2017) linguistics and See Figure~\ref{fig-matrix}
+and Section~\ref{sec-results}.
 
 \[
     \tau \, \frac{dx_j(t)}{dt} + x_j(t)= \sum_i w^{in}_{ij} \, r^{in}_i(t) + g \, \sum_{i \neq j} w^{rec}_{ij} \, r_i(t)
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, breakable, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, colframe=quarto-callout-note-color-frame, arc=.35mm, opacityback=0, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, titlerule=0mm, opacitybacktitle=0.6, bottomtitle=1mm, rightrule=.15mm, toprule=.15mm, left=2mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, opacitybacktitle=0.6, left=2mm, toptitle=1mm, leftrule=.75mm, opacityback=0, breakable, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm, coltitle=black, bottomtitle=1mm, toprule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota Bene}, arc=.35mm]
 
 Important information.
 

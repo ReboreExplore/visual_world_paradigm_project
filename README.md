@@ -12,6 +12,8 @@
 ## :bulb: Project Abstract
  The study presented in this paper explores the dynamics of predictive language processing through the visual world paradigm (VWP), a widely employed method in cognitive psychology. The primary objective of the research is to unwind how individuals anticipate or predict forthcoming words during the unfolding of the spoken instructions, leveraging the Gazepoint eye tracker for precise gaze pattern analysis. The investigation delves into the impact of competitor words on gaze patterns, to study the cognitive mechanisms underlying real-time language comprehension. Our experiment uses a collection of competitor words sharing phonetic or semantic similarities with the target, and validates the hypothesis that the existence of such competitors leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word.
 
+ _Reference Paper: Allopenna, P., Magnuson, J., & Tanenhaus, M. (1998). [Tracking the time course of spoken word recognition using eye movements: evidence for continuous mapping models](https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584). Journal of Memory and Language, 38, 419-439._
+
 ## :computer: Installations
 
 Software requirements: 
@@ -92,12 +94,12 @@ _The experiments will run for 24 trials and will take around 5 minutes to comple
 
 ## :closed_book: Experiment Guidelines
 
-It is necessary to follow the guidelines mentioned below to ensure that the experiment runs smoothly. Follow the documents below [here](docs/experiment/)to know more about the experiment guidelines.
+It is necessary to follow the guidelines mentioned below to ensure that the experiment runs smoothly. Follow the documents below [here](docs/experiment/) to know more about the experiment guidelines.
 
-1. [Before the Experiment](before_the_experiment.md)
-2. [Consent Form](Consent_form.md)
-3. [After the Experiment](after_the_experiment.md)
-4. [Study Information Sheet](study_subject_information_and_questionnaire.md)
+1. [Before the Experiment](docs/experiment/before_the_experiment.md)
+2. [Consent Form](docs/experiment/consent_form.pdf)
+3. [After the Experiment](docs/experiment/after_the_experiment.md)
+4. [Study Information Sheet](docs/experiment/study_subject_information_and_questionaire.md)
 
 ## :chart_with_upwards_trend: How to run the analysis
 

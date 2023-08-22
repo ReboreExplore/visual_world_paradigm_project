@@ -1,5 +1,8 @@
 # custom
 data/*
+README.tex
+report/src/report.tex
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

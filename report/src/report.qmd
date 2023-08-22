@@ -112,6 +112,40 @@ The experiment follows the following structure in OpenSesame:
 
 # Stimulus Design
 
+
+# Stimuli Preprocessing
+The stimuli collected needed to be preprocessed before they could be used in the experiment. The preprocessing steps are as follows:
+
+1. Resizing the line drawings into 256x256 pixels. The OpenCV library was was used to read and resize the images.
+        
+    ```python
+    img = cv2.resize(img, size)
+    ```
+
+2. Converting the audio files to ```.wav``` format. The audio files were generated in ```.mp3``` format. The 
+        
+    ```bash
+        for file in $DIRPATH/*.mp3; do
+            filename=$(basename "$file")
+            filename="${filename%.*}"
+            ffmpeg -i $file $OUTDIR/$filename.wav
+        done
+    ```
+
+3. A trailing silence after each audio was observed which would affect the response time of the participants. The silence was removed using the ```pydub``` library.
+        
+    ```python
+        def detect_leading_silence(sound, silence_threshold, chunk_size=10):
+            trim_ms = 0 # ms
+            while sound[trim_ms:trim_ms+chunk_size].dBFS < silence_threshold:
+                trim_ms += chunk_size
+            return trim_ms
+    ```
+The function analyzes an audio snippet to find the duration of the silence at the beginning of the signal. It iterates over chunks of the audio and measuring the volume (dBFS) in each chunk until the volume exceeds the provided silence threshold. The accumulated time of trimmed silence is then returned as the result and then removed using the ```sound[trim_ms:]``` function, spectifying the start and the end trim duration.
+
+4. The sampling rate of all the audio samples was also made equal to work with the ```PsychoPy``` backend. The sampling rate was changed to 48Hz.
+            
+
 # Conditions
 
 # Randomization and Quality Control
@@ -128,7 +162,7 @@ The experiment follows the following structure in OpenSesame:
 ## Challenges
     
 1. **Balancing of trials**: 
-    - **Challenge** :Our stimuli had a total of _23 unique visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
+    - **Challenge** :Our stimuli had a total of _23 unique` visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
     - **Solution** : Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
 
 2. **Random ‘freezes’ during experiment** : 
