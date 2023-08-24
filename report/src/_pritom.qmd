@@ -194,4 +194,86 @@ audio_df_valid_fixation['rect'] = audio_df_valid_fixation.apply(lambda row: get_
 
 ## Mapping stimulus location to stimulus type
 
-The analysis plot is concerned with the stimulus type rather than the stimulus location. As the fixations have been mapped to the stimulus location, using the data available in the csv logfile, it is possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, *referant, cohort, rhyme, distractor, target, trial number* and *condition number*. Each row indicates the names of the stimulus that was assigned the role of referant, cohort, rhyme, etc., for a given trial. 
+The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, *referant, cohort, rhyme, distractor, target, trial number* and *condition number*. Each row indicates the names of the stimulus that was assigned the role of referant, cohort, rhyme, etc., for a given trial. 
+
+<!-- TODO: add image here or below -->
+
+The csv log file was read into a pandas dataframe named `logger_df`. This dataframe has 36 rows, each corresponding to a trial. The information available in this dataframe can be combined with that available in the dictionary `stimuli_loc_dict` to map the stimulus location (top, right, bottom, left) to the stimulus type. The columns `top`, `right`, `bottom` and `left` were added to the dataframe `logger_df` and the values were populated using the dictionary `stimuli_loc_dict`.
+
+```python
+# add the data from the stimuli_loc_dict to the logger_df
+logger_df['top'] = [stimuli_loc_dict[idx][0].lower() for idx in logger_df['count_trial_sequence']]
+logger_df['right'] = [stimuli_loc_dict[idx][1].lower() for idx in logger_df['count_trial_sequence']]
+logger_df['bottom'] = [stimuli_loc_dict[idx][2].lower() for idx in logger_df['count_trial_sequence']]
+logger_df['left'] = [stimuli_loc_dict[idx][3].lower() for idx in logger_df['count_trial_sequence']]
+```
+
+These new column were filled by the names of the stimuli but we are interested in the stimulus type. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
+
+```python
+# create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and populate them with the type of stimuli
+# by checking if the stimuli is a referant, distractor, rhyme or cohort
+logger_df['top_type'] = logger_df.apply(lambda row: 'referant' 
+        if row['top'] == row['referant'] else 'distractor' 
+        if row['top'] == row['distractor'] else 'rhyme' 
+        if row['top'] == row['rhyme'] else 'cohort' 
+        if row['top'] == row['cohort'] else 'NA', axis=1)
+...
+...
+logger_df['left_type'] = logger_df.apply(lambda row: 'referant' 
+        if row['left'] == row['referant'] else 'distractor' 
+        if row['left'] == row['distractor'] else 'rhyme' 
+        if row['left'] == row['rhyme'] else 'cohort' 
+        if row['left'] == row['cohort'] else 'NA', axis=1)
+```
+
+Now every fixation can be mapped to a stimulus type i.e. whether the participant was fixating on the referant, distractor, rhyme or cohort. 
+
+## Issue of unequal entries per trial
+
+The task of the final analysis plot is to visualize the proportion of fixations on the each stimulus type across trials and all participants. In order to create the plot, each trial must have equal number of data points. But the number of data points per trial is not equal, the number is dependent on the number of **valid** fixations made by the participant. 
+
+This issue is evident from the following plots:
+
+### Plotting the number of fixations per trial for one participant
+
+This is done to visualize the number of fixations per trial for one participant. See figure below.
+
+<!-- TODO: add plot -->
+
+It is evident from the plot that the number of fixations per trial is not equal. 
+
+### Comparing the trial durations for each condition number
+
+The trials corresponding to each condition number posed a different task to the participant. The duration of the trials for each condition number was compared to see if the condition number had any effect on the number of fixations. See figure below.
+
+<!-- TODO: add plot -->
+
+It is evident from the plot that the duration of the trials for each condition number does not vary significantly. For the same condition number, the duration of the trials varies slightly. This is due to the fact that the participants were allowed to take their time to respond to the audio stimulus. Overall, there is no trend showing that some condition numbers have longer trials than others.
+
+## Solution: Binning the data
+
+The data points were binned in order to ensure that each trial had equal number of data points. The binning was performed on the basis of time. An overall trial duration `avg_duration` was calculated and it was split into `N` equal parts. `N` is a user-defined parameter, it was chosen as `80` in our analysis. The data points were then binned into these parts. 
+
+::: {.callout-note}
+## Nota Bene
+The overall trial duration was calculated by averaging the trial duration across all trials and across all participants.
+:::
+
+For determining the duration of each trial, the timestamp of the first fixation and the timestamp of the last fixation were used. The difference between these two timestamps was calculated and this was the duration of the trial. This duration was also used in the previous section to compare the trial durations for each condition number.
+
+```python
+first_fixation_time = []
+last_fixation_time = []
+for idx, row in logger_df.iterrows():
+    trial_df = audio_df_valid_fixation[audio_df_valid_fixation['trial_number'] == idx]
+    first_fixation_time.append(trial_df['TIME'].min())
+    last_fixation_time.append(trial_df['TIME'].max())
+
+logger_df['first_fixation_time'] = first_fixation_time
+logger_df['last_fixation_time'] = last_fixation_time
+
+logger_df['duration'] = logger_df['last_fixation_time'] - logger_df['first_fixation_time']
+```
+
+
