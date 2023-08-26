@@ -227,7 +227,8 @@ logger_df['left_type'] = logger_df.apply(lambda row: 'referant'
         if row['left'] == row['cohort'] else 'NA', axis=1)
 ```
 
-Now every fixation can be mapped to a stimulus type i.e. whether the participant was fixating on the referant, distractor, rhyme or cohort. 
+Now every fixation could be mapped to a stimulus type i.e. whether the participant was fixating on the referant, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function `get_seen_stimuli_type` that loops through the rows of the `logger_df` dataframe and returns the stimulus type that the participant was fixating on. This function modified the `seen` column of the `audio_df_valid_fixation` dataframe so that it now contained the stimulus type that the participant was fixating on.
+
 
 ## Issue of unequal entries per trial
 
@@ -255,6 +256,17 @@ It is evident from the plot that the duration of the trials for each condition n
 
 The data points were binned in order to ensure that each trial had equal number of data points. The binning was performed on the basis of time. An overall trial duration `avg_duration` was calculated and it was split into `N` equal parts. `N` is a user-defined parameter, it was chosen as `80` in our analysis. The data points were then binned into these parts. 
 
+```python
+avg_duration = 1.6
+print("Average duration is set to {} s".format(avg_duration))
+
+# divide the avg duration into N equal parts
+N = 80
+duration_thresholds = np.linspace(0, avg_duration, N, endpoint=True)
+```
+
+The `duration_thresholds` array contains the time thresholds for each bin. 
+
 ::: {.callout-note}
 ## Nota Bene
 The overall trial duration was calculated by averaging the trial duration across all trials and across all participants.
@@ -276,4 +288,83 @@ logger_df['last_fixation_time'] = last_fixation_time
 logger_df['duration'] = logger_df['last_fixation_time'] - logger_df['first_fixation_time']
 ```
 
+After the bin thresholds were determined, the data points were binned into these thresholds. One of the most important column of the `logger_df` dataframe was the  `seen` column that contained the name of the type of stimulus that was fixated on by the participant. During binning, the `seen` column values of entries belonging to the same bin are replaced by a single value. The value is determined by the following rules:
+* First, the values `centre` and `outside` are replaced by `NA` (empty string).
+* If the bin contains no values, the seen value is set to `NA`.
+* If the bin contains only one value, the seen value is set to that value.
+* If the bin contains more than one value, the seen value is set to the value that occurs the most number of times in the bin.
 
+::: {.callout-note}
+## Nota Bene
+See `get_relevant_rect_value()` function in source code for implementation details.
+:::
+
+A new dataframe `count_df` was created to store the binned data. The columns of this dataframe were `trial_number`, `condition_number`, `start_time`, `end_time`, `bin_start`, `bin_end`, `real_val_count`, `val_count` and `seen`.
+
+* `trial_number` and `condition_number` were copied from the `logger_df` dataframe.
+* `start_time` and `end_time` were the timestamps of the first and last fixation respectively belonging to the bin.
+* `bin_start` and `bin_end` were the start and end time of the bin.
+* `real_val_count` was the number of data points in the bin.
+* `val_count` was the effective number of data points in the bin. This was the number of data points in the bin after calling the `get_relevant_rect_value()` function.
+* `seen` was the value of the `seen` column after calling the `get_relevant_rect_value()` function.
+
+## Implementing the conditions of competitor sets
+
+The condition numbers of the four different types of competitor sets are as follows:
+
+```text
+full_competitor_sets_cond = [1, 2, 3, 4]
+cohort_competitor_sets_cond = [5, 6, 7]
+rhyme_competitor_sets_cond = [8, 9, 10]
+distractor_competitor_sets_cond = [11, 12]
+```
+
+As per the conditions, the instances of `rhyme` in the `seen` column were replaced by `distractor` for the trials with condition numbers belonging to the cohort competitor sets.
+
+```python
+count_df.loc[count_df['condition'].isin(cohort_competitor_sets_cond), 'seen'] = count_df['seen'].apply(lambda x: 'distractor' if x == 'rhyme' else x)
+```
+Similarly, the conditions for rhyme competitor sets and distractor competitor sets were implemented.
+
+## Prepare data for plotting
+
+The calculation of fixation probabilities was made simpler by the one hot encoding of the `seen` column. This was done using the `pd.get_dummies()` function. The resulting dataframe was named `one_hot_count_df`. As a result of the one-hot encoding, the `seen` column was replaced by the columns `seen_cohort`, `seen_distractor`, `seen_referant` and `seen_rhyme`. The values of these columns were either 0 or 1. The value 1 indicated that the participant was fixating on the stimulus type indicated by the column name. The value 0 indicated that the participant was not fixating on the stimulus type indicated by the column name.
+
+::: {.callout-note}
+## Nota Bene
+`pd.get_dummies()` adds columns of type `boolean`. The columns were converted to type `int` using the `astype()` function.
+:::
+
+```python
+# one hot encode the 'seen' column
+one_hot_count_df = pd.get_dummies(count_df, columns=['seen'])
+```
+Several of the trials acted as filler trials. These trials were not relevant for our analysis so they were removed from the dataframe. 
+
+```python
+# remove the rows that are not relevant for the final analysis
+one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 2]
+...
+one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 12]
+```
+
+The groupby function was used to group the rows by the columns `bin_start`, `bin_end`. This was done to calculate the fixation counts for each bin. The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+
+```python
+# groupby bin_start and bin_end and sum the values in 'seen_referant', 'seen_distractor', 'seen_rhyme', 'seen_cohort'
+groupby_time_bins_df = one_hot_count_df.groupby(['bin_start', 'bin_end']).sum().reset_index()
+```
+
+The `groupby_time_bins_df` dataframe was then split into three dataframes, based the competitor set. The dataframes were named `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`. The `distactor_competitor_sets_df` was not created as it was not required for the analysis.
+
+```python
+one_hot_count_df_full_competitor_sets = one_hot_count_df[one_hot_count_df['condition'].isin(full_competitor_sets_cond)]
+```
+
+As per the specification of the analysis plot, the plot for the referent stimuli was created using all three competitor sets. The plot for the cohort stimuli was created using the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using the full competitor sets and the rhyme competitor sets. Therefore, the dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
+
+```python
+referant_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
+```
+
+Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
