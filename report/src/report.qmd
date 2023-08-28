@@ -1,6 +1,6 @@
 ---
 title: "**Visual World Paradigm**"
-subtitle: "*A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker*"
+subtitle: "A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker"
 author:
   - name: Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani
     affiliation: University of Stuttgart
@@ -8,6 +8,30 @@ author:
 date: today
 abstract: The study presented in this paper explores the dynamics of predictive language processing through the visual world paradigm (VWP), a widely employed method in cognitive psychology. The primary objective of the research is to unwind how individuals anticipate or predict forthcoming words during the unfolding of the spoken instructions, leveraging the Gazepoint eye tracker for precise gaze pattern analysis. The investigation delves into the impact of competitor words on gaze patterns, to study the cognitive mechanisms underlying real-time language comprehension. Our experiment uses a collection of competitor words sharing phonetic or semantic similarities with the target, and validates the hypothesis that the existence of such competitors leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word.
 toc: true 
+format:
+  html:
+    code-fold: true
+  pdf:
+    toc: true
+    fontsize: 12pt
+    number-sections: true
+    toc-title: "Table of Contents"
+    highlight-style: github
+    documentclass: report
+    geometry:
+      - top=30mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    colorlinks: true
+    cite-method: biblatex
+#    include-in-header: 
+#    text: |
+#        \usepackage{fvextra}
+#        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+    monofont: 'Source Code Pro'
+    monofontoptions: 
+        - Scale=0.65
 bibliography: biblio.bib
 ---
 
@@ -20,12 +44,12 @@ bibliography: biblio.bib
 The visual world paradigm is an experimental framework that investigates language processing by monitoring participants' eye movements while they interact with visual stimuli. Introduced by psychologists Richard Cooper and Thomas P. McDermott in the late 1990s, this paradigm have been continuosly refined and expanded, adapting it to different research questions and using advancements in eye-tracking technology to gain deeper insights into real-time language comprehension and visual attention processes. Through this framework the researchers try to simulate the integration of spoken language and visual information as they naturally occur in everyday situations so that we can draw inferences on the attention focus on specific objects in their visual display over time. 
 
 ## Objective of our project
-We try to answer the research question: 
+Our research question is: 
 
-*Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target words as the word unfolds?*
+*Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target word as the word unfolds?*
 
 
-Our project is to study the nature of spoken word recognition as the word unfolds. Here the key aspect of the visual world paradigm is that participants' eye movements serve as an index of their ongoing language processing and interpretation. 
+Our project is to study the nature of spoken word recognition as the word unfolds. Here we try to investigate the visual world paradigm by using the participants' eye movements which serve as an index of their ongoing language processing and interpretation. 
 
 We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, building upon the established research in this domain: 
 
@@ -222,6 +246,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
 In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
 
 We summarize our conclusions as follows:
+
 1. The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.
 
 2. Eye movement tracking is a reliable tool for investigating the time course of spoken word recognition and capturing the mapping process while the spoken word unfolds.
