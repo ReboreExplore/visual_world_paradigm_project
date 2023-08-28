@@ -328,6 +328,8 @@ Similarly, the conditions for rhyme competitor sets and distractor competitor se
 
 ## Prepare data for plotting
 
+### One hot encoding
+
 The calculation of fixation probabilities was made simpler by the one hot encoding of the `seen` column. This was done using the `pd.get_dummies()` function. The resulting dataframe was named `one_hot_count_df`. As a result of the one-hot encoding, the `seen` column was replaced by the columns `seen_cohort`, `seen_distractor`, `seen_referant` and `seen_rhyme`. The values of these columns were either 0 or 1. The value 1 indicated that the participant was fixating on the stimulus type indicated by the column name. The value 0 indicated that the participant was not fixating on the stimulus type indicated by the column name.
 
 ::: {.callout-note}
@@ -348,23 +350,43 @@ one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 2]
 one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 12]
 ```
 
-The groupby function was used to group the rows by the columns `bin_start`, `bin_end`. This was done to calculate the fixation counts for each bin. The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+The groupby function was then used to group the rows by the columns `bin_start`, `bin_end` and calculate the fixation counts for each bin. The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+
+### Implementing the conditions of the analysis plot
+
+The final plot consisted of lines for the referent, cohort, rhyme and distractor stimuli. As per the specification of the analysis plot, the plot for the referent stimuli was created using the fixation data from three competitor sets (full competitor set, cohort competitor set and rhyme competitor set). The plot for the cohort stimuli was created using the data only from the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using data only from the full competitor sets and the rhyme competitor sets. 
+
+In order to implement these requirements, the dataframe `one_hot_count_df` was sliced to form three different dataframes, each corresponding to the three competitor sets. The dataframes were named `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`. The dataframe `full_competitor_sets_df` contained the data from the full competitor sets. The dataframe `cohort_competitor_sets_df` contained the data from the full competitor sets and the cohort competitor sets. The dataframe `rhyme_competitor_sets_df` contained the data from the full competitor sets and the rhyme competitor sets. The dataframes were created by filtering the rows of the `one_hot_count_df` dataframe based on the condition numbers of the competitor sets.
 
 ```python
-# groupby bin_start and bin_end and sum the values in 'seen_referant', 'seen_distractor', 'seen_rhyme', 'seen_cohort'
-groupby_time_bins_df = one_hot_count_df.groupby(['bin_start', 'bin_end']).sum().reset_index()
+full_competitor_sets_df = one_hot_count_df[one_hot_count_df['condition'].isin(full_competitor_sets_cond)]
+...
+rhyme_competitor_sets_df = one_hot_count_df[one_hot_count_df['condition'].isin(rhyme_competitor_sets_cond)]
 ```
 
-The `groupby_time_bins_df` dataframe was then split into three dataframes, based the competitor set. The dataframes were named `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`. The `distactor_competitor_sets_df` was not created as it was not required for the analysis.
-
-```python
-one_hot_count_df_full_competitor_sets = one_hot_count_df[one_hot_count_df['condition'].isin(full_competitor_sets_cond)]
-```
-
-As per the specification of the analysis plot, the plot for the referent stimuli was created using all three competitor sets. The plot for the cohort stimuli was created using the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using the full competitor sets and the rhyme competitor sets. Therefore, the dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
+The dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
 
 ```python
 referant_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
 ```
 
 Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
+
+The fixation counts for these dataframes were not the same as those obtained from the `grouped_time_bins_df` dataframe. This is because the data contained in the dataframes `referant_calc_sets`, `cohort_calc_sets` and `rhyme_calc_sets` were a subset of the data contained in the `grouped_time_bins_df` dataframe. Therefore, the groupby function for calculating the sum of the fixation counts was applied to these dataframes as well. 
+
+```python
+# groupby sum for referant_calc_sets
+groupby_time_bins_df_referant = referant_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+# groupby sum for cohort_calc_sets
+groupby_time_bins_df_cohort = cohort_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+# groupby sum for rhyme_calc_sets
+groupby_time_bins_df_rhyme = rhyme_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+```
+
+The columns of interest from these dataframes were extracted and updated in the `grouped_time_bins_df` dataframe. 
+
+* The column `seen_referant` from the dataframe `groupby_time_bins_df_referant` 
+* The column `seen_cohort` from the dataframe `groupby_time_bins_df_cohort`
+* The column `seen_rhyme` from the dataframe `groupby_time_bins_df_rhyme`
+
+## 
