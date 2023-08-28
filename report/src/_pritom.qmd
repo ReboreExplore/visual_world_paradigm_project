@@ -23,6 +23,7 @@ df_list = [df_interest.iloc[start_indices[i]:end_indices[i]] for i in range(len(
 
 At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named `audio_df_list`.
 
+\small
 ```python
 # extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'
 audio_start_index = selected_df[selected_df['USER'].str.contains('LOG_AUDIO_TARGET_START')].index[0]
@@ -63,6 +64,7 @@ The logs are in the form of a sequence of events. Each log event is a line in th
 
 Following the slicing procedure mentioned the previous section, the indices of the rows corresponding to these three log events are retrieved.
 
+\small
 ```python
 # get all rows whose indices are stored in start_indices
 # will be used to extract the position of the stimuli
@@ -187,6 +189,7 @@ def get_rect(x, y):
 
 The function `get_rect` is applied to each row of the dataframe using the `df.apply` function. The resulting column is named `rect`. At the point, for each data point, we know at which stimulus box the participant was fixating.
 
+\footnotesize
 ```python
 # use df.apply to apply the get_rect function to each row
 audio_df_valid_fixation['rect'] = audio_df_valid_fixation.apply(lambda row: get_rect(row['FPOGX'], row['FPOGY']), axis=1)
@@ -363,8 +366,10 @@ one_hot_count_df_full_competitor_sets = one_hot_count_df[one_hot_count_df['condi
 
 As per the specification of the analysis plot, the plot for the referent stimuli was created using all three competitor sets. The plot for the cohort stimuli was created using the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using the full competitor sets and the rhyme competitor sets. Therefore, the dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
 
+\small
 ```python
-referant_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
+referant_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, 
+one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
 ```
 
 Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
