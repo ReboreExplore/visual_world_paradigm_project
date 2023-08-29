@@ -2,7 +2,12 @@
 data/*
 README.tex
 report/src/report.tex
-
+report/src/_pritom_files/*
+report/src/_pritom.pdf
+report/src/_pritom.html
+report/src/_extensions/*
+# may remove later
+src/*.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
