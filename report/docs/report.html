@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani">
-<meta name="dcterms.date" content="2023-08-28">
+<meta name="dcterms.date" content="2023-08-29">
 
 <title>Visual World Paradigm</title>
 <style>
@@ -98,33 +98,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conditions" id="toc-conditions" class="nav-link" data-scroll-target="#conditions"><span class="header-section-number">5</span> Conditions</a></li>
   <li><a href="#randomization-and-quality-control" id="toc-randomization-and-quality-control" class="nav-link" data-scroll-target="#randomization-and-quality-control"><span class="header-section-number">6</span> Randomization and Quality Control</a></li>
   <li><a href="#experiment-organization" id="toc-experiment-organization" class="nav-link" data-scroll-target="#experiment-organization"><span class="header-section-number">7</span> Experiment Organization</a></li>
-  <li><a href="#preprocessing-and-analysis" id="toc-preprocessing-and-analysis" class="nav-link" data-scroll-target="#preprocessing-and-analysis"><span class="header-section-number">8</span> Preprocessing and Analysis</a></li>
-  <li><a href="#preprocessing-and-analysis-1" id="toc-preprocessing-and-analysis-1" class="nav-link" data-scroll-target="#preprocessing-and-analysis-1"><span class="header-section-number">9</span> Preprocessing and Analysis</a>
+  <li><a href="#preprocessing-and-analysis" id="toc-preprocessing-and-analysis" class="nav-link" data-scroll-target="#preprocessing-and-analysis"><span class="header-section-number">8</span> Preprocessing and Analysis</a>
   <ul class="collapse">
-  <li><a href="#organizing-the-raw-data-into-trial-wise-data" id="toc-organizing-the-raw-data-into-trial-wise-data" class="nav-link" data-scroll-target="#organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">9.1</span> Organizing the raw data into trial-wise data</a></li>
-  <li><a href="#extracting-trial-information" id="toc-extracting-trial-information" class="nav-link" data-scroll-target="#extracting-trial-information"><span class="header-section-number">9.2</span> Extracting trial information</a></li>
-  <li><a href="#fixation-plots" id="toc-fixation-plots" class="nav-link" data-scroll-target="#fixation-plots"><span class="header-section-number">9.3</span> Fixation plots</a></li>
-  <li><a href="#deduce-location-of-fixations" id="toc-deduce-location-of-fixations" class="nav-link" data-scroll-target="#deduce-location-of-fixations"><span class="header-section-number">9.4</span> Deduce location of fixations</a></li>
-  <li><a href="#mapping-stimulus-location-to-stimulus-type" id="toc-mapping-stimulus-location-to-stimulus-type" class="nav-link" data-scroll-target="#mapping-stimulus-location-to-stimulus-type"><span class="header-section-number">9.5</span> Mapping stimulus location to stimulus type</a></li>
-  <li><a href="#issue-of-unequal-entries-per-trial" id="toc-issue-of-unequal-entries-per-trial" class="nav-link" data-scroll-target="#issue-of-unequal-entries-per-trial"><span class="header-section-number">9.6</span> Issue of unequal entries per trial</a>
+  <li><a href="#organizing-the-raw-data-into-trial-wise-data" id="toc-organizing-the-raw-data-into-trial-wise-data" class="nav-link" data-scroll-target="#organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">8.1</span> Organizing the raw data into trial-wise data</a></li>
+  <li><a href="#extracting-trial-information" id="toc-extracting-trial-information" class="nav-link" data-scroll-target="#extracting-trial-information"><span class="header-section-number">8.2</span> Extracting trial information</a></li>
+  <li><a href="#fixation-plots" id="toc-fixation-plots" class="nav-link" data-scroll-target="#fixation-plots"><span class="header-section-number">8.3</span> Fixation plots</a></li>
+  <li><a href="#deduce-location-of-fixations" id="toc-deduce-location-of-fixations" class="nav-link" data-scroll-target="#deduce-location-of-fixations"><span class="header-section-number">8.4</span> Deduce location of fixations</a></li>
+  <li><a href="#mapping-stimulus-location-to-stimulus-type" id="toc-mapping-stimulus-location-to-stimulus-type" class="nav-link" data-scroll-target="#mapping-stimulus-location-to-stimulus-type"><span class="header-section-number">8.5</span> Mapping stimulus location to stimulus type</a></li>
+  <li><a href="#issue-of-unequal-entries-per-trial" id="toc-issue-of-unequal-entries-per-trial" class="nav-link" data-scroll-target="#issue-of-unequal-entries-per-trial"><span class="header-section-number">8.6</span> Issue of unequal entries per trial</a>
   <ul class="collapse">
-  <li><a href="#plotting-the-number-of-fixations-per-trial-for-one-participant" id="toc-plotting-the-number-of-fixations-per-trial-for-one-participant" class="nav-link" data-scroll-target="#plotting-the-number-of-fixations-per-trial-for-one-participant"><span class="header-section-number">9.6.1</span> Plotting the number of fixations per trial for one participant</a></li>
-  <li><a href="#comparing-the-trial-durations-for-each-condition-number" id="toc-comparing-the-trial-durations-for-each-condition-number" class="nav-link" data-scroll-target="#comparing-the-trial-durations-for-each-condition-number"><span class="header-section-number">9.6.2</span> Comparing the trial durations for each condition number</a></li>
+  <li><a href="#plotting-the-number-of-fixations-per-trial-for-one-participant" id="toc-plotting-the-number-of-fixations-per-trial-for-one-participant" class="nav-link" data-scroll-target="#plotting-the-number-of-fixations-per-trial-for-one-participant"><span class="header-section-number">8.6.1</span> Plotting the number of fixations per trial for one participant</a></li>
+  <li><a href="#comparing-the-trial-durations-for-each-condition-number" id="toc-comparing-the-trial-durations-for-each-condition-number" class="nav-link" data-scroll-target="#comparing-the-trial-durations-for-each-condition-number"><span class="header-section-number">8.6.2</span> Comparing the trial durations for each condition number</a></li>
+  <li><a href="#solution-binning-the-data" id="toc-solution-binning-the-data" class="nav-link" data-scroll-target="#solution-binning-the-data"><span class="header-section-number">8.6.3</span> Solution: Binning the data</a></li>
   </ul></li>
-  <li><a href="#solution-binning-the-data" id="toc-solution-binning-the-data" class="nav-link" data-scroll-target="#solution-binning-the-data"><span class="header-section-number">9.7</span> Solution: Binning the data</a></li>
-  <li><a href="#implementing-the-conditions-of-competitor-sets" id="toc-implementing-the-conditions-of-competitor-sets" class="nav-link" data-scroll-target="#implementing-the-conditions-of-competitor-sets"><span class="header-section-number">9.8</span> Implementing the conditions of competitor sets</a></li>
-  <li><a href="#prepare-data-for-plotting" id="toc-prepare-data-for-plotting" class="nav-link" data-scroll-target="#prepare-data-for-plotting"><span class="header-section-number">9.9</span> Prepare data for plotting</a></li>
-  </ul></li>
-  <li><a href="#challenges-and-limitations" id="toc-challenges-and-limitations" class="nav-link" data-scroll-target="#challenges-and-limitations"><span class="header-section-number">10</span> Challenges and Limitations</a>
+  <li><a href="#implementing-the-conditions-of-competitor-sets" id="toc-implementing-the-conditions-of-competitor-sets" class="nav-link" data-scroll-target="#implementing-the-conditions-of-competitor-sets"><span class="header-section-number">8.7</span> Implementing the conditions of competitor sets</a></li>
+  <li><a href="#prepare-data-for-plotting" id="toc-prepare-data-for-plotting" class="nav-link" data-scroll-target="#prepare-data-for-plotting"><span class="header-section-number">8.8</span> Prepare data for plotting</a>
   <ul class="collapse">
-  <li><a href="#what-we-did-not-replicate-from-the-reference-paper" id="toc-what-we-did-not-replicate-from-the-reference-paper" class="nav-link" data-scroll-target="#what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">10.1</span> What we did not replicate from the reference paper?</a></li>
-  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="header-section-number">10.2</span> Challenges</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">10.3</span> Limitations</a></li>
+  <li><a href="#one-hot-encoding" id="toc-one-hot-encoding" class="nav-link" data-scroll-target="#one-hot-encoding"><span class="header-section-number">8.8.1</span> One hot encoding</a></li>
+  <li><a href="#implementing-the-conditions-of-the-analysis-plot" id="toc-implementing-the-conditions-of-the-analysis-plot" class="nav-link" data-scroll-target="#implementing-the-conditions-of-the-analysis-plot"><span class="header-section-number">8.8.2</span> Implementing the conditions of the analysis plot</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
+  <li><a href="#calculating-the-fixation-probabilities" id="toc-calculating-the-fixation-probabilities" class="nav-link" data-scroll-target="#calculating-the-fixation-probabilities"><span class="header-section-number">8.9</span> Calculating the fixation probabilities</a></li>
+  <li><a href="#saving-per-participant-data" id="toc-saving-per-participant-data" class="nav-link" data-scroll-target="#saving-per-participant-data"><span class="header-section-number">8.10</span> Saving per participant data</a></li>
+  <li><a href="#plot-of-the-final-analysis" id="toc-plot-of-the-final-analysis" class="nav-link" data-scroll-target="#plot-of-the-final-analysis"><span class="header-section-number">8.11</span> Plot of the final analysis</a></li>
+  <li><a href="#analysis-of-the-obtained-results" id="toc-analysis-of-the-obtained-results" class="nav-link" data-scroll-target="#analysis-of-the-obtained-results"><span class="header-section-number">8.12</span> Analysis of the obtained results</a></li>
+  </ul></li>
+  <li><a href="#challenges-and-limitations" id="toc-challenges-and-limitations" class="nav-link" data-scroll-target="#challenges-and-limitations"><span class="header-section-number">9</span> Challenges and Limitations</a>
+  <ul class="collapse">
+  <li><a href="#what-we-did-not-replicate-from-the-reference-paper" id="toc-what-we-did-not-replicate-from-the-reference-paper" class="nav-link" data-scroll-target="#what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">9.1</span> What we did not replicate from the reference paper?</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="header-section-number">9.2</span> Challenges</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9.3</span> Limitations</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF (titlepage)</a></li><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF (titlepage)</a></li></ul></div></nav>
 </div>
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -157,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 28, 2023</p>
+      <p class="date">August 29, 2023</p>
     </div>
   </div>
   
@@ -173,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf">Download the pdf version.</a></p>
+<p><a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf">Download the PDF version</a></p>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <section id="visual-world-paradigm" class="level2" data-number="1.1">
@@ -183,14 +190,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objective-of-our-project" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="objective-of-our-project"><span class="header-section-number">1.2</span> Objective of our project</h2>
 <p>Our research question is:</p>
-<p><em>Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target word as the word unfolds?</em></p>
-<p>Our project is to study the nature of spoken word recognition as the word unfolds. Here we try to investigate the visual world paradigm by using the participants’ eye movements which serve as an index of their ongoing language processing and interpretation.</p>
-<p>We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, building upon the established research in this domain:</p>
+<p></p>
+<p>Our project is to study the nature of spoken word recognition as the word unfolds. We try to investigate the visual world paradigm by using the participants’ eye movements which serve as an index of their ongoing language processing and interpretation. We dive deeper in trying to understand how the participants predict the upcoming word in a spoken instruction and how the cognitive mechanisms underlying real-time language comprehension influence their gaze patterns.</p>
+<p>We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, based upon the established research in this domain:</p>
 <ul>
-<li>Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available.</li>
+<li>Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available. It is not a discrete process rather it is a continuous process that unfolds over time.</li>
 <li>Spoken word recognition models make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word.</li>
 </ul>
-<p>Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> investigated a similar structure of the experiment and found the following results:</p>
+<p>Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper investigated a similar structure of the experiment and found the following results:</p>
 <div id="fig-matrix" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="img/ref_graph.png" class="img-fluid figure-img" style="width:90.0%"></p>
@@ -199,13 +206,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In this figure we have the probability of fixation on four words:</p>
 <ol type="1">
-<li>Referent (e.g beaker) : Target Word</li>
-<li>Cohort (e.g beetle) : Similar Sounding Word</li>
-<li>Rhyme (e.g speaker) : Rhyming word</li>
-<li>Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)</li>
+<li>Referent (e.g., beaker): Target Word</li>
+<li>Cohort (e.g., beetle): Similar Sounding Word</li>
+<li>Rhyme (e.g., speaker): Rhyming word</li>
+<li>Unrelated (e.g., carriage): Unrelated word to the rest (phonetically or semantically.)</li>
 </ol>
 <p>In the beginning the participants hear [bi], which could be the beginning of <em>beaker</em> but also could be the beginning of <em>beetle</em>. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e.&nbsp;now they are hearing [bik], thus they discard their choice of <em>beetle</em> and stop looking at it. But by the time they’ve heard the whole word <em>beaker</em>, they might realize that <em>beaker</em> rhymes almost exactly with <em>speaker</em> and get confused about if they heard <em>speaker</em> at the very first place. For the last word carriage the pronunciation is totally unrelated to the target <em>beaker</em>, so there is a very less probability of the participant actually fixation at the unrelated word.</p>
-<p>Through we try to replicate the results obtained by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> and validate their hypothesis.</p>
+<p>Through we try to replicate the results obtained by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper and validate their hypothesis.</p>
 </section>
 </section>
 <section id="experiment" class="level1" data-number="2">
@@ -213,8 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="software-and-hardware" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="software-and-hardware"><span class="header-section-number">2.1</span> Software and Hardware</h2>
 <ul>
-<li><p><strong>Software</strong> : The experiment is designed in <a href="https://osdoc.cogsci.nl/">OpenSesame</a> which is a open source software to create experiments for psychology, neuroscience, and experimental economics.</p></li>
-<li><p><strong>Language</strong> : Python was used along with the OpenSesame GUI to create the experiment. Libraries like Pandas, Numpy, Matplotlib were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used.</p></li>
+<li><p><strong>Software</strong>: The experiment is designed in <a href="https://osdoc.cogsci.nl/">OpenSesame</a> which is a open source software to create experiments for psychology, neuroscience, and experimental economics.</p></li>
+<li><p><strong>Language</strong>: Python was used along with the OpenSesame GUI to create the experiment. Libraries like Pandas, Numpy, Matplotlib were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used.</p></li>
 <li><p><strong>Eye Tracker</strong>: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.</p></li>
 </ul>
 </section>
@@ -234,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.3" class="anchored" data-anchor-id="design-of-the-experiment"><span class="header-section-number">2.3</span> Design of the Experiment</h2>
 <p>The experiment follows the following structure in OpenSesame:</p>
 <ol type="1">
-<li><strong>Introduction to the experiment</strong> : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.</li>
+<li><strong>Introduction to the experiment</strong>: It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.</li>
 </ol>
 <div id="fig-ui" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -243,28 +250,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <ol start="2" type="1">
-<li><p><strong>Initialization of variables</strong> : The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.</p></li>
-<li><p><strong>Trial Loop Items</strong> : This loop runs the experiment for 24 trials. The trial loop contains the following sequence of events:</p>
+<li><p><strong>Initialization of variables</strong>: The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.</p></li>
+<li><p><strong>Trial Loop Items</strong>: This loop runs the experiment for 24 trials. The trial loop contains the following sequence of events:</p>
 <ul>
-<li><p><strong>Fixation Cross</strong> : A fixation cross is displayed at the center of the screen. The fixation cross is a black dot on a white background. The fixation cross is displayed to ensure that the participants are looking at the center of the screen before the spoken instruction is played. The fixation cross is displayed using the sketchpad item in OpenSesame.</p></li>
-<li><p><strong>Stimulus</strong> :</p>
+<li><p><strong>Fixation Cross</strong>: A fixation cross is displayed at the center of the screen. The fixation cross is a black dot on a white background. The fixation cross is displayed to ensure that the participants are looking at the center of the screen before the spoken instruction is played. The fixation cross is displayed using the sketchpad item in OpenSesame.</p></li>
+<li><p><strong>Stimulus</strong>:</p>
 <ol type="1">
 <li>The visual stimulus for each trial is loaded from the <code>stimuli.csv</code> file. The csv file contains information about the four objects that are displayed in the grid. The csv file contains the following information:
 <ul>
-<li><strong>Stimulus</strong> : The name of the objects that is displayed in the grid.</li>
-<li><strong>Type</strong> : The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.</li>
-<li><strong>Condition</strong> : The condition of the trial.</li>
-<li><strong>Target</strong> : The target object that the participants have to click on. You can find the stimuli.csv file <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv">here</a>.</li>
+<li><strong>Stimulus</strong>: The name of the objects that is displayed in the grid.</li>
+<li><strong>Type</strong>: The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.</li>
+<li><strong>Condition</strong>: The condition of the trial.</li>
+<li><strong>Target</strong>: The target object that the participants have to click on. You can find the stimuli.csv file <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv">here</a>.</li>
 </ul></li>
 <li>We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
 <ul>
-<li><strong>Instruction</strong> : ’FixateHow to run the analysisbject that the participants have to click on. You can find the audio stimuli <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli">here</a>. Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.</li>
+<li><strong>Instruction</strong>: ’FixateHow to run the analysisbject that the participants have to click on. You can find the audio stimuli <a href="https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli">here</a>. Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.</li>
 </ul></li>
 </ol></li>
-<li><p><strong>Logging</strong> : The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (<em>More details will be proviided in the preprocessing and analysis section</em>.)</p></li>
-<li><p><strong>Gaze Contingency</strong> : Two fixation audio prompts which says <em>‘Fixate at the center’</em> and ‘<em>Now fixate at the center</em>’ and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. <img src="img/trial_timeline.png" id="fig-ui" class="img-fluid" style="width:90.0%" alt="Timeline of a trial"></p></li>
+<li><p><strong>Logging</strong>: The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (<em>More details will be proviided in the preprocessing and analysis section</em>.)</p></li>
+<li><p><strong>Gaze Contingency</strong>: Two fixation audio prompts which says <em>‘Fixate at the center’</em> and ‘<em>Now fixate at the center</em>’ and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. <img src="img/trial_timeline.png" id="fig-ui" class="img-fluid" style="width:90.0%" alt="Timeline of a trial"></p></li>
 </ul></li>
-<li><p><strong>End of Experiment</strong> : The experiment ends with a thank you message for the participants.</p></li>
+<li><p><strong>End of Experiment</strong>: The experiment ends with a thank you message for the participants.</p></li>
 </ol>
 </section>
 <section id="logic-of-the-experiment" class="level2" data-number="2.4">
@@ -272,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Stimuli are chosen as per the different pairs of sets included in the reference paper by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus.</p>
 <ul>
-<li>For eg. One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.</li>
+<li>For e.g., One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.</li>
 </ul></li>
 <li><p>A fixation at any point on the screen indicates that the participant is paying attention to it. Thus we record the fixations throughout the experiment to deduce the attention of the pariticipant when we instruct them to fixate or look at a certain point of the canvas.</p></li>
 <li><p>Noting timestamps of the samples is essential. Our experiment is designed to record how a participants attends to the stimuli and how they respond to the spoken instruction while the instruction is unfolding. Thus we record the timestamps of the samples to understand the chronology of the fixation events.</p></li>
@@ -316,34 +323,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="preprocessing-and-analysis" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Preprocessing and Analysis</h1>
-</section>
-<section id="preprocessing-and-analysis-1" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Preprocessing and Analysis</h1>
 <!-- TODO: add introduction to this section -->
-<section id="organizing-the-raw-data-into-trial-wise-data" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">9.1</span> Organizing the raw data into trial-wise data</h2>
+<section id="organizing-the-raw-data-into-trial-wise-data" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="organizing-the-raw-data-into-trial-wise-data"><span class="header-section-number">8.1</span> Organizing the raw data into trial-wise data</h2>
 <p>The basic unit of analysis in the visual world paradigm experiment is a trial. A trial is a single instance of the experiment. The first task was to organize the raw data into trial-wise data. Here the raw data was present in the .tsv files. Each file contained the data for a single participant. The data was read into a pandas dataframe named <code>df_interest</code> and then the columns that were not required were dropped. The columns, <code>TIME</code>, <code>BPOGX</code>, <code>BPOGY</code>, <code>FPOGD</code>, <code>FPOGX</code>, <code>FPOGY</code>, <code>FPOGV</code> and <code>USER</code> were relevant for our analysis so these were the columns remaining in the dataframe.</p>
 <!-- TODO: write about FPOGV filtering! -->
 <p>In order to organize the entries of the dataframe into trials, the rows corresponding to the start and end of the trials needed to be identified. After acquiring the indices of the corresponding rows, the dataframe was split into multiple dataframes, each corresponding to a single trial.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of the rows where the user column contains the phrase 'START_TRIAL'</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>start_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'START_TRIAL'</span>)].index</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>start_indices <span class="op">=</span> df_interest[df_interest[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"START_TRIAL"</span>)].index</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of the rows where the user column contains the phrase 'FINAL_FIXATION_END'</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>end_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FINAL_FIXATION_END'</span>)].index</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>end_indices <span class="op">=</span> df_interest[df_interest[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"FINAL_FIXATION_END"</span>)].index</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># split the dataframe based on the start and end indices</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df_list <span class="op">=</span> [df_interest.iloc[start_indices[i]:end_indices[i]] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(start_indices))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df_list <span class="op">=</span> [</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    df_interest.iloc[start_indices[i] : end_indices[i]]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(start_indices))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the <code>USER</code> column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings <code>LOG_AUDIO_TARGET_START</code> and <code>CLICK_RESPONSE_END</code> respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named <code>audio_df_list</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>audio_start_index <span class="op">=</span> selected_df[selected_df[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'LOG_AUDIO_TARGET_START'</span>)].index[<span class="dv">0</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_END'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>audio_end_index <span class="op">=</span> selected_df[selected_df[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'CLICK_RESPONSE_END'</span>)].index[<span class="dv">0</span>]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># split the dataframe based on the audio start and end indices</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># store the split dataframe in a list</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>audio_df_list.append(selected_df.iloc[audio_start_index:audio_end_index <span class="op">+</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>audio_start_index <span class="op">=</span> selected_df[</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    selected_df[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"LOG_AUDIO_TARGET_START"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>].index[<span class="dv">0</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_END'</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>audio_end_index <span class="op">=</span> selected_df[</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    selected_df[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"CLICK_RESPONSE_END"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>].index[<span class="dv">0</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># split the dataframe based on the audio start and end indices</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># store the split dataframe in a list</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>audio_df_list.append(selected_df.iloc[audio_start_index : audio_end_index <span class="op">+</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="extracting-trial-information" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="extracting-trial-information"><span class="header-section-number">9.2</span> Extracting trial information</h2>
+<section id="extracting-trial-information" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="extracting-trial-information"><span class="header-section-number">8.2</span> Extracting trial information</h2>
 <p>The logs present in the .tsv files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown.</p>
 <pre class="text"><code>START_EXP
 START_TRIAL: 0 T: SADDLE.PNG R: PICKLE.PNG B: PADLOCK.PNG L: CANDY.PNG
@@ -369,28 +380,40 @@ STOP_EXP</code></pre>
 <p>Following the slicing procedure mentioned the previous section, the indices of the rows corresponding to these three log events are retrieved.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all rows whose indices are stored in start_indices</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># will be used to extract the position of the stimuli</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>trial_strings <span class="op">=</span> df_interest.iloc[start_indices][<span class="st">'USER'</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>trial_strings <span class="op">=</span> df_interest.iloc[start_indices][<span class="st">"USER"</span>].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of rows that contain the phrase 'FIXATE_CENTER_AUDIO_ONSET'</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>target_row_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FIXATE_CENTER_AUDIO_ONSET'</span>)].index</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>target_rows <span class="op">=</span> df_interest.iloc[target_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">'USER'</span>]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of rows that contain the phrase 'FINAL_FIXATION_START'</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>fixation_row_indices <span class="op">=</span> df_interest[df_interest[<span class="st">'USER'</span>].<span class="bu">str</span>.contains(<span class="st">'FINAL_FIXATION_START'</span>)].index</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>fixation_rows <span class="op">=</span> df_interest.iloc[fixation_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">'USER'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>target_row_indices <span class="op">=</span> df_interest[</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    df_interest[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"FIXATE_CENTER_AUDIO_ONSET"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>].index</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>target_rows <span class="op">=</span> df_interest.iloc[target_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">"USER"</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># get the indices of rows that contain the phrase 'FINAL_FIXATION_START'</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>fixation_row_indices <span class="op">=</span> df_interest[</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    df_interest[<span class="st">"USER"</span>].<span class="bu">str</span>.contains(<span class="st">"FINAL_FIXATION_START"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>].index</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>fixation_rows <span class="op">=</span> df_interest.iloc[fixation_row_indices].reset_index(drop<span class="op">=</span><span class="va">True</span>)[<span class="st">"USER"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The retrieved data were all of the datatype string so regex was used to extract the data points of interest. This consisted of the name of the stimulus at the top, bottom, left and right positions of the grid, the target word, the condition number and the selected stimulus. The extracted data were stored in a python dictionary named <code>stimuli_loc_dict</code> with appropriate keys.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the number afer 'COND:'</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cond_numbers <span class="op">=</span> [re.findall(<span class="vs">r'COND: (\d+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cond_numbers <span class="op">=</span> [re.findall(<span class="vs">r"COND: (\d+)"</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the word after 'TARGET:'</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>target_words <span class="op">=</span> [re.findall(<span class="vs">r'TARGET: (\w+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>target_words <span class="op">=</span> [re.findall(<span class="vs">r"TARGET: (\w+)"</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> target_rows]</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the word after 'SELECTED: '</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>selected_words <span class="op">=</span> [re.findall(<span class="vs">r'SELECTED: (\w+)'</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> fixation_rows]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>selected_words <span class="op">=</span> [re.findall(<span class="vs">r"SELECTED: (\w+)"</span>, row)[<span class="dv">0</span>] <span class="cf">for</span> row <span class="kw">in</span> fixation_rows]</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># use regex to extract the image names at the top, bottom, right and left positions</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>top_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'T: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>bottom_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'B: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>right_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'R: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>left_stimuli <span class="op">=</span> [re.findall(<span class="vs">r'\sL: (\w+)'</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>top_stimuli <span class="op">=</span> [</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    re.findall(<span class="vs">r"T: (\w+)"</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>bottom_stimuli <span class="op">=</span> [</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    re.findall(<span class="vs">r"B: (\w+)"</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>right_stimuli <span class="op">=</span> [</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    re.findall(<span class="vs">r"R: (\w+)"</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>left_stimuli <span class="op">=</span> [</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    re.findall(<span class="vs">r"\sL: (\w+)"</span>, trial_string)[<span class="dv">0</span>] <span class="cf">for</span> trial_string <span class="kw">in</span> trial_strings</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The gaze data contained in <code>audio_df_list</code> provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The functions <code>shift_coordinate_system</code> and <code>shift_coordinate_system_single</code> were defined for this purpose. The function <code>shift_coordinate_system</code> accepted a dictionary of coordinates while the function <code>shift_coordinate_system_single</code> accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shift the origin from (0, 0) to (-960, 540)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># perform the same on outer_points and inner_points</span></span>
@@ -415,7 +438,7 @@ STOP_EXP</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota Bene
+Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -423,26 +446,38 @@ Nota Bene
 </div>
 </div>
 </section>
-<section id="fixation-plots" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="fixation-plots"><span class="header-section-number">9.3</span> Fixation plots</h2>
+<section id="fixation-plots" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="fixation-plots"><span class="header-section-number">8.3</span> Fixation plots</h2>
 <p>The preprocessing steps described in the previous sections are performed on the recorded data, it is possible to plot the fixations of the participants <!-- TODO: explain further in a previous section -->. Such plots allow us visualize the fixations of the participants and identify any outliers. The plot elements can be classified into two groups:</p>
 <ol type="1">
 <li>Overlay elements: These elements are plotted in order to provide reference for the position of the grid and indicate the stimulus image in each grid box element. The condition number and the target word are also displayed in the plot. The function <code>draw_grid</code> is used to draw the grid.</li>
 </ol>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_grid(inn, out, ax):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw line from A to B</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ax.plot([out[<span class="st">'A'</span>][<span class="dv">0</span>], out[<span class="st">'B'</span>][<span class="dv">0</span>]], [out[<span class="st">'A'</span>][<span class="dv">1</span>], out[<span class="st">'B'</span>][<span class="dv">1</span>]], color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw line from B to C</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ax.plot([out[<span class="st">'B'</span>][<span class="dv">0</span>], out[<span class="st">'C'</span>][<span class="dv">0</span>]], [out[<span class="st">'B'</span>][<span class="dv">1</span>], out[<span class="st">'C'</span>][<span class="dv">1</span>]], color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw line from C to D</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a tiny circle at the center</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    ax.scatter(inn[<span class="st">'M'</span>][<span class="dv">0</span>], inn[<span class="st">'M'</span>][<span class="dv">1</span>], color<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ax.plot(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        [out[<span class="st">"A"</span>][<span class="dv">0</span>], out[<span class="st">"B"</span>][<span class="dv">0</span>]], [out[<span class="st">"A"</span>][<span class="dv">1</span>], out[<span class="st">"B"</span>][<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw line from B to C</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        [out[<span class="st">"B"</span>][<span class="dv">0</span>], out[<span class="st">"C"</span>][<span class="dv">0</span>]], [out[<span class="st">"B"</span>][<span class="dv">1</span>], out[<span class="st">"C"</span>][<span class="dv">1</span>]], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw line from C to D</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create a tiny circle at the center</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    ax.scatter(inn[<span class="st">"M"</span>][<span class="dv">0</span>], inn[<span class="st">"M"</span>][<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, s<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The text elements are plotted using <code>matplotlib.pyplot.text()</code> function. See example:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># top stimuli</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.5</span>, <span class="fl">0.8685</span>, stimuli_dict[i][<span class="dv">0</span>].lower(), transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    verticalalignment<span class="op">=</span><span class="st">'top'</span>, bbox<span class="op">=</span>props, ha<span class="op">=</span><span class="st">'center'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ax.text(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.5</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.8685</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    stimuli_dict[i][<span class="dv">0</span>].lower(),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ax.transAxes,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    verticalalignment<span class="op">=</span><span class="st">"top"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    bbox<span class="op">=</span>props,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Fixation elements: These elements are plotted in order to indicate the fixations of the participants. As indicated in the code block below, the matplotlib scatter function is used.</li>
 </ol>
@@ -454,7 +489,7 @@ Nota Bene
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota Bene
+Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -462,8 +497,8 @@ Nota Bene
 </div>
 </div>
 </section>
-<section id="deduce-location-of-fixations" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="deduce-location-of-fixations"><span class="header-section-number">9.4</span> Deduce location of fixations</h2>
+<section id="deduce-location-of-fixations" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="deduce-location-of-fixations"><span class="header-section-number">8.4</span> Deduce location of fixations</h2>
 <p>Using the coordinates of the edges of the grid boxes, it is possible to deduce the location of the fixations. The gridbox has four boxes that where a stimulus can be placed. The coordinates of the fixations and the coordinates of the stimulus boxes are converted to the scaled cartesian coordinate system. The function <code>check_if_within_rect</code> accepts the x and y coordinates of the fixation and the coordinates of the stimulus box and returns a boolean value indicating whether the fixation is within the stimulus box. The function <code>check_if_within_rect</code> is called for each stimulus box and the stimulus box for which the function returns <code>True</code> is the stimulus box where the participant was fixating.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_rect(x, y):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> check_if_within_rect(x, y, top_rect):</span>
@@ -480,54 +515,63 @@ Nota Bene
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'outside'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The function <code>get_rect</code> is applied to each row of the dataframe using the <code>df.apply</code> function. The resulting column is named <code>rect</code>. At the point, for each data point, we know at which stimulus box the participant was fixating.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use df.apply to apply the get_rect function to each row</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>audio_df_valid_fixation[<span class="st">'rect'</span>] <span class="op">=</span> audio_df_valid_fixation.<span class="bu">apply</span>(<span class="kw">lambda</span> row: get_rect(row[<span class="st">'FPOGX'</span>], row[<span class="st">'FPOGY'</span>]), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>audio_df_valid_fixation[<span class="st">"rect"</span>] <span class="op">=</span> audio_df_valid_fixation.<span class="bu">apply</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> row: get_rect(row[<span class="st">"FPOGX"</span>], row[<span class="st">"FPOGY"</span>]), axis<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mapping-stimulus-location-to-stimulus-type" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="mapping-stimulus-location-to-stimulus-type"><span class="header-section-number">9.5</span> Mapping stimulus location to stimulus type</h2>
-<p>The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, <em>referant, cohort, rhyme, distractor, target, trial number</em> and <em>condition number</em>. Each row indicates the names of the stimulus that was assigned the role of referant, cohort, rhyme, etc., for a given trial.</p>
+<section id="mapping-stimulus-location-to-stimulus-type" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="mapping-stimulus-location-to-stimulus-type"><span class="header-section-number">8.5</span> Mapping stimulus location to stimulus type</h2>
+<p>The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, <em>referent, cohort, rhyme, distractor, target, trial number</em> and <em>condition number</em>. Each row indicates the names of the stimulus that was assigned the role of referent, cohort, rhyme, etc., for a given trial.</p>
 <!-- TODO: add image here or below -->
 <p>The csv log file was read into a pandas dataframe named <code>logger_df</code>. This dataframe has 36 rows, each corresponding to a trial. The information available in this dataframe can be combined with that available in the dictionary <code>stimuli_loc_dict</code> to map the stimulus location (top, right, bottom, left) to the stimulus type. The columns <code>top</code>, <code>right</code>, <code>bottom</code> and <code>left</code> were added to the dataframe <code>logger_df</code> and the values were populated using the dictionary <code>stimuli_loc_dict</code>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the data from the stimuli_loc_dict to the logger_df</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'top'</span>] <span class="op">=</span> [stimuli_loc_dict[idx][<span class="dv">0</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">'count_trial_sequence'</span>]]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'right'</span>] <span class="op">=</span> [stimuli_loc_dict[idx][<span class="dv">1</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">'count_trial_sequence'</span>]]</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'bottom'</span>] <span class="op">=</span> [stimuli_loc_dict[idx][<span class="dv">2</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">'count_trial_sequence'</span>]]</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'left'</span>] <span class="op">=</span> [stimuli_loc_dict[idx][<span class="dv">3</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">'count_trial_sequence'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">"top"</span>] <span class="op">=</span> [</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    stimuli_loc_dict[idx][<span class="dv">0</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">"count_trial_sequence"</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">"right"</span>] <span class="op">=</span> [</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    stimuli_loc_dict[idx][<span class="dv">1</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">"count_trial_sequence"</span>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">"bottom"</span>] <span class="op">=</span> [</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    stimuli_loc_dict[idx][<span class="dv">2</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">"count_trial_sequence"</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">"left"</span>] <span class="op">=</span> [</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    stimuli_loc_dict[idx][<span class="dv">3</span>].lower() <span class="cf">for</span> idx <span class="kw">in</span> logger_df[<span class="st">"count_trial_sequence"</span>]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These new column were filled by the names of the stimuli but we are interested in the stimulus type. The code block below shows how the contents of the <code>logger_df</code> were utilized to fill the columns <code>top_type</code>, <code>right_type</code>, <code>bottom_type</code> and <code>left_type</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and populate them with the type of stimuli</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># by checking if the stimuli is a referant, distractor, rhyme or cohort</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'top_type'</span>] <span class="op">=</span> logger_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="st">'referant'</span> </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'top'</span>] <span class="op">==</span> row[<span class="st">'referant'</span>] <span class="cf">else</span> <span class="st">'distractor'</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># by checking if the stimuli is a referent, distractor, rhyme or cohort</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'top_type'</span>] <span class="op">=</span> logger_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="st">'referent'</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'top'</span>] <span class="op">==</span> row[<span class="st">'referent'</span>] <span class="cf">else</span> <span class="st">'distractor'</span> </span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'top'</span>] <span class="op">==</span> row[<span class="st">'distractor'</span>] <span class="cf">else</span> <span class="st">'rhyme'</span> </span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'top'</span>] <span class="op">==</span> row[<span class="st">'rhyme'</span>] <span class="cf">else</span> <span class="st">'cohort'</span> </span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'top'</span>] <span class="op">==</span> row[<span class="st">'cohort'</span>] <span class="cf">else</span> <span class="st">'NA'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'left_type'</span>] <span class="op">=</span> logger_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="st">'referant'</span> </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'left'</span>] <span class="op">==</span> row[<span class="st">'referant'</span>] <span class="cf">else</span> <span class="st">'distractor'</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>logger_df[<span class="st">'left_type'</span>] <span class="op">=</span> logger_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="st">'referent'</span> </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'left'</span>] <span class="op">==</span> row[<span class="st">'referent'</span>] <span class="cf">else</span> <span class="st">'distractor'</span> </span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'left'</span>] <span class="op">==</span> row[<span class="st">'distractor'</span>] <span class="cf">else</span> <span class="st">'rhyme'</span> </span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'left'</span>] <span class="op">==</span> row[<span class="st">'rhyme'</span>] <span class="cf">else</span> <span class="st">'cohort'</span> </span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">'left'</span>] <span class="op">==</span> row[<span class="st">'cohort'</span>] <span class="cf">else</span> <span class="st">'NA'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now every fixation could be mapped to a stimulus type i.e.&nbsp;whether the participant was fixating on the referant, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function <code>get_seen_stimuli_type</code> that loops through the rows of the <code>logger_df</code> dataframe and returns the stimulus type that the participant was fixating on. This function modified the <code>seen</code> column of the <code>audio_df_valid_fixation</code> dataframe so that it now contained the stimulus type that the participant was fixating on.</p>
+<p>Now every fixation could be mapped to a stimulus type i.e.&nbsp;whether the participant was fixating on the referent, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function <code>get_seen_stimuli_type</code> that loops through the rows of the <code>logger_df</code> dataframe and returns the stimulus type that the participant was fixating on. This function modified the <code>seen</code> column of the <code>audio_df_valid_fixation</code> dataframe so that it now contained the stimulus type that the participant was fixating on.</p>
 </section>
-<section id="issue-of-unequal-entries-per-trial" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="issue-of-unequal-entries-per-trial"><span class="header-section-number">9.6</span> Issue of unequal entries per trial</h2>
+<section id="issue-of-unequal-entries-per-trial" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="issue-of-unequal-entries-per-trial"><span class="header-section-number">8.6</span> Issue of unequal entries per trial</h2>
 <p>The task of the final analysis plot is to visualize the proportion of fixations on the each stimulus type across trials and all participants. In order to create the plot, each trial must have equal number of data points. But the number of data points per trial is not equal, the number is dependent on the number of <strong>valid</strong> fixations made by the participant.</p>
 <p>This issue is evident from the following plots:</p>
-<section id="plotting-the-number-of-fixations-per-trial-for-one-participant" class="level3" data-number="9.6.1">
-<h3 data-number="9.6.1" class="anchored" data-anchor-id="plotting-the-number-of-fixations-per-trial-for-one-participant"><span class="header-section-number">9.6.1</span> Plotting the number of fixations per trial for one participant</h3>
+<section id="plotting-the-number-of-fixations-per-trial-for-one-participant" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="plotting-the-number-of-fixations-per-trial-for-one-participant"><span class="header-section-number">8.6.1</span> Plotting the number of fixations per trial for one participant</h3>
 <p>This is done to visualize the number of fixations per trial for one participant. See figure below.</p>
 <!-- TODO: add plot -->
 <p>It is evident from the plot that the number of fixations per trial is not equal.</p>
 </section>
-<section id="comparing-the-trial-durations-for-each-condition-number" class="level3" data-number="9.6.2">
-<h3 data-number="9.6.2" class="anchored" data-anchor-id="comparing-the-trial-durations-for-each-condition-number"><span class="header-section-number">9.6.2</span> Comparing the trial durations for each condition number</h3>
+<section id="comparing-the-trial-durations-for-each-condition-number" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="comparing-the-trial-durations-for-each-condition-number"><span class="header-section-number">8.6.2</span> Comparing the trial durations for each condition number</h3>
 <p>The trials corresponding to each condition number posed a different task to the participant. The duration of the trials for each condition number was compared to see if the condition number had any effect on the number of fixations. See figure below.</p>
 <!-- TODO: add plot -->
 <p>It is evident from the plot that the duration of the trials for each condition number does not vary significantly. For the same condition number, the duration of the trials varies slightly. This is due to the fact that the participants were allowed to take their time to respond to the audio stimulus. Overall, there is no trend showing that some condition numbers have longer trials than others.</p>
 </section>
-</section>
-<section id="solution-binning-the-data" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="solution-binning-the-data"><span class="header-section-number">9.7</span> Solution: Binning the data</h2>
+<section id="solution-binning-the-data" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="solution-binning-the-data"><span class="header-section-number">8.6.3</span> Solution: Binning the data</h3>
 <p>The data points were binned in order to ensure that each trial had equal number of data points. The binning was performed on the basis of time. An overall trial duration <code>avg_duration</code> was calculated and it was split into <code>N</code> equal parts. <code>N</code> is a user-defined parameter, it was chosen as <code>80</code> in our analysis. The data points were then binned into these parts.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>avg_duration <span class="op">=</span> <span class="fl">1.6</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average duration is set to </span><span class="sc">{}</span><span class="st"> s"</span>.<span class="bu">format</span>(avg_duration))</span>
@@ -542,7 +586,7 @@ Nota Bene
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota Bene
+Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -568,7 +612,7 @@ Nota Bene
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota Bene
+Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -585,27 +629,32 @@ Nota Bene
 <li><code>seen</code> was the value of the <code>seen</code> column after calling the <code>get_relevant_rect_value()</code> function.</li>
 </ul>
 </section>
-<section id="implementing-the-conditions-of-competitor-sets" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="implementing-the-conditions-of-competitor-sets"><span class="header-section-number">9.8</span> Implementing the conditions of competitor sets</h2>
+</section>
+<section id="implementing-the-conditions-of-competitor-sets" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="implementing-the-conditions-of-competitor-sets"><span class="header-section-number">8.7</span> Implementing the conditions of competitor sets</h2>
 <p>The condition numbers of the four different types of competitor sets are as follows:</p>
 <pre class="text"><code>full_competitor_sets_cond = [1, 2, 3, 4]
 cohort_competitor_sets_cond = [5, 6, 7]
 rhyme_competitor_sets_cond = [8, 9, 10]
 distractor_competitor_sets_cond = [11, 12]</code></pre>
 <p>As per the conditions, the instances of <code>rhyme</code> in the <code>seen</code> column were replaced by <code>distractor</code> for the trials with condition numbers belonging to the cohort competitor sets.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>count_df.loc[count_df[<span class="st">'condition'</span>].isin(cohort_competitor_sets_cond), <span class="st">'seen'</span>] <span class="op">=</span> count_df[<span class="st">'seen'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">'distractor'</span> <span class="cf">if</span> x <span class="op">==</span> <span class="st">'rhyme'</span> <span class="cf">else</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>count_df.loc[</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    count_df[<span class="st">"condition"</span>].isin(cohort_competitor_sets_cond), <span class="st">"seen"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>] <span class="op">=</span> count_df[<span class="st">"seen"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">"distractor"</span> <span class="cf">if</span> x <span class="op">==</span> <span class="st">"rhyme"</span> <span class="cf">else</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Similarly, the conditions for rhyme competitor sets and distractor competitor sets were implemented.</p>
 </section>
-<section id="prepare-data-for-plotting" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="prepare-data-for-plotting"><span class="header-section-number">9.9</span> Prepare data for plotting</h2>
-<p>The calculation of fixation probabilities was made simpler by the one hot encoding of the <code>seen</code> column. This was done using the <code>pd.get_dummies()</code> function. The resulting dataframe was named <code>one_hot_count_df</code>. As a result of the one-hot encoding, the <code>seen</code> column was replaced by the columns <code>seen_cohort</code>, <code>seen_distractor</code>, <code>seen_referant</code> and <code>seen_rhyme</code>. The values of these columns were either 0 or 1. The value 1 indicated that the participant was fixating on the stimulus type indicated by the column name. The value 0 indicated that the participant was not fixating on the stimulus type indicated by the column name.</p>
+<section id="prepare-data-for-plotting" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="prepare-data-for-plotting"><span class="header-section-number">8.8</span> Prepare data for plotting</h2>
+<section id="one-hot-encoding" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="one-hot-encoding"><span class="header-section-number">8.8.1</span> One hot encoding</h3>
+<p>The calculation of fixation probabilities was made simpler by the one hot encoding of the <code>seen</code> column. This was done using the <code>pd.get_dummies()</code> function. The resulting dataframe was named <code>one_hot_count_df</code>. As a result of the one-hot encoding, the <code>seen</code> column was replaced by the columns <code>seen_cohort</code>, <code>seen_distractor</code>, <code>seen_referent</code> and <code>seen_rhyme</code>. The values of these columns were either 0 or 1. The value 1 indicated that the participant was fixating on the stimulus type indicated by the column name. The value 0 indicated that the participant was not fixating on the stimulus type indicated by the column name.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota Bene
+Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -619,21 +668,211 @@ Nota Bene
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>one_hot_count_df <span class="op">=</span> one_hot_count_df[one_hot_count_df[<span class="st">'condition'</span>] <span class="op">!=</span> <span class="dv">2</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>one_hot_count_df <span class="op">=</span> one_hot_count_df[one_hot_count_df[<span class="st">'condition'</span>] <span class="op">!=</span> <span class="dv">12</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The groupby function was used to group the rows by the columns <code>bin_start</code>, <code>bin_end</code>. This was done to calculate the fixation counts for each bin. The <code>sum()</code> function was used to calculate the fixation counts. The resulting dataframe was named <code>grouped_time_bins_df</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># groupby bin_start and bin_end and sum the values in 'seen_referant', 'seen_distractor', 'seen_rhyme', 'seen_cohort'</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df <span class="op">=</span> one_hot_count_df.groupby([<span class="st">'bin_start'</span>, <span class="st">'bin_end'</span>]).<span class="bu">sum</span>().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>groupby_time_bins_df</code> dataframe was then split into three dataframes, based the competitor set. The dataframes were named <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>. The <code>distactor_competitor_sets_df</code> was not created as it was not required for the analysis.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>one_hot_count_df_full_competitor_sets <span class="op">=</span> one_hot_count_df[one_hot_count_df[<span class="st">'condition'</span>].isin(full_competitor_sets_cond)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As per the specification of the analysis plot, the plot for the referent stimuli was created using all three competitor sets. The plot for the cohort stimuli was created using the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using the full competitor sets and the rhyme competitor sets. Therefore, the dataframe <code>referent_calc_sets</code> was created by concatenating the dataframes <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>referant_calc_sets <span class="op">=</span> pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>one_hot_count_df_rhyme_competitor_sets], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The groupby function was then used to group the rows by the columns <code>bin_start</code>, <code>bin_end</code> and calculate the fixation counts for each bin. The <code>sum()</code> function was used to calculate the fixation counts. The resulting dataframe was named <code>grouped_time_bins_df</code>.</p>
+</section>
+<section id="implementing-the-conditions-of-the-analysis-plot" class="level3" data-number="8.8.2">
+<h3 data-number="8.8.2" class="anchored" data-anchor-id="implementing-the-conditions-of-the-analysis-plot"><span class="header-section-number">8.8.2</span> Implementing the conditions of the analysis plot</h3>
+<p>The final plot consisted of lines for the referent, cohort, rhyme and distractor stimuli. As per the specification of the analysis plot, the plot for the referent stimuli was created using the fixation data from three competitor sets (full competitor set, cohort competitor set and rhyme competitor set). The plot for the cohort stimuli was created using the data only from the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using data only from the full competitor sets and the rhyme competitor sets.</p>
+<p>In order to implement these requirements, the dataframe <code>one_hot_count_df</code> was sliced to form three different dataframes, each corresponding to the three competitor sets. The dataframes were named <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>. The dataframe <code>full_competitor_sets_df</code> contained the data from the full competitor sets. The dataframe <code>cohort_competitor_sets_df</code> contained the data from the full competitor sets and the cohort competitor sets. The dataframe <code>rhyme_competitor_sets_df</code> contained the data from the full competitor sets and the rhyme competitor sets. The dataframes were created by filtering the rows of the <code>one_hot_count_df</code> dataframe based on the condition numbers of the competitor sets.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>full_competitor_sets_df <span class="op">=</span> one_hot_count_df[</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    one_hot_count_df[<span class="st">"condition"</span>].isin(full_competitor_sets_cond)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>rhyme_competitor_sets_df <span class="op">=</span> one_hot_count_df[</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    one_hot_count_df[<span class="st">"condition"</span>].isin(rhyme_competitor_sets_cond)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The dataframe <code>referent_calc_sets</code> was created by concatenating the dataframes <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>referent_calc_sets <span class="op">=</span> pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>one_hot_count_df_rhyme_competitor_sets], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Similarly, the dataframes <code>cohort_calc_sets</code> and <code>rhyme_calc_sets</code> were created.</p>
+<p>The fixation counts for these dataframes were not the same as those obtained from the <code>grouped_time_bins_df</code> dataframe. This is because the data contained in the dataframes <code>referent_calc_sets</code>, <code>cohort_calc_sets</code> and <code>rhyme_calc_sets</code> were a subset of the data contained in the <code>grouped_time_bins_df</code> dataframe. While the <code>grouped_time_bins_df</code> dataframe contained the fixation counts disregarding the conditions necessary for the analysis.</p>
+<p>Therefore, the groupby function for calculating the sum of the fixation counts was applied to these dataframes as well. The idea was to update these stimulus fixation counts (along with the total counts) in the <code>grouped_time_bins_df</code> dataframe.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># groupby sum for referent_calc_sets</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df_referent <span class="op">=</span> referent_calc_sets.groupby([<span class="st">'bin_start'</span>, <span class="st">'bin_end'</span>]).<span class="bu">sum</span>().reset_index()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># groupby sum for cohort_calc_sets</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df_cohort <span class="op">=</span> cohort_calc_sets.groupby([<span class="st">'bin_start'</span>, <span class="st">'bin_end'</span>]).<span class="bu">sum</span>().reset_index()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># groupby sum for rhyme_calc_sets</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df_rhyme <span class="op">=</span> rhyme_calc_sets.groupby([<span class="st">'bin_start'</span>, <span class="st">'bin_end'</span>]).<span class="bu">sum</span>().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The columns of interest from these dataframes were extracted and updated in the <code>grouped_time_bins_df</code> dataframe. The columns of interest, the dataframes from which they were extracted and the columns that were updated in the <code>grouped_time_bins_df</code> dataframe are shown in the table below:</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 37%">
+<col style="width: 35%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column name<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></th>
+<th>Source dataframe</th>
+<th>Updated column name<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></th>
+<th>Type<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>seen_referent</code></td>
+<td><code>groupby_time_bins_df_referent</code></td>
+<td><code>seen_referent</code></td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td><code>seen_cohort</code></td>
+<td><code>groupby_time_bins_df_cohort</code></td>
+<td><code>seen_cohort</code></td>
+<td>S</td>
+</tr>
+<tr class="odd">
+<td><code>seen_rhyme</code></td>
+<td><code>groupby_time_bins_df_rhyme</code></td>
+<td><code>seen_rhyme</code></td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td><code>val_count</code></td>
+<td><code>groupby_time_bins_df_referent</code></td>
+<td><code>referent_val_count</code></td>
+<td>T</td>
+</tr>
+<tr class="odd">
+<td><code>val_count</code></td>
+<td><code>groupby_time_bins_df_cohort</code></td>
+<td><code>cohort_val_count</code></td>
+<td>T</td>
+</tr>
+<tr class="even">
+<td><code>val_count</code></td>
+<td><code>groupby_time_bins_df_rhyme</code></td>
+<td><code>rhyme_val_count</code></td>
+<td>T</td>
+</tr>
+</tbody>
+</table>
+<p>The code snippets for these changes are shown below:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update the stimuli fixation counts</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'seen_referant'</span>] <span class="op">=</span> groupby_time_bins_df_referant[<span class="st">'seen_referant'</span>].values</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'seen_cohort'</span>] <span class="op">=</span> groupby_time_bins_df_cohort[<span class="st">'seen_cohort'</span>].values</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'seen_rhyme'</span>] <span class="op">=</span> groupby_time_bins_df_rhyme[<span class="st">'seen_rhyme'</span>].values</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># update the total fixation counts</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'referant_value_count'</span>] <span class="op">=</span> groupby_time_bins_df_referant[<span class="st">'val_count'</span>].values</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'cohort_value_count'</span>] <span class="op">=</span> groupby_time_bins_df_cohort[<span class="st">'val_count'</span>].values</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">'rhyme_value_count'</span>] <span class="op">=</span> groupby_time_bins_df_rhyme[<span class="st">'val_count'</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="challenges-and-limitations" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Challenges and Limitations</h1>
-<section id="what-we-did-not-replicate-from-the-reference-paper" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">10.1</span> What we did not replicate from the reference paper?</h2>
+<section id="calculating-the-fixation-probabilities" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="calculating-the-fixation-probabilities"><span class="header-section-number">8.9</span> Calculating the fixation probabilities</h2>
+<p>The calculation of the fixation probabilities was the simple task of dividing the stimulus fixation counts by the respective total fixation counts. The contents of the stimulus fixation count columns were updated with the fixation probabilities.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">"seen_referant"</span>] <span class="op">=</span> groupby_time_bins_df.<span class="bu">apply</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x[<span class="st">"seen_referant"</span>] <span class="op">/</span> x[<span class="st">"referant_value_count"</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x[<span class="st">"referant_value_count"</span>] <span class="op">!=</span> <span class="dv">0</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="dv">0</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">"seen_cohort"</span>] <span class="op">=</span> groupby_time_bins_df.<span class="bu">apply</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x[<span class="st">"seen_cohort"</span>] <span class="op">/</span> x[<span class="st">"cohort_value_count"</span>]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x[<span class="st">"cohort_value_count"</span>] <span class="op">!=</span> <span class="dv">0</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="dv">0</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co"># special case for distractor competitor sets</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>val_count <span class="op">=</span> groupby_time_bins_df[<span class="st">"val_count"</span>].values</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df[<span class="st">"seen_distractor"</span>] <span class="op">=</span> groupby_time_bins_df.<span class="bu">apply</span>(</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x[<span class="st">"seen_distractor"</span>] <span class="op">/</span> x[<span class="st">"val_count"</span>] <span class="cf">if</span> x[<span class="st">"val_count"</span>] <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span>,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--- show fig -->
+</section>
+<section id="saving-per-participant-data" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="saving-per-participant-data"><span class="header-section-number">8.10</span> Saving per participant data</h2>
+<p>The dataframe with the fixation probabilities were saved to a csv file. Each participant should have a separate csv file.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save groupby_time_bins_df as 'intermediate_csv/sub-x.csv'</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>groupby_time_bins_df.to_csv(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"intermediate_csv/sub-"</span> <span class="op">+</span> <span class="bu">str</span>(subject_number) <span class="op">+</span> <span class="st">".csv"</span>, index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before running the script for the final analysis plot, ensure that the processing script has been run for all participants. The script for the final analysis plot only considers the data that is available in the form of csv files for its analysis.</p>
+</div>
+</div>
+</section>
+<section id="plot-of-the-final-analysis" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="plot-of-the-final-analysis"><span class="header-section-number">8.11</span> Plot of the final analysis</h2>
+<p>The main function of the final analysis plot script is to aggregate the data from the csv files and plot the fixation probabilities for each stimulus type over time.</p>
+<p>The csv files were read into a pandas dataframe one by one and then concatenated into a single dataframe. The resulting dataframe was named <code>agg_df</code>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>agg_df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> csv <span class="kw">in</span> relevant_csvs:</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> <span class="st">"sub-"</span> <span class="op">+</span> <span class="bu">str</span>(csv) <span class="op">+</span> <span class="st">".csv"</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(csv_path <span class="op">+</span> filename)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># concat the dataframes</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    agg_df <span class="op">=</span> pd.concat([agg_df, df], axis<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The entirety of the data is then aggregated by the columns <code>bin_start</code> and <code>bin_end</code>. The time bins are the common link between the data from different participants. The data was grouped by the time bins and the mean of the fixation probabilities is calculated for each time bin. The resulting dataframe was named <code>agg_df_mean</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># group_by bin_start and bin_end and get the mean of the other columns</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>agg_df_mean <span class="op">=</span> agg_df.groupby([<span class="st">'bin_start'</span>, <span class="st">'bin_end'</span>]).mean().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The data after this step was ready for plotting.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot as line plots</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"bin_start"</span>], </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"seen_referant"</span>], </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ro--"</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"referant"</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"bin_start"</span>], </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"seen_cohort"</span>], </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bs--"</span>, </span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"cohort"</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"bin_start"</span>], </span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"seen_rhyme"</span>], </span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"g^--"</span>, </span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"rhyme"</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"bin_start"</span>], </span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    agg_df_mean[<span class="st">"seen_distractor"</span>], </span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"c.--"</span>, </span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"distractor"</span></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A vertical dashed line was drawn at the point of average audio offset. The average audio offset was calculated by averaging the audio offset for all audio stimulus.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a vertical line at average_audio_stimuli_offset, do not add to legend</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ax.vlines(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    average_audio_stimuli_offset, </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    ymax, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    colors<span class="op">=</span><span class="st">'k'</span>, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    linestyles<span class="op">=</span><span class="st">'dashed'</span>, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># add text to the plot</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>ax.text(</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    average_audio_stimuli_offset <span class="op">+</span> <span class="fl">0.02</span>, </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    ymax <span class="op">-</span> <span class="fl">0.05</span>, </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Average target offset'</span>, </span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="analysis-of-the-obtained-results" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="analysis-of-the-obtained-results"><span class="header-section-number">8.12</span> Analysis of the obtained results</h2>
+</section>
+</section>
+<section id="challenges-and-limitations" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Challenges and Limitations</h1>
+<section id="what-we-did-not-replicate-from-the-reference-paper" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-we-did-not-replicate-from-the-reference-paper"><span class="header-section-number">9.1</span> What we did not replicate from the reference paper?</h2>
 <ol type="1">
 <li><p>Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to as it was more comprehensible for the participants.</p>
 <ul>
@@ -646,44 +885,44 @@ Nota Bene
 <li><p>No calibration functionality after each trial was added until the participant was moving their head or eyes too much.</p></li>
 </ol>
 </section>
-<section id="challenges" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="challenges"><span class="header-section-number">10.2</span> Challenges</h2>
+<section id="challenges" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="challenges"><span class="header-section-number">9.2</span> Challenges</h2>
 <ol type="1">
 <li><strong>Balancing of trials</strong>:
 <ul>
-<li><strong>Challenge</strong> :Our stimuli had a total of <em>23 unique` visual stimuli</em>, <em>12 different conditions</em> and <em>4 different types</em>. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times.</li>
-<li><strong>Solution</strong> : Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.</li>
+<li><strong>Challenge</strong>: Our stimuli had a total of <em>23 unique` visual stimuli</em>, <em>12 different conditions</em> and <em>4 different types</em>. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times.</li>
+<li><strong>Solution</strong>: Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.</li>
 </ul></li>
 <li><strong>Random ‘freezes’ during experiment</strong> :
 <ul>
-<li><p><strong>Challenge</strong> : The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the <em>gaze contingency</em> check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.</p></li>
-<li><p><strong>Trails</strong> :</p>
+<li><p><strong>Challenge</strong>: The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the <em>gaze contingency</em> check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.</p></li>
+<li><p><strong>Trials</strong>:</p>
 <ol type="1">
 <li>While True loop</li>
 </ol>
-<pre><code>    while True:
-    gazepos = eyetracker.sample()</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    gazepos <span class="op">=</span> eyetracker.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Periodic sampling</li>
 </ol>
-<pre><code>    while True:
-        if clock.time() - check_timer &gt; diff:
-            gazepos = eyetracker.sample()</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> clock.time() <span class="op">-</span> check_timer <span class="op">&gt;</span> diff:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>            gazepos <span class="op">=</span> eyetracker.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
 <li><p>Switching backend to PsychoPy Made the sample rates of all the audio samples equal to work with the PsychoPy backend.</p></li>
 <li><p>Number of trials Reduced the number of trials to 24 from 12 to reduce the time of the experiment but the problem still persisted.</p></li>
 </ol></li>
-<li><p><strong>Solution</strong> : Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.</p></li>
+<li><p><strong>Solution</strong>: Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.</p></li>
 </ul></li>
-<li><strong>Eye tracker calibration</strong> :
+<li><strong>Eye tracker calibration</strong>:
 <ul>
-<li><strong>Challenge</strong> : The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc.</li>
-<li><strong>Solution</strong> : THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.</li>
+<li><strong>Challenge</strong>: The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc.</li>
+<li><strong>Solution</strong>: THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.</li>
 </ul></li>
 </ol>
 </section>
-<section id="limitations" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">10.3</span> Limitations</h2>
+<section id="limitations" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9.3</span> Limitations</h2>
 <ol type="1">
 <li><p>Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus might have been biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e the participants might have been able to predict the target word based on the previous trials.</p></li>
 <li><p>Generalizability is affected as our study participants only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the field of cognitive psychology.</p></li>
@@ -691,9 +930,9 @@ Nota Bene
 </ol>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Conclusion</h1>
-<p>In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants’ evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.</p>
+<section id="conclusion" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conclusion</h1>
+<p>In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D. Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants’ evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.</p>
 <p>We summarize our conclusions as follows:</p>
 <ol type="1">
 <li><p>The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.</p></li>
@@ -711,6 +950,9 @@ Nota Bene
 
 <ol>
 <li id="fn1"><p>The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>in the source dataframe<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>in <code>grouped_time_bins_df</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>S = stimulus fixation count, T = total fixation count<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->
