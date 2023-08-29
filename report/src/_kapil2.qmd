@@ -1,0 +1,102 @@
+# Conditions
+
+During each trial, participants were presented with four line drawings on a computer screen. They were instructed to click on one of the objects using a computer mouse. The four combinations of objects were as follows:
+
+1. Full Competitor Set: This set included a referent, a cohort, a rhyme, and an unrelated object (e.g., beaker, beetle, speaker, and carriage).
+
+2. Cohort Competitor Set: This set consisted of a referent, a cohort, and two unrelated objects (e.g., beaker, beetle, parrot, and carriage).
+
+3. Rhyme Competitor Set: This set comprised a referent, a rhyme, and two unrelated objects (e.g., beaker, speaker, dolphin, and carriage).
+
+4. Unrelated Set: In this set, there was a referent and three unrelated objects (e.g., beaker, dolphin, parrot, and nickel).
+
+![Conditions](img/conditions.png){#fig-ui width=50%,fig-align="center"}
+
+For each type of competitor set, different elements could be designated as the "target" for the trial. This determined the specific kind of lexical competition that could arise. For instance, within the full competitor set, the target could be the referent (resulting in cohort and rhyme competition), the cohort (leading to cohort competition with the referent), the rhyme (leading to rhyme competition with the referent), or the unrelated object (which was meant to eliminate competition).
+
+Within each competitor set, every item was utilized as the target an equal number of times. The number of trials i.e. 3, was the same for all conditions. The various conditions, their frequencies, and the specific items associated with them are detailed in the Figure 3.
+
+![Condition Table](img/condition_table.png){#fig-ui width=50%,fig-align="center"}
+
+# Randomization
+In addition to making sure all items appeared equally as often as targets (in order to preclude frequency-based strategies by participants), the overall frequency of each item was also controlled. A randomization alogirthm was implemented that made sure following 3 randomizations were achieved. 
+
+1. Order Randomization: The order of the trials are
+randomized across participants.
+
+2. Stimuli Distribution: Each stimuli is shown
+approx. equal number of times.
+
+3. Target Distribution: Each stimuli is chosen as the target an approx. equal number of times.
+
+Figure 4. shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 22 stimulis chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
+
+![No of stimuli appearances](img/no_of_stimuli_app.png){#fig-ui width=50%,fig-align="center"}
+
+Figure 5. shows the number of target appearances in 36 trials. Since there 22 stimulis, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
+
+![No of target appearances](img/no_of_target_app.png){#fig-ui width=50%,fig-align="center"}
+
+# Experiment Organization
+
+The experiment was carried out within a laboratory setting, where each session included only examiners and a single participant. Overall, 15 participants took part in the experiment. Participants received a meeting invitation in which they were asked about their availability. Important details regarding the experiment were shared, while the specific nature of the experiment remained undisclosed. Clear guidelines, including a PDF with directions to the laboratory's location, were provided, outlining the do's and don'ts for the day of the experiment.
+
+Upon the arrival of participants at the laboratory on the designated experiment day, introductory details about the data collection protocol were furnished in accordance with the procedure. Additionally, participants were requested to review and sign the consent form to confirm their agreement. To minimize interruptions during the experiment, participants were instructed to either turn off their phones or set them to silent mode.
+
+Before commencing the experiment, participants were acquainted with the stimuli. Visual aids, in the form of pictures on a sheet, were employed for this purpose. Each participant was then guided to audibly identify and name the objects depicted in the images until they accurately named them. This preparation process ensured that participants were thoroughly prepared for the upcoming experiment.
+
+The experiment utilized the GazePoint GP3 eye tracker as its primary tool for data collection. At the outset, participants' eye calibration was meticulously carried out using the calibration software. Particular attention was given to ensure the accuracy of the calibration process. In instances where accuracy was compromised, recalibration was promptly administered to maintain data quality.
+
+To facilitate the experiment, a setup with two distinct monitor screens was prepared. One screen was under the control of the participant, while the other was managed by the examiner. The sequence of events commenced with the examiner launching the experiment on the OpenGaze platform through their control. Subsequently, control was seamlessly transitioned to the participant for their active involvement.
+
+To assist participants during the experiment, text-based instructions were presented on the screens. These instructions provided guidance and clarity, enhancing the participants' ability to engage effectively with the task at hand.
+
+During the course of the experiment, audio messages were introduced as additional cues. These audio cues were intentionally played at a significant volume through external speakers. Their purpose was to draw the participant's attention to the center of the screen prior to the presentation of audio stimuli. This protocol enabled the precise tracking of the commencement and conclusion of each trial.
+
+The experiment encompassed a total of 36 trials, contributing to an overall runtime of approximately 8 to 9 minutes. This condensed timeframe was deliberate, aimed at maintaining participants' focus and engagement throughout the session.
+
+When considering the holistic experience of each participant, it's noteworthy that the entire process, from the preliminary pre-experiment information briefing to the subsequent post-experiment discussion sessions, spanned a total duration of approximately 18 minutes. 
+
+Following each experiment session, participants received a debriefing outlining the central objective of our study, and their valuable feedback was meticulously recorded. As a token of appreciation, a small energy bar was provided to each participant.
+
+# Quality Control
+
+Upon gathering data from all participants but prior to delving into data analysis, a vital step of quality control was essential. This step aimed to ascertain uniform data quality across the collected dataset, aligning with the criteria outlined in the referenced paper. Accordingly, trials that failed to meet the following three criteria were excluded from the subsequent analyses.
+
+1. During a trial, the calibration deteriorated to such an extent that it was not possible
+to label fixations.
+2. The participant did not maintain fixation on the cross until the appropriate instruction
+began.
+3. The participant never fixated on or selected the correct target.
+
+In accordance with these criteria, data from 3 participants were excluded due to quality concerns. To facilitate thorough analysis, data logs were incorporated, documenting the commencement of auditory stimuli as "LOG_AUDIO_TARGET_START" and extending up to the conclusion marked by the mouse click response as "CLICK_RESPONSE_END". This approach aided in identifying trial durations and associating data with specific trials.
+
+Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity and quality standards.
+
+## Coordinate System
+
+OpenSesame/ Opengaze uses a different coordinate system, to have a proper analyses of our collected data, coordinates need to be converted to cartesian system. Below is the python code for coordinate system converison:
+
+```python
+# shift the origin from (0, 0) to (-960, 540)
+# perform the same on outer_points and inner_points
+def shift_coordinate_system(coord_dict):
+for key, value in coord_dict.items():
+coord_dict[key] = (value[0] + 960, -1 * value[1] + 540)
+# scale to [0, 1]
+coord_dict[key] = (coord_dict[key][0] / 1920, coord_dict[key][1] / 1080)
+return coord_dict
+```
+
+```python
+def shift_coordinate_system_bottom_left_to_top_left(x, y):
+return (x, -1 * y + 1)
+```
+## Plots of Fixation (spatial View)
+For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
+
+Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. Figure 6 and 7, show the plot of trials of one of the participant.
+
+![Fixation plot of trial 2 of a participant](img/trial2.png){#fig-ui width=50%,fig-align="center"}
+
+![Fixation plot of trial 9 of a participant](img/trial9.png){#fig-ui width=50%,fig-align="center"}
