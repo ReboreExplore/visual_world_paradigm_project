@@ -110,8 +110,7 @@ The experiment follows the following structure in OpenSesame:
 
 4. Fixations at the centre of the screen marks the start and end of a trial. This is to make sure we don't overlap the data of two trials while recording the data since each participant will have different response times and thus a fixed duration for each trial for timeout will not be feasible.
 
-# Stimulus Design
-
+{{< include _kapil.qmd >}}
 
 # Stimuli Preprocessing
 The stimuli collected needed to be preprocessed before they could be used in the experiment. The preprocessing steps are as follows:
@@ -145,17 +144,9 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 4. The sampling rate of all the audio samples was also made equal to work with the ```PsychoPy``` backend. The sampling rate was changed to 48Hz.
             
+{{< include _kapil2.qmd >}}
 
-# Conditions
-
-# Randomization and Quality Control
-
-# Experiment Organization
-
-
-# Preprocessing and Analysis
 {{< include _pritom.qmd >}}
-
 
 # Challenges and Limitations
 
