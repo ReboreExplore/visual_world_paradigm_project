@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
   <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of Contents</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF (titlepage)</a></li><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -625,7 +625,8 @@ Nota Bene
 <p>The <code>groupby_time_bins_df</code> dataframe was then split into three dataframes, based the competitor set. The dataframes were named <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>. The <code>distactor_competitor_sets_df</code> was not created as it was not required for the analysis.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>one_hot_count_df_full_competitor_sets <span class="op">=</span> one_hot_count_df[one_hot_count_df[<span class="st">'condition'</span>].isin(full_competitor_sets_cond)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As per the specification of the analysis plot, the plot for the referent stimuli was created using all three competitor sets. The plot for the cohort stimuli was created using the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using the full competitor sets and the rhyme competitor sets. Therefore, the dataframe <code>referent_calc_sets</code> was created by concatenating the dataframes <code>full_competitor_sets_df</code>, <code>cohort_competitor_sets_df</code> and <code>rhyme_competitor_sets_df</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>referant_calc_sets <span class="op">=</span> pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, one_hot_count_df_rhyme_competitor_sets], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>referant_calc_sets <span class="op">=</span> pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>one_hot_count_df_rhyme_competitor_sets], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Similarly, the dataframes <code>cohort_calc_sets</code> and <code>rhyme_calc_sets</code> were created.</p>
 </section>
 </section>
@@ -693,8 +694,9 @@ Nota Bene
 <section id="conclusion" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Conclusion</h1>
 <p>In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and Michael K. Tanenhaus in their paper <em>“Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models”</em> and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants’ evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.</p>
-<p>We summarize our conclusions as follows: 1. The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.</p>
-<ol start="2" type="1">
+<p>We summarize our conclusions as follows:</p>
+<ol type="1">
+<li><p>The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.</p></li>
 <li><p>Eye movement tracking is a reliable tool for investigating the time course of spoken word recognition and capturing the mapping process while the spoken word unfolds.</p></li>
 <li><p>The results and plots obtained by us provide an empirical support for continuous and incremental mapping models of word recognition and proves that word processing is not a discrete and all-or-nothing process.</p></li>
 <li><p>Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.</p></li>

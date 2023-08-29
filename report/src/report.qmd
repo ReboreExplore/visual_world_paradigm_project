@@ -73,11 +73,11 @@ Our research question is:
 \emph{Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target word as the word unfolds?}
 
 
-Our project is to study the nature of spoken word recognition as the word unfolds. Here we try to investigate the visual world paradigm by using the participants' eye movements which serve as an index of their ongoing language processing and interpretation. 
+Our project is to study the nature of spoken word recognition as the word unfolds. We try to investigate the visual world paradigm by using the participants' eye movements which serve as an index of their ongoing language processing and interpretation. We dive deeper in trying to understand how the participants predict the upcoming word in a spoken instruction and how the cognitive mechanisms underlying real-time language comprehension influence their gaze patterns. 
 
-We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, building upon the established research in this domain: 
+We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, based upon the established research in this domain: 
 
-- Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available.
+- Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available. It is not a discrete process rather it is a continuous process that unfolds over time.
 - Spoken word recognition models make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word.
 
 Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} investigated a similar structure of the experiment and found the following results: 
