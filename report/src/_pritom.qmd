@@ -12,25 +12,34 @@ In order to organize the entries of the dataframe into trials, the rows correspo
 
 ```python
 # get the indices of the rows where the user column contains the phrase 'START_TRIAL'
-start_indices = df_interest[df_interest['USER'].str.contains('START_TRIAL')].index
+start_indices = df_interest[df_interest["USER"].str.contains("START_TRIAL")].index
 
 # get the indices of the rows where the user column contains the phrase 'FINAL_FIXATION_END'
-end_indices = df_interest[df_interest['USER'].str.contains('FINAL_FIXATION_END')].index
+end_indices = df_interest[df_interest["USER"].str.contains("FINAL_FIXATION_END")].index
 
 # split the dataframe based on the start and end indices
-df_list = [df_interest.iloc[start_indices[i]:end_indices[i]] for i in range(len(start_indices))]
+df_list = [
+    df_interest.iloc[start_indices[i] : end_indices[i]]
+    for i in range(len(start_indices))
+]
 ```
 
 At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named `audio_df_list`.
 
+
 ```python
 # extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'
-audio_start_index = selected_df[selected_df['USER'].str.contains('LOG_AUDIO_TARGET_START')].index[0]
+audio_start_index = selected_df[
+    selected_df["USER"].str.contains("LOG_AUDIO_TARGET_START")
+].index[0]
 # extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_END'
-audio_end_index = selected_df[selected_df['USER'].str.contains('CLICK_RESPONSE_END')].index[0]
+audio_end_index = selected_df[
+    selected_df["USER"].str.contains("CLICK_RESPONSE_END")
+].index[0]
 # split the dataframe based on the audio start and end indices
 # store the split dataframe in a list
-audio_df_list.append(selected_df.iloc[audio_start_index:audio_end_index + 1])
+audio_df_list.append(selected_df.iloc[audio_start_index : audio_end_index + 1])
+
 ```
 
 ## Extracting trial information
@@ -66,32 +75,45 @@ Following the slicing procedure mentioned the previous section, the indices of t
 ```python
 # get all rows whose indices are stored in start_indices
 # will be used to extract the position of the stimuli
-trial_strings = df_interest.iloc[start_indices]['USER'].reset_index(drop=True)
+trial_strings = df_interest.iloc[start_indices]["USER"].reset_index(drop=True)
 
 # get the indices of rows that contain the phrase 'FIXATE_CENTER_AUDIO_ONSET'
-target_row_indices = df_interest[df_interest['USER'].str.contains('FIXATE_CENTER_AUDIO_ONSET')].index
-target_rows = df_interest.iloc[target_row_indices].reset_index(drop=True)['USER']
+target_row_indices = df_interest[
+    df_interest["USER"].str.contains("FIXATE_CENTER_AUDIO_ONSET")
+].index
+target_rows = df_interest.iloc[target_row_indices].reset_index(drop=True)["USER"]
 
 # get the indices of rows that contain the phrase 'FINAL_FIXATION_START'
-fixation_row_indices = df_interest[df_interest['USER'].str.contains('FINAL_FIXATION_START')].index
-fixation_rows = df_interest.iloc[fixation_row_indices].reset_index(drop=True)['USER']
+fixation_row_indices = df_interest[
+    df_interest["USER"].str.contains("FINAL_FIXATION_START")
+].index
+fixation_rows = df_interest.iloc[fixation_row_indices].reset_index(drop=True)["USER"]
+
 ```
 
 The retrieved data were all of the datatype string so regex was used to extract the data points of interest. This consisted of the name of the stimulus at the top, bottom, left and right positions of the grid, the target word, the condition number and the selected stimulus. The extracted data were stored in a python dictionary named `stimuli_loc_dict` with appropriate keys.
 
 ```python
 # use regex to extract the number afer 'COND:'
-cond_numbers = [re.findall(r'COND: (\d+)', row)[0] for row in target_rows]
+cond_numbers = [re.findall(r"COND: (\d+)", row)[0] for row in target_rows]
 # use regex to extract the word after 'TARGET:'
-target_words = [re.findall(r'TARGET: (\w+)', row)[0] for row in target_rows]
+target_words = [re.findall(r"TARGET: (\w+)", row)[0] for row in target_rows]
 # use regex to extract the word after 'SELECTED: '
-selected_words = [re.findall(r'SELECTED: (\w+)', row)[0] for row in fixation_rows]
+selected_words = [re.findall(r"SELECTED: (\w+)", row)[0] for row in fixation_rows]
 
 # use regex to extract the image names at the top, bottom, right and left positions
-top_stimuli = [re.findall(r'T: (\w+)', trial_string)[0] for trial_string in trial_strings]
-bottom_stimuli = [re.findall(r'B: (\w+)', trial_string)[0] for trial_string in trial_strings]
-right_stimuli = [re.findall(r'R: (\w+)', trial_string)[0] for trial_string in trial_strings]
-left_stimuli = [re.findall(r'\sL: (\w+)', trial_string)[0] for trial_string in trial_strings]
+top_stimuli = [
+    re.findall(r"T: (\w+)", trial_string)[0] for trial_string in trial_strings
+]
+bottom_stimuli = [
+    re.findall(r"B: (\w+)", trial_string)[0] for trial_string in trial_strings
+]
+right_stimuli = [
+    re.findall(r"R: (\w+)", trial_string)[0] for trial_string in trial_strings
+]
+left_stimuli = [
+    re.findall(r"\sL: (\w+)", trial_string)[0] for trial_string in trial_strings
+]
 ```
 
 The gaze data contained in `audio_df_list` provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]^[The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.]. The functions `shift_coordinate_system` and `shift_coordinate_system_single` were defined for this purpose. The function `shift_coordinate_system` accepted a dictionary of coordinates while the function `shift_coordinate_system_single` accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.
@@ -121,7 +143,7 @@ def shift_coordinate_system_bottom_left_to_top_left(x, y):
 ```
 
 ::: {.callout-note}
-## Nota Bene
+## Note:
 The GP3 gaze data coordinates are in the range `[0, 1]` so no scaling is required.
 :::
 
@@ -134,22 +156,36 @@ The preprocessing steps described in the previous sections are performed on the 
 ```python
 def draw_grid(inn, out, ax):
     # draw line from A to B
-    ax.plot([out['A'][0], out['B'][0]], [out['A'][1], out['B'][1]], color='black', alpha=0.3)
+    ax.plot(
+        [out["A"][0], out["B"][0]], [out["A"][1], out["B"][1]], color="black", alpha=0.3
+    )
     # draw line from B to C
-    ax.plot([out['B'][0], out['C'][0]], [out['B'][1], out['C'][1]], color='black', alpha=0.3)
+    ax.plot(
+        [out["B"][0], out["C"][0]], [out["B"][1], out["C"][1]], color="black", alpha=0.3
+    )
     # draw line from C to D
     ...
     ...
     # create a tiny circle at the center
-    ax.scatter(inn['M'][0], inn['M'][1], color='black', s=5)
+    ax.scatter(inn["M"][0], inn["M"][1], color="black", s=5)
+
 ```
 
 The text elements are plotted using `matplotlib.pyplot.text()` function. See example:
 
 ```python
 # top stimuli
-ax.text(0.5, 0.8685, stimuli_dict[i][0].lower(), transform=ax.transAxes, fontsize=10,
-    verticalalignment='top', bbox=props, ha='center')
+ax.text(
+    0.5,
+    0.8685,
+    stimuli_dict[i][0].lower(),
+    transform=ax.transAxes,
+    fontsize=10,
+    verticalalignment="top",
+    bbox=props,
+    ha="center",
+)
+
 ```
 
 2. Fixation elements: These elements are plotted in order to indicate the fixations of the participants. As indicated in the code block below, the matplotlib scatter function is used.
@@ -160,7 +196,7 @@ ax.scatter(new_fpog_x, new_fpog_y, color='red', s=5)
 ```
 
 ::: {.callout-note}
-## Nota Bene
+## Note:
 The fixation plots can be generated by running the script `generate_fixation_plots.py` in the `src` directory. 
 <!-- TODO: refactor this note if the location of the script is altered -->
 :::
@@ -189,12 +225,15 @@ The function `get_rect` is applied to each row of the dataframe using the `df.ap
 
 ```python
 # use df.apply to apply the get_rect function to each row
-audio_df_valid_fixation['rect'] = audio_df_valid_fixation.apply(lambda row: get_rect(row['FPOGX'], row['FPOGY']), axis=1)
+audio_df_valid_fixation["rect"] = audio_df_valid_fixation.apply(
+    lambda row: get_rect(row["FPOGX"], row["FPOGY"]), axis=1
+)
+
 ```
 
 ## Mapping stimulus location to stimulus type
 
-The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, *referant, cohort, rhyme, distractor, target, trial number* and *condition number*. Each row indicates the names of the stimulus that was assigned the role of referant, cohort, rhyme, etc., for a given trial. 
+The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, *referent, cohort, rhyme, distractor, target, trial number* and *condition number*. Each row indicates the names of the stimulus that was assigned the role of referent, cohort, rhyme, etc., for a given trial. 
 
 <!-- TODO: add image here or below -->
 
@@ -202,32 +241,42 @@ The csv log file was read into a pandas dataframe named `logger_df`. This datafr
 
 ```python
 # add the data from the stimuli_loc_dict to the logger_df
-logger_df['top'] = [stimuli_loc_dict[idx][0].lower() for idx in logger_df['count_trial_sequence']]
-logger_df['right'] = [stimuli_loc_dict[idx][1].lower() for idx in logger_df['count_trial_sequence']]
-logger_df['bottom'] = [stimuli_loc_dict[idx][2].lower() for idx in logger_df['count_trial_sequence']]
-logger_df['left'] = [stimuli_loc_dict[idx][3].lower() for idx in logger_df['count_trial_sequence']]
+logger_df["top"] = [
+    stimuli_loc_dict[idx][0].lower() for idx in logger_df["count_trial_sequence"]
+]
+logger_df["right"] = [
+    stimuli_loc_dict[idx][1].lower() for idx in logger_df["count_trial_sequence"]
+]
+logger_df["bottom"] = [
+    stimuli_loc_dict[idx][2].lower() for idx in logger_df["count_trial_sequence"]
+]
+logger_df["left"] = [
+    stimuli_loc_dict[idx][3].lower() for idx in logger_df["count_trial_sequence"]
+]
+
 ```
 
 These new column were filled by the names of the stimuli but we are interested in the stimulus type. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
 
 ```python
 # create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and populate them with the type of stimuli
-# by checking if the stimuli is a referant, distractor, rhyme or cohort
-logger_df['top_type'] = logger_df.apply(lambda row: 'referant' 
-        if row['top'] == row['referant'] else 'distractor' 
+# by checking if the stimuli is a referent, distractor, rhyme or cohort
+logger_df['top_type'] = logger_df.apply(lambda row: 'referent' 
+        if row['top'] == row['referent'] else 'distractor' 
         if row['top'] == row['distractor'] else 'rhyme' 
         if row['top'] == row['rhyme'] else 'cohort' 
         if row['top'] == row['cohort'] else 'NA', axis=1)
 ...
 ...
-logger_df['left_type'] = logger_df.apply(lambda row: 'referant' 
-        if row['left'] == row['referant'] else 'distractor' 
+logger_df['left_type'] = logger_df.apply(lambda row: 'referent' 
+        if row['left'] == row['referent'] else 'distractor' 
         if row['left'] == row['distractor'] else 'rhyme' 
         if row['left'] == row['rhyme'] else 'cohort' 
         if row['left'] == row['cohort'] else 'NA', axis=1)
 ```
 
-Now every fixation can be mapped to a stimulus type i.e. whether the participant was fixating on the referant, distractor, rhyme or cohort. 
+Now every fixation could be mapped to a stimulus type i.e. whether the participant was fixating on the referent, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function `get_seen_stimuli_type` that loops through the rows of the `logger_df` dataframe and returns the stimulus type that the participant was fixating on. This function modified the `seen` column of the `audio_df_valid_fixation` dataframe so that it now contained the stimulus type that the participant was fixating on.
+
 
 ## Issue of unequal entries per trial
 
@@ -251,12 +300,23 @@ The trials corresponding to each condition number posed a different task to the 
 
 It is evident from the plot that the duration of the trials for each condition number does not vary significantly. For the same condition number, the duration of the trials varies slightly. This is due to the fact that the participants were allowed to take their time to respond to the audio stimulus. Overall, there is no trend showing that some condition numbers have longer trials than others.
 
-## Solution: Binning the data
+### Solution: Binning the data
 
 The data points were binned in order to ensure that each trial had equal number of data points. The binning was performed on the basis of time. An overall trial duration `avg_duration` was calculated and it was split into `N` equal parts. `N` is a user-defined parameter, it was chosen as `80` in our analysis. The data points were then binned into these parts. 
 
+```python
+avg_duration = 1.6
+print("Average duration is set to {} s".format(avg_duration))
+
+# divide the avg duration into N equal parts
+N = 80
+duration_thresholds = np.linspace(0, avg_duration, N, endpoint=True)
+```
+
+The `duration_thresholds` array contains the time thresholds for each bin. 
+
 ::: {.callout-note}
-## Nota Bene
+## Note:
 The overall trial duration was calculated by averaging the trial duration across all trials and across all participants.
 :::
 
@@ -276,4 +336,255 @@ logger_df['last_fixation_time'] = last_fixation_time
 logger_df['duration'] = logger_df['last_fixation_time'] - logger_df['first_fixation_time']
 ```
 
+After the bin thresholds were determined, the data points were binned into these thresholds. One of the most important column of the `logger_df` dataframe was the  `seen` column that contained the name of the type of stimulus that was fixated on by the participant. During binning, the `seen` column values of entries belonging to the same bin are replaced by a single value. The value is determined by the following rules:
+* First, the values `centre` and `outside` are replaced by `NA` (empty string).
+* If the bin contains no values, the seen value is set to `NA`.
+* If the bin contains only one value, the seen value is set to that value.
+* If the bin contains more than one value, the seen value is set to the value that occurs the most number of times in the bin.
+
+::: {.callout-note}
+## Note:
+See `get_relevant_rect_value()` function in source code for implementation details.
+:::
+
+A new dataframe `count_df` was created to store the binned data. The columns of this dataframe were `trial_number`, `condition_number`, `start_time`, `end_time`, `bin_start`, `bin_end`, `real_val_count`, `val_count` and `seen`.
+
+* `trial_number` and `condition_number` were copied from the `logger_df` dataframe.
+* `start_time` and `end_time` were the timestamps of the first and last fixation respectively belonging to the bin.
+* `bin_start` and `bin_end` were the start and end time of the bin.
+* `real_val_count` was the number of data points in the bin.
+* `val_count` was the effective number of data points in the bin. This was the number of data points in the bin after calling the `get_relevant_rect_value()` function.
+* `seen` was the value of the `seen` column after calling the `get_relevant_rect_value()` function.
+
+## Implementing the conditions of competitor sets
+
+The condition numbers of the four different types of competitor sets are as follows:
+
+```text
+full_competitor_sets_cond = [1, 2, 3, 4]
+cohort_competitor_sets_cond = [5, 6, 7]
+rhyme_competitor_sets_cond = [8, 9, 10]
+distractor_competitor_sets_cond = [11, 12]
+```
+
+As per the conditions, the instances of `rhyme` in the `seen` column were replaced by `distractor` for the trials with condition numbers belonging to the cohort competitor sets.
+
+```python
+count_df.loc[
+    count_df["condition"].isin(cohort_competitor_sets_cond), "seen"
+] = count_df["seen"].apply(lambda x: "distractor" if x == "rhyme" else x)
+
+```
+Similarly, the conditions for rhyme competitor sets and distractor competitor sets were implemented.
+
+## Prepare data for plotting
+
+### One hot encoding
+
+The calculation of fixation probabilities was made simpler by the one hot encoding of the `seen` column. This was done using the `pd.get_dummies()` function. The resulting dataframe was named `one_hot_count_df`. As a result of the one-hot encoding, the `seen` column was replaced by the columns `seen_cohort`, `seen_distractor`, `seen_referent` and `seen_rhyme`. The values of these columns were either 0 or 1. The value 1 indicated that the participant was fixating on the stimulus type indicated by the column name. The value 0 indicated that the participant was not fixating on the stimulus type indicated by the column name.
+
+::: {.callout-note}
+## Note:
+`pd.get_dummies()` adds columns of type `boolean`. The columns were converted to type `int` using the `astype()` function.
+:::
+
+```python
+# one hot encode the 'seen' column
+one_hot_count_df = pd.get_dummies(count_df, columns=['seen'])
+```
+Several of the trials acted as filler trials. These trials were not relevant for our analysis so they were removed from the dataframe. 
+
+```python
+# remove the rows that are not relevant for the final analysis
+one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 2]
+...
+one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 12]
+```
+
+The groupby function was then used to group the rows by the columns `bin_start`, `bin_end` and calculate the fixation counts for each bin. The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+
+### Implementing the conditions of the analysis plot
+
+The final plot consisted of lines for the referent, cohort, rhyme and distractor stimuli. As per the specification of the analysis plot, the plot for the referent stimuli was created using the fixation data from three competitor sets (full competitor set, cohort competitor set and rhyme competitor set). The plot for the cohort stimuli was created using the data only from the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using data only from the full competitor sets and the rhyme competitor sets. 
+
+In order to implement these requirements, the dataframe `one_hot_count_df` was sliced to form three different dataframes, each corresponding to the three competitor sets. The dataframes were named `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`. The dataframe `full_competitor_sets_df` contained the data from the full competitor sets. The dataframe `cohort_competitor_sets_df` contained the data from the full competitor sets and the cohort competitor sets. The dataframe `rhyme_competitor_sets_df` contained the data from the full competitor sets and the rhyme competitor sets. The dataframes were created by filtering the rows of the `one_hot_count_df` dataframe based on the condition numbers of the competitor sets.
+
+```python
+full_competitor_sets_df = one_hot_count_df[
+    one_hot_count_df["condition"].isin(full_competitor_sets_cond)
+]
+...
+rhyme_competitor_sets_df = one_hot_count_df[
+    one_hot_count_df["condition"].isin(rhyme_competitor_sets_cond)
+]
+
+```
+
+The dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
+
+```python
+referent_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, 
+one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
+```
+
+Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
+
+The fixation counts for these dataframes were not the same as those obtained from the `grouped_time_bins_df` dataframe. This is because the data contained in the dataframes `referent_calc_sets`, `cohort_calc_sets` and `rhyme_calc_sets` were a subset of the data contained in the `grouped_time_bins_df` dataframe. While the `grouped_time_bins_df` dataframe contained the fixation counts disregarding the conditions necessary for the analysis.
+
+Therefore, the groupby function for calculating the sum of the fixation counts was applied to these dataframes as well. The idea was to update these stimulus fixation counts (along with the total counts) in the `grouped_time_bins_df` dataframe. 
+
+```python
+# groupby sum for referent_calc_sets
+groupby_time_bins_df_referent = referent_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+# groupby sum for cohort_calc_sets
+groupby_time_bins_df_cohort = cohort_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+# groupby sum for rhyme_calc_sets
+groupby_time_bins_df_rhyme = rhyme_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+```
+
+The columns of interest from these dataframes were extracted and updated in the `grouped_time_bins_df` dataframe. The columns of interest, the dataframes from which they were extracted and the columns that were updated in the `grouped_time_bins_df` dataframe are shown in the table below:
+
+| Column name^[in the source dataframe] | Source dataframe | Updated column name^[in `grouped_time_bins_df`] | Type^[S = stimulus fixation count, T = total fixation count] |
+|--------|--------------|-------------|--|
+| `seen_referent` | `groupby_time_bins_df_referent` | `seen_referent` | S |
+| `seen_cohort` | `groupby_time_bins_df_cohort` | `seen_cohort` | S |
+| `seen_rhyme` | `groupby_time_bins_df_rhyme` | `seen_rhyme` | S |
+| `val_count` | `groupby_time_bins_df_referent` | `referent_val_count` | T |
+| `val_count` | `groupby_time_bins_df_cohort` | `cohort_val_count` | T |
+| `val_count` | `groupby_time_bins_df_rhyme` | `rhyme_val_count` | T |
+
+The code snippets for these changes are shown below:
+
+```python
+# update the stimuli fixation counts
+groupby_time_bins_df['seen_referant'] = groupby_time_bins_df_referant['seen_referant'].values
+groupby_time_bins_df['seen_cohort'] = groupby_time_bins_df_cohort['seen_cohort'].values
+groupby_time_bins_df['seen_rhyme'] = groupby_time_bins_df_rhyme['seen_rhyme'].values
+
+# update the total fixation counts
+groupby_time_bins_df['referant_value_count'] = groupby_time_bins_df_referant['val_count'].values
+groupby_time_bins_df['cohort_value_count'] = groupby_time_bins_df_cohort['val_count'].values
+groupby_time_bins_df['rhyme_value_count'] = groupby_time_bins_df_rhyme['val_count'].values
+```
+## Calculating the fixation probabilities
+
+The calculation of the fixation probabilities was the simple task of dividing the stimulus fixation counts by the respective total fixation counts. The contents of the stimulus fixation count columns were updated with the fixation probabilities. 
+
+```python
+groupby_time_bins_df["seen_referant"] = groupby_time_bins_df.apply(
+    lambda x: x["seen_referant"] / x["referant_value_count"]
+    if x["referant_value_count"] != 0
+    else 0,
+    axis=1,
+)
+groupby_time_bins_df["seen_cohort"] = groupby_time_bins_df.apply(
+    lambda x: x["seen_cohort"] / x["cohort_value_count"]
+    if x["cohort_value_count"] != 0
+    else 0,
+    axis=1,
+)
+
+# special case for distractor competitor sets
+val_count = groupby_time_bins_df["val_count"].values
+
+groupby_time_bins_df["seen_distractor"] = groupby_time_bins_df.apply(
+    lambda x: x["seen_distractor"] / x["val_count"] if x["val_count"] != 0 else 0,
+    axis=1,
+)
+```
+
+<!--- show fig -->
+
+## Saving per participant data
+
+The dataframe with the fixation probabilities were saved to a csv file. Each participant should have a separate csv file.
+
+```python
+# save groupby_time_bins_df as 'intermediate_csv/sub-x.csv'
+groupby_time_bins_df.to_csv(
+    "intermediate_csv/sub-" + str(subject_number) + ".csv", index=False
+)
+```
+
+::: {.callout-note}
+## Note:
+Before running the script for the final analysis plot, ensure that the processing script has been run for all participants. The script for the final analysis plot only considers the data that is available in the form of csv files for its analysis.
+:::
+ 
+## Plot of the final analysis
+
+The main function of the final analysis plot script is to aggregate the data from the csv files and plot the fixation probabilities for each stimulus type over time. 
+
+The csv files were read into a pandas dataframe one by one and then concatenated into a single dataframe. The resulting dataframe was named `agg_df`. 
+
+```python
+agg_df = pd.DataFrame()
+for csv in relevant_csvs:
+    filename = "sub-" + str(csv) + ".csv"
+    df = pd.read_csv(csv_path + filename)
+
+    # concat the dataframes
+    agg_df = pd.concat([agg_df, df], axis=0).reset_index(drop=True)
+```
+
+The entirety of the data is then aggregated by the columns `bin_start` and `bin_end`. The time bins are the common link between the data from different participants. The data was grouped by the time bins and the mean of the fixation probabilities is calculated for each time bin. The resulting dataframe was named `agg_df_mean`.
+
+```python
+# group_by bin_start and bin_end and get the mean of the other columns
+agg_df_mean = agg_df.groupby(['bin_start', 'bin_end']).mean().reset_index()
+```
+
+The data after this step was ready for plotting. 
+
+```python
+# plot as line plots
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(
+    agg_df_mean["bin_start"], 
+    agg_df_mean["seen_referant"], 
+    "ro--", 
+    label="referant"
+)
+ax.plot(
+    agg_df_mean["bin_start"], 
+    agg_df_mean["seen_cohort"], 
+    "bs--", 
+    label="cohort"
+)
+ax.plot(
+    agg_df_mean["bin_start"], 
+    agg_df_mean["seen_rhyme"], 
+    "g^--", 
+    label="rhyme"
+)
+ax.plot(
+    agg_df_mean["bin_start"], 
+    agg_df_mean["seen_distractor"], 
+    "c.--", 
+    label="distractor"
+)
+```
+
+A vertical dashed line was drawn at the point of average audio offset. The average audio offset was calculated by averaging the audio offset for all audio stimulus.
+
+```python
+# draw a vertical line at average_audio_stimuli_offset, do not add to legend
+ax.vlines(
+    average_audio_stimuli_offset, 
+    0, 
+    ymax, 
+    colors='k', 
+    linestyles='dashed', 
+    alpha=0.5
+)
+# add text to the plot
+ax.text(
+    average_audio_stimuli_offset + 0.02, 
+    ymax - 0.05, 
+    'Average target offset', 
+    fontsize=10
+)
+```
+
+## Analysis of the obtained results
 
