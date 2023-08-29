@@ -1,17 +1,65 @@
 ---
 title: "**Visual World Paradigm**"
-subtitle: "*A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker*"
+subtitle: "A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker"
 author:
   - name: Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
-date: today
+date-format: long
+date: last-modified
 abstract: The study presented in this paper explores the dynamics of predictive language processing through the visual world paradigm (VWP), a widely employed method in cognitive psychology. The primary objective of the research is to unwind how individuals anticipate or predict forthcoming words during the unfolding of the spoken instructions, leveraging the Gazepoint eye tracker for precise gaze pattern analysis. The investigation delves into the impact of competitor words on gaze patterns, to study the cognitive mechanisms underlying real-time language comprehension. Our experiment uses a collection of competitor words sharing phonetic or semantic similarities with the target, and validates the hypothesis that the existence of such competitors leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word.
 toc: true 
+format:
+  titlepage-pdf:
+    titlepage-logo: "img/uni_logo.png"
+    titlepage-theme:
+      elements: ["\\titleblock", "\\authorblock", "\\vfill", "A report presented at the annual\\\\meeting on 10 August 2025\\\\ \\vspace{0.8cm}",  "\\logoblock", "\\footerblock"]
+      page-align: "center"
+      title-style: "plain"
+      title-fontstyle: ["Huge", "textbf"]
+      title-space-after: "1.5cm"
+      subtitle-fontstyle: "LARGE"
+      title-subtitle-space-between: "0.5cm"
+      author-style: "plain"
+      author-sep: "newline"
+      author-fontstyle: "textbf"
+      author-space-after: "2\\baselineskip"
+      affiliation-style: "numbered-list-with-correspondence"
+      affiliation-fontstyle: "large"
+      affiliation-space-after: "0pt"
+      footer-style: "plain"
+      footer-fontstyle: ["Large", "textsc"]
+      footer-space-after: "0pt"
+      logo-size: "0.4\\textwidth"
+      logo-space-after: "1cm"
+    toc: true
+    fontsize: 12pt
+    number-sections: true
+    toc-title: "Table of Contents"
+    highlight-style: github
+    documentclass: report
+    geometry:
+      - top=30mm
+      - left=20mm
+      - right=20mm
+      - heightrounded
+    colorlinks: true
+    cite-method: biblatex
+    include-in-header: 
+        text: |
+            \usepackage{fvextra}
+            \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+            \usepackage{csquotes}
+            \setmainfont{CMU Serif}
+    monofont: 'CMU Typewriter Text'
+    monofontoptions: 
+        - Scale=0.80
+  html:
+    code-fold: true
 bibliography: biblio.bib
 ---
 
-[Download the pdf version.](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf)
+[Download the PDF version](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/report/docs/report.pdf)
 
 # Introduction
 
@@ -19,41 +67,44 @@ bibliography: biblio.bib
 
 The visual world paradigm is an experimental framework that investigates language processing by monitoring participants' eye movements while they interact with visual stimuli. Introduced by psychologists Richard Cooper and Thomas P. McDermott in the late 1990s, this paradigm have been continuosly refined and expanded, adapting it to different research questions and using advancements in eye-tracking technology to gain deeper insights into real-time language comprehension and visual attention processes. Through this framework the researchers try to simulate the integration of spoken language and visual information as they naturally occur in everyday situations so that we can draw inferences on the attention focus on specific objects in their visual display over time. 
 
+
 ## Objective of our project
-We try to answer the research question: 
+Our research question is: 
 
-*Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target words as the word unfolds?*
+\emph{Does the presence of similar-sounding words influence our tendency to focus on those words apart from the target word as the word unfolds?}
 
 
-Our project is to study the nature of spoken word recognition as the word unfolds. Here the key aspect of the visual world paradigm is that participants' eye movements serve as an index of their ongoing language processing and interpretation. 
+Our project is to study the nature of spoken word recognition as the word unfolds. We try to investigate the visual world paradigm by using the participants' eye movements which serve as an index of their ongoing language processing and interpretation. We dive deeper in trying to understand how the participants predict the upcoming word in a spoken instruction and how the cognitive mechanisms underlying real-time language comprehension influence their gaze patterns. 
 
-We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, building upon the established research in this domain: 
+We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, based upon the established research in this domain: 
 
-- Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available.
-- Spoken word recognition models make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word.
+- Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available. It is not a discrete process rather it is a continuous process that unfolds over time which means that listeners don't just process words in isolation. As the speech or the spoken word unfolds, listeners use contextual cues, phonetic information, and their linguistic knowledge to build and revise their understanding of the spoken input. 
+- Spoken word recognition models like the Cohort model (Marslen-Wilson,1987; Marslen-Wilson & Welsh, 1978), Shortlist model (Norris, 1994), TRACE model (McClelland & Elman, 1986) etc., make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word. For example in the cohort model the authors proposes that when a word is heard, it triggers some potential words (a "cohort") that share the initial sounds. For instance, when "beaker" is heard, both "beaker" and "beetle" become active choices. As speech unfolds, mismatched sounds cause activation of irrelevant words (like "beetle" in this case) to decrease. Eventually, the correct word is chosen when there's enough evidence to support it. 
 
-Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* investigated a similar structure of the experiment and found the following results: 
+Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} investigated a similar structure of the experiment to validate the above conclusions. One of the experiment was replicated by us to validate the hypothesis by using the following results in the form of probability of fixations over time. 
 
 ![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-matrix width=90%}
 
 In this figure we have the probability of fixation on four words:
 
-1. Referent (e.g beaker) : Target Word
-2. Cohort (e.g beetle) : Similar Sounding Word
-3. Rhyme (e.g speaker) : Rhyming word
-4. Unrelated (e.g carriage) : Unrelated word to the rest (phonetically or semantically.)
+1. Referent (e.g., beaker): This is the target word, which is investigated for recognition.
+2. Cohort (e.g., beetle): Cohort is a similar sounding word to the target word. It shares the same initial phoneme with the target word. For example, in the word *beaker*, the cohort is *beetle* or *beagle*.
+3. Rhyme (e.g., speaker): Rhyme is the word which rhymes with the target word. For example, in the word *beaker*, the rhyme is *speaker*. or for the word *candle* the rhyme is *handle*.
+4. Unrelated (e.g., carriage): This is a word which is totally unrelated to the target word. For example, in the word *beaker*, the unrelated word is *carriage* or *sandwich*.
 
-In the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
+The figure is plotted against time in milliseconds. The x-axis represents the time in milliseconds and the y-axis represents the probability of fixation on each of the four words. The figure is plotted for the full competitor condition (more about conditions in a later section). The word offset is at around 375 ms i.e. the average duration of the auditory stimulus. The figure shows that the participants fixate on the cohort word more than the other words in the beginning. This is because the cohort word shares the same initial phoneme with the target word but also attends the rhyme word as it rhymes with the target word. The participants fixate on the target word after the word offset. The figure also shows that the participants fixate on the unrelated word the least. This is because the unrelated word is totally unrelated to the target word and thus the participants do not fixate on it.
 
-Through we try to replicate the  results obtained by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* and validate their hypothesis.
+With reference to the sample words used in the figure, in the beginning the participants hear [bi], which could be the beginning of *beaker* but also could be the beginning of *beetle*. So during the first 400 ms the particpants start looking at both of those words, more than they look at the others. After some time as they hear the [k] i.e. now they are hearing [bik], thus they discard their choice of *beetle* and stop looking at it. But by the time they've heard the whole word *beaker*, they might realize that *beaker* rhymes almost exactly with *speaker* and get confused about if they heard *speaker* at the very first place. For the last word carriage the pronunciation is totally unrelated to the target *beaker*, so there is a very less probability of the participant actually fixation at the unrelated word.
+
+Through this project we try to replicate the same results obtained by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} and validate the same through the eye tracking experiment we conduct with our participants.
 
 # Experiment 
 
 ## Software and Hardware
 
-- **Software** : The experiment is designed in [OpenSesame](https://osdoc.cogsci.nl/) which is a open source software to create experiments for psychology, neuroscience, and experimental economics. 
+- **Software**: The experiment is designed in [OpenSesame](https://osdoc.cogsci.nl/) which is a graphical experiment building software to create experiments for psychology, neuroscience, and experimental economics. Eye tracker can be integrated with OpenSesame to record the eye movements of the participants, which is finally used to analyze the data. It is available in Windows, Mac OS and Linux.
 
-- **Language** : Python was used along with the OpenSesame GUI to create the experiment. Libraries like Pandas, Numpy, Matplotlib were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used.
+- **Language**: Python was used along with the OpenSesame GUI to create the experiment. Libraries like [Pandas](https://pandas.pydata.org/docs/user_guide/index.html), [Numpy](https://numpy.org/doc/stable/user/absolute_beginners.html), [Matplotlib](https://matplotlib.org/stable/users/index.html) were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used. Other options available for backend processing are PyGame, etc.
 
 - **Eye Tracker**: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz  The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.
 
@@ -71,38 +122,38 @@ The following User Interface is presented to the participants:
 
 The experiment follows the following structure in OpenSesame:
 
-1. **Introduction to the experiment** : It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
+1. **Introduction to the experiment**: It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment.
 
 ![Introduction](img/intro_script.png){#fig-ui width=50%}
 
-2. **Initialization of variables** : The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.
+2. **Initialization of variables**: The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.
 
-3. **Trial Loop Items** : This loop runs the experiment for 24 trials. The trial loop contains the following sequence of events:
-    - **Fixation Cross** : A fixation cross is displayed at the center of the screen. The fixation cross is a black dot on a white background. The fixation cross is displayed to ensure that the participants are looking at the center of the screen before the spoken instruction is played. The fixation cross is displayed using the sketchpad item in OpenSesame.
+3. **Trial Loop Items**: This loop runs the experiment for 24 trials. The trial loop contains the following sequence of events:
+    - **Fixation Cross**: A fixation cross is displayed at the center of the screen. The fixation cross is a black dot on a white background. The fixation cross is displayed to ensure that the participants are looking at the center of the screen before the spoken instruction is played. The fixation cross is displayed using the sketchpad item in OpenSesame.
     
-    - **Stimulus** : 
-        1. The visual stimulus for each trial is loaded from the ```stimuli.csv``` file. The csv file contains information about the four objects that are displayed in the grid. The csv file contains the following information:
-            - **Stimulus** : The name of the objects that is displayed in the grid.
-            - **Type** : The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.
-            - **Condition** : The condition of the trial.
-            - **Target** : The target object that the participants have to click on.
+    - **Stimulus**: 
+        1. The visual stimulus for each trial is loaded from the `stimuli.csv` file. The csv file contains information about the four objects that are displayed in the grid. The csv file contains the following information:
+            - **Stimulus**: The name of the objects that is displayed in the grid.
+            - **Type**: The type of the object. The type can be referent, cohort, rhyme or unrelated. The type of the object is used to determine the condition of the trial.
+            - **Condition**: The condition of the trial.
+            - **Target**: The target object that the participants have to click on.
             You can find the stimuli.csv file [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv).
         2. We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
-            - **Instruction** : 'FixateHow to run the analysisbject that the participants have to click on.
+            - **Instruction**: 'FixateHow to run the analysisbject that the participants have to click on.
             You can find the audio stimuli [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli).
             Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.
     
-    - **Logging** : The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (_More details will be proviided in the preprocessing and analysis section_.)
+    - **Logging**: The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (_More details will be proviided in the preprocessing and analysis section_.)
     
-    - **Gaze Contingency** : Two fixation audio prompts which says _'Fixate at the center'_ and '_Now fixate at the center_' and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. 
+    - **Gaze Contingency**: Two fixation audio prompts which says _'Fixate at the center'_ and '_Now fixate at the center_' and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. 
     ![Timeline of a trial](img/trial_timeline.png){#fig-ui width=90%}
 
-4. **End of Experiment** : The experiment ends with a thank you message for the participants.
+4. **End of Experiment**: The experiment ends with a thank you message for the participants.
 
 ## Logic of the experiment
 
 1. Stimuli are chosen as per the different pairs of sets included in the reference paper by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus.
-    - For eg. One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.
+    - For e.g., One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.
 
 2. A fixation at any point on the screen indicates that the participant is paying attention to it. Thus we record the fixations throughout the experiment to deduce the attention of the pariticipant when we instruct them to fixate or look at a certain point of the canvas.
 
@@ -111,6 +162,7 @@ The experiment follows the following structure in OpenSesame:
 4. Fixations at the centre of the screen marks the start and end of a trial. This is to make sure we don't overlap the data of two trials while recording the data since each participant will have different response times and thus a fixed duration for each trial for timeout will not be feasible.
 
 {{< include _kapil.qmd >}}
+
 
 # Stimuli Preprocessing
 The stimuli collected needed to be preprocessed before they could be used in the experiment. The preprocessing steps are as follows:
@@ -169,21 +221,21 @@ The function analyzes an audio snippet to find the duration of the silence at th
 ## Challenges
     
 1. **Balancing of trials**: 
-    - **Challenge** :Our stimuli had a total of _23 unique` visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
-    - **Solution** : Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
+    - **Challenge**: Our stimuli had a total of _23 unique` visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
+    - **Solution**: Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
 
 2. **Random ‘freezes’ during experiment** : 
-    - **Challenge** : The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.
+    - **Challenge**: The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.
     
-    - **Trails** : 
+    - **Trials**: 
 
         1. While True loop
-        ```
+        ```python
             while True:
             gazepos = eyetracker.sample()
         ```
         2. Periodic sampling
-        ```
+        ```python
 		    while True:
                 if clock.time() - check_timer > diff:
                     gazepos = eyetracker.sample()
@@ -194,11 +246,11 @@ The function analyzes an audio snippet to find the duration of the silence at th
         4. Number of trials
                 Reduced the number of trials to 24 from 12 to reduce the time of the experiment but the problem still persisted.
 
-    - **Solution** : Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
+    - **Solution**: Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
 
-3. **Eye tracker calibration** :
-    - **Challenge** : The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
-    - **Solution** : THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
+3. **Eye tracker calibration**:
+    - **Challenge**: The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
+    - **Solution**: THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
 
 ## Limitations
 
@@ -208,11 +260,11 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
-
-# Conclusion
-In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper *"Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models"* and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
+Unrelated word to the rest (phonetically or semantically.)
+In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D. Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
 
 We summarize our conclusions as follows:
+
 1. The inclusion of semantically or phonetically similar words in the spoken instructions results in a higher frequency of fixations on the visual images of the words. This phenomenon illustrates how participants are continuously adjusting their predictions for the upcoming word as they engage with the content.
 
 2. Eye movement tracking is a reliable tool for investigating the time course of spoken word recognition and capturing the mapping process while the spoken word unfolds.
