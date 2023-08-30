@@ -1,10 +1,7 @@
 import os
 
 import argparse
-
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
 from core import (
     prepare_tsv_df,
