@@ -14,42 +14,40 @@ The stimuli collected needed to be preprocessed before they could be used in the
 
 1. Resizing the line drawings into 256x256 pixels. The OpenCV library was was used to read and resize the images. 
 
-[![Code](https://img.shields.io/badge/code-008000)](../scripts/resize_imgs.py)
-
-```python
-    img = cv2.resize(img, size)
-```
+      [![Code](https://img.shields.io/badge/code-008000)](../scripts/resize_imgs.py)
+      
+      ```python
+          img = cv2.resize(img, size)
+      ```
 
 2. Converting the audio files to ```.wav``` format. The audio files were generated in ```.mp3``` format. 
 
-[![Code](https://img.shields.io/badge/code-008000)](../scripts/conv_to_wav.sh)
-        
-```bash
-        for file in $DIRPATH/*.mp3; do
-            filename=$(basename "$file")
-            filename="${filename%.*}"
-            ffmpeg -i $file $OUTDIR/$filename.wav
-        done
-```
+      [![Code](https://img.shields.io/badge/code-008000)](../scripts/conv_to_wav.sh)
+              
+      ```bash
+              for file in $DIRPATH/*.mp3; do
+                  filename=$(basename "$file")
+                  filename="${filename%.*}"
+                  ffmpeg -i $file $OUTDIR/$filename.wav
+              done
+      ```
 
 3. A trailing silence after each audio was observed which would affect the response time of the participants. The silence was removed using the ```pydub``` library.
 
-[![Code](https://img.shields.io/badge/code-008000)](../scripts/remove_trailing_silence.py)
-
-```python
-    def detect_leading_silence(sound, silence_threshold, chunk_size=10):
-            trim_ms = 0 # ms
-            while sound[trim_ms:trim_ms+chunk_size].dBFS < silence_threshold:
-                trim_ms += chunk_size
-            return trim_ms
-```
-The function analyzes an audio snippet to find the duration of the silence at the beginning of the signal. It iterates over chunks of the audio and measuring the volume (dBFS) in each chunk until the volume exceeds the provided silence threshold. The accumulated time of trimmed silence is then returned as the result and then removed using the ```sound[trim_ms:]``` function, spectifying the start and the end trim duration.
+      [![Code](https://img.shields.io/badge/code-008000)](../scripts/remove_trailing_silence.py)
+      
+      ```python
+          def detect_leading_silence(sound, silence_threshold, chunk_size=10):
+                  trim_ms = 0 # ms
+                  while sound[trim_ms:trim_ms+chunk_size].dBFS < silence_threshold:
+                      trim_ms += chunk_size
+                  return trim_ms
+      ```
+      The function analyzes an audio snippet to find the duration of the silence at the beginning of the signal. It iterates over chunks of the audio and measuring the volume (dBFS) in each chunk until the volume exceeds the provided silence threshold. The accumulated time of trimmed silence is then returned as the result and then removed using the ```sound[trim_ms:]``` function, spectifying the start and the end trim duration.
 
 4. The sampling rate of all the audio samples was also made equal to work with the ```PsychoPy``` backend. The sampling rate was changed to 48Hz.
 
 5. Run all. 
-
-[![Code](https://img.shields.io/badge/code-008000)](../scripts/run_py_for_all.sh)
 
 This will generate the preprocessed stimuli in the ```stimuli``` folder.
 
