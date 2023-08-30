@@ -16,6 +16,8 @@ format:
         **Final report**\
         Acquisition and Analysis of \
         Eye Tracking Data\
+    titlepage-include-file:
+      - tex/pegasus.tex
     titlepage-theme:
       elements: ["\\titleblock", "\\authorblock", "\\vfill", "\\today \\vspace{0.8cm}","\\footerblock", "\\logoblock", ]
       page-align: "center"
@@ -23,7 +25,6 @@ format:
       title-fontstyle: ["Huge", "textbf"]
       title-space-after: "1.5cm"
       subtitle-fontstyle: "large"
-      subtitle-spacing: 45
       title-subtitle-space-between: "0.5cm"
       author-style: "plain"
       author-sep: "newline"
