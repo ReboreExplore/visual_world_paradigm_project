@@ -23,7 +23,7 @@ def shift_coordinate_system_single(coord):
     coord = (coord[0] / 1920, coord[1] / 1080)
     return coord
 
-def shift_coordinate_system_bottom_left_to_top_left(x, y):
+def shift_coordinate_system_top_left_to_bottom_left(x, y):
     return (x, -1 * y + 1)
 
 def check_if_within_rect(x, y, rect):
@@ -31,7 +31,7 @@ def check_if_within_rect(x, y, rect):
     conv_rect = [shift_coordinate_system_single(coord) for coord in rect]
 
     # convert x, y to new coordinate system
-    x, y = shift_coordinate_system_bottom_left_to_top_left(x, y)
+    x, y = shift_coordinate_system_top_left_to_bottom_left(x, y)
     
     if x >= conv_rect[0][0] and x <= conv_rect[1][0] and y <= conv_rect[0][1] and y >= conv_rect[1][1]:
         return True
