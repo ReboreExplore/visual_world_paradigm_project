@@ -2,7 +2,13 @@
 title: "**Visual World Paradigm**"
 subtitle: "A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker"
 author:
-  - name: Pritom Gogoi, Manpa Barman, Kapil Chander Mulchandani
+  - name: Pritom Gogoi ()
+    affiliation: University of Stuttgart
+    affiliation-url: https://www.uni-stuttgart.de/en/
+  - name: Manpa Barman ()
+    affiliation: University of Stuttgart
+    affiliation-url: https://www.uni-stuttgart.de/en/
+  - name: Kapil Chander Mulchandani ()
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
 date-format: long
@@ -86,7 +92,7 @@ We aim to explore two fundamental conclusions concerning spoken word recognition
 
 - Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available. It is not a discrete process rather it is a continuous process that unfolds over time which means that listeners don't just process words in isolation. As the speech or the spoken word unfolds, listeners use contextual cues, phonetic information, and their linguistic knowledge to build and revise their understanding of the spoken input. 
 
-- Spoken word recognition models like the \emph{Cohort model} (Marslen-Wilson,1987; Marslen-Wilson & Welsh, 1978), \emph{Shortlist model} (Norris, 1994), \emph{TRACE model} (McClelland & Elman, 1986) etc., make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word. For example in the cohort model the authors proposes that when a word is heard, it triggers some potential words (a 'cohort') that share the initial sounds. For instance, when 'beaker' is heard, both 'beaker' and 'beetle' become active choices. As speech unfolds, mismatched sounds cause activation of irrelevant words (like 'beetle' in this case) to decrease. Eventually, the correct word is chosen when there's enough evidence to support it. 
+- Spoken word recognition models like the \emph{Cohort model} (Marslen-Wilson,1987 [@marslen-wilson_functional_1987]; Marslen-Wilson & Welsh, 1978 [@marslen-wilson_processing_1978]), \emph{Shortlist model} (Norris, 1994 [@norris_shortlist:_1994]), \emph{TRACE model} (McClelland & Elman, 1986 [@mcclelland_trace_1986]) etc., make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word. For example in the cohort model the authors proposes that when a word is heard, it triggers some potential words (a 'cohort') that share the initial sounds. For instance, when 'beaker' is heard, both 'beaker' and 'beetle' become active choices. As speech unfolds, mismatched sounds cause activation of irrelevant words (like 'beetle' in this case) to decrease. Eventually, the correct word is chosen when there's enough evidence to support it. 
 
 Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} [@allopenna_tracking_1998] investigated a similar structure of the experiment to validate the above conclusions. One of the experiment was replicated by us to validate the hypothesis by using the following results in the form of probability of fixations over time. This is the reference paper for our project, which we will be referring to throughout the report.
 
@@ -165,7 +171,7 @@ The timeline of one trial is shown in @fig-trial-timeline .
 ## Logic of the experiment
 
 1. Stimuli are chosen as per the different pairs of sets included in the reference paper by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus [@allopenna_tracking_1998].
-    - For e.g., One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus.
+    - For e.g., One criteria of choosing those words are based on frequency per million words in the Kucera and Francis, 1967, corpus [@Kucera1967] .
 
 2. A fixation at any point on the screen indicates that the participant is paying attention to it. Thus we record the fixations throughout the experiment to deduce the attention of the pariticipant when we instruct them to fixate or look at a certain point of the canvas.
 
@@ -271,6 +277,16 @@ The function analyzes an audio snippet to find the duration of the silence at th
 2. Generalizability is affected as our study participants only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the  field of cognitive psychology.
 
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
+
+# Future Improvements
+
+This projects although replicates the results of the reference paper to a great extent, there are still some improvements that can make the results and the analysis more robust and reliable. Some of the improvements are as follows:
+
+1. More extensive study with a larger number of participants will ensure that the results are more reliable and robust. The study can be conducted with participants from different age groups and educational backgrounds to ensure that the results are more generalizable. Also the study can be conducted in different languages to prove the universality of the observed effects.
+
+2. The Gazepoint eye tracker can be replaced with a more advanced eye tracker like Eyelink 1000 which can record at a higher sampling rate and thus provide more accurate results. The Eyelink 1000 eye tracker allows less head movement and thus the recording of the eye movements are more accurate most of the time.
+
+3. The experiment requires us to study the fixation behavior of the participants. Thus, better optimized fixation detection algorithms can be used and even integrated to the open source software like OpenSesame to make the analysis even better.
 
 # Conclusion
 
