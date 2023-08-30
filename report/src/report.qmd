@@ -286,4 +286,26 @@ We summarize our conclusions as follows:
 
 4. Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.
 
+
+# Contributions
+
+| **Task**                                 | **Pritom** | **Kapil** | **Manpa** |
+|------------------------------------------|:----------:|:---------:|:---------:|
+| Background Literature                    |      o     |     o     |     x     |
+| Experiment Design                        |      x     |     o     |     x     |
+| Stimulus Design                          |      x     |     x     |     x     |
+| Piloting                                 |      x     |     x     |     o     |
+| Data-Recording                           |      o     |     x     |     x     |
+| Non-Final-Talk presenting (who talks)    |      x     |     o     |     x     |
+| Non-Final-Talk presenting (who prepares) |      x     |     x     |     x     |
+| Final-Talk Presenting (who talks)        |      x     |     x     |     x     |
+| Final-Talk Presenting (who prepares)     |      x     |     x     |     x     |
+| Data Analysis Scripts                    |      x     |     o     |     o     |
+| Report Writing                           |      x     |     x     |     x     |
+
+: Contributions of each team member to the project
+
+- x: main contributor
+- o: supporting contributor
+
 # References {.unnumbered}
