@@ -49,7 +49,6 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 │   ├── Makefile
 │   ├── README.md
 │   └── src
-├── _research 
 ├── scripts # Contains all the scripts used for preprocessing the stimuli
 │   ├── conv_to_wav.sh
 │   ├── remove_trailing_silence.py
