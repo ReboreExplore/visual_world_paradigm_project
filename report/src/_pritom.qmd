@@ -1,12 +1,15 @@
 # Preprocessing and Analysis
 
-<!-- TODO: add introduction to this section -->
+The objective of this section is to describe the preprocessing steps that were performed on the raw data obtained from the eyetracker experiments and the analysis that was performed on the preprocessed data. The analysis was performed in order to answer the research questions posed in the introduction section. The procedure described in the original paper was followed for the analysis. 
 
 ## Organizing the raw data into trial-wise data
 
 The basic unit of analysis in the visual world paradigm experiment is a trial. A trial is a single instance of the experiment. The first task was to organize the raw data into trial-wise data. Here the raw data was present in the .tsv files. Each file contained the data for a single participant. The data was read into a pandas dataframe named `df_interest` and then the columns that were not required were dropped. The columns, `TIME`, `BPOGX`, `BPOGY`, `FPOGD`, `FPOGX`, `FPOGY`, `FPOGV` and `USER` were relevant for our analysis so these were the columns remaining in the dataframe.
 
-<!-- TODO: write about FPOGV filtering! -->
+::: {.callout-note}
+## Note:
+The `FPOGV` column indicated whether the fixation was valid or not. This was determined by the fixation detection algorithm of the GP3 eyetracker. 
+:::
 
 In order to organize the entries of the dataframe into trials, the rows corresponding to the start and end of the trials needed to be identified. After acquiring the indices of the corresponding rows, the dataframe was split into multiple dataframes, each corresponding to a single trial. 
 
@@ -24,8 +27,7 @@ df_list = [
 ]
 ```
 
-At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two rows were sliced and the resulting dataframes were stored in a list named `audio_df_list`.
-
+At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two specified row indices were sliced and the resulting dataframes were stored in a list named `audio_df_list`. The dataframe corresponding to one trial is shown in @fig-relevant-cols.
 
 ```python
 # extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'
@@ -39,12 +41,14 @@ audio_end_index = selected_df[
 # split the dataframe based on the audio start and end indices
 # store the split dataframe in a list
 audio_df_list.append(selected_df.iloc[audio_start_index : audio_end_index + 1])
-
 ```
 
-## Extracting trial information
+![Dataframe containing the gaze data from the point of onset of the audio stimulus up till the point at which the participant clicks on a stimulus.](./img/relevant-cols.png){#fig-relevant-cols width=550}
 
-The logs present in the .tsv files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown. 
+## Extracting trial information {#sec-trial-info}
+
+### Exploring the logs in the `.tsv` files
+The logs present in the `.tsv` files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown. 
 
 ```text
 START_EXP
@@ -88,8 +92,9 @@ fixation_row_indices = df_interest[
     df_interest["USER"].str.contains("FINAL_FIXATION_START")
 ].index
 fixation_rows = df_interest.iloc[fixation_row_indices].reset_index(drop=True)["USER"]
-
 ```
+
+### Applying regex on the log event strings
 
 The retrieved data were all of the datatype string so regex was used to extract the data points of interest. This consisted of the name of the stimulus at the top, bottom, left and right positions of the grid, the target word, the condition number and the selected stimulus. The extracted data were stored in a python dictionary named `stimuli_loc_dict` with appropriate keys.
 
@@ -116,6 +121,8 @@ left_stimuli = [
 ]
 ```
 
+### Dealing with multiple coordinate systems {#sec-coord-sys}
+
 The gaze data contained in `audio_df_list` provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]^[The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.]. The functions `shift_coordinate_system` and `shift_coordinate_system_single` were defined for this purpose. The function `shift_coordinate_system` accepted a dictionary of coordinates while the function `shift_coordinate_system_single` accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.
 
 ```python
@@ -135,10 +142,10 @@ def shift_coordinate_system_single(coord):
     return coord
 ```
 
-The `shift_coordinate_system` function can convert OpenSesame UI coordinates to the cartesian coordinate system (origin on the bottom left corner) and scale them to the range `[0, 1]`. The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system in order to enable comparison with the transformed OpenSesame UI coordinates, the function `shift_coordinate_system_bottom_left_to_top_left`<!-- TODO: fix incorrect name of function --> was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as *matplotlib* and *seaborn*. 
+The `shift_coordinate_system` function can convert OpenSesame UI coordinates to the cartesian coordinate system (origin on the bottom left corner) and scale them to the range `[0, 1]`. The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system in order to enable comparison with the transformed OpenSesame UI coordinates, the function `shift_coordinate_system_top_left_to_bottom_left` was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as *matplotlib* and *seaborn*. 
 
 ```python
-def shift_coordinate_system_bottom_left_to_top_left(x, y):
+def shift_coordinate_system_top_left_to_bottom_left(x, y):
     return (x, -1 * y + 1)
 ```
 
@@ -149,27 +156,26 @@ The GP3 gaze data coordinates are in the range `[0, 1]` so no scaling is require
 
 ## Fixation plots
 
-The preprocessing steps described in the previous sections are performed on the recorded data, it is possible to plot the fixations of the participants <!-- TODO: explain further in a previous section -->. Such plots allow us visualize the fixations of the participants and identify any outliers. The plot elements can be classified into two groups:
+The preprocessing steps described in the previous sections are performed on the recorded data, it is possible to plot the fixations of the participants (See @sec-fixation-plots). Such plots allow us visualize the fixations of the participants and identify any outliers. The plot elements can be classified into two groups:
 
 1. Overlay elements: These elements are plotted in order to provide reference for the position of the grid and indicate the stimulus image in each grid box element. The condition number and the target word are also displayed in the plot. The function `draw_grid` is used to draw the grid.
 
-```python
-def draw_grid(inn, out, ax):
-    # draw line from A to B
-    ax.plot(
-        [out["A"][0], out["B"][0]], [out["A"][1], out["B"][1]], color="black", alpha=0.3
-    )
-    # draw line from B to C
-    ax.plot(
-        [out["B"][0], out["C"][0]], [out["B"][1], out["C"][1]], color="black", alpha=0.3
-    )
-    # draw line from C to D
-    ...
-    ...
-    # create a tiny circle at the center
-    ax.scatter(inn["M"][0], inn["M"][1], color="black", s=5)
-
-```
+    ```python
+    def draw_grid(inn, out, ax):
+        # draw line from A to B
+        ax.plot(
+            [out["A"][0], out["B"][0]], [out["A"][1], out["B"][1]], color="black", alpha=0.3
+        )
+        # draw line from B to C
+        ax.plot(
+            [out["B"][0], out["C"][0]], [out["B"][1], out["C"][1]], color="black", alpha=0.3
+        )
+        # draw line from C to D
+        ...
+        ...
+        # create a tiny circle at the center
+        ax.scatter(inn["M"][0], inn["M"][1], color="black", s=5)
+    ```
 
 The text elements are plotted using `matplotlib.pyplot.text()` function. See example:
 
@@ -185,15 +191,14 @@ ax.text(
     bbox=props,
     ha="center",
 )
-
 ```
 
 2. Fixation elements: These elements are plotted in order to indicate the fixations of the participants. As indicated in the code block below, the matplotlib scatter function is used.
 
-```python
-# new_fpog_x and new_fpog_y are the x and y coordinates of the fixations
-ax.scatter(new_fpog_x, new_fpog_y, color='red', s=5)
-```
+    ```python
+    # new_fpog_x and new_fpog_y are the x and y coordinates of the fixations
+    ax.scatter(new_fpog_x, new_fpog_y, color='red', s=5)
+    ```
 
 ::: {.callout-note}
 ## Note:
@@ -221,7 +226,7 @@ def get_rect(x, y):
         return 'outside'
 ```
 
-The function `get_rect` is applied to each row of the dataframe using the `df.apply` function. The resulting column is named `rect`. At the point, for each data point, we know at which stimulus box the participant was fixating.
+The function `get_rect` is applied to each row of the dataframe using the `df.apply` function. The resulting column is named `rect` (see @fig-rect-column). At the point, for each data point, we know at which stimulus box the participant was fixating.
 
 ```python
 # use df.apply to apply the get_rect function to each row
@@ -231,11 +236,11 @@ audio_df_valid_fixation["rect"] = audio_df_valid_fixation.apply(
 
 ```
 
+![The `rect` column (highlighted) indicates the stimulus box where the participant was fixating.](./img/rect_column.png){#fig-rect-column width=550}
+
 ## Mapping stimulus location to stimulus type
 
 The analysis plot is concerned with the stimulus type rather than the stimulus location. The fixations have already been mapped to the stimulus location so by using the data available in the csv log file it was possible to map the stimulus location to the stimulus type for each trial. The csv logfile contains the following columns, *referent, cohort, rhyme, distractor, target, trial number* and *condition number*. Each row indicates the names of the stimulus that was assigned the role of referent, cohort, rhyme, etc., for a given trial. 
-
-<!-- TODO: add image here or below -->
 
 The csv log file was read into a pandas dataframe named `logger_df`. This dataframe has 36 rows, each corresponding to a trial. The information available in this dataframe can be combined with that available in the dictionary `stimuli_loc_dict` to map the stimulus location (top, right, bottom, left) to the stimulus type. The columns `top`, `right`, `bottom` and `left` were added to the dataframe `logger_df` and the values were populated using the dictionary `stimuli_loc_dict`.
 
@@ -253,10 +258,11 @@ logger_df["bottom"] = [
 logger_df["left"] = [
     stimuli_loc_dict[idx][3].lower() for idx in logger_df["count_trial_sequence"]
 ]
-
 ```
 
-These new column were filled by the names of the stimuli but we are interested in the stimulus type. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
+![The newly added columns `top`, `right`, `bottom` and `left` (highlighted in red) contain the names of the stimuli at the top, right, bottom and left positions of the grid respectively for each trial. The values of these columns were determined using `stimuli_loc_dict` dictionary and the existing columns of `logger_df` (highlighted in blue).](./img/combine-cols.png){#fig-combine-cols width=650}
+
+These new column were filled by the names of the stimuli but we are interested in the stimulus type. The next step was to add additional columns to the `logger_df` dataframe that contained the type of stimuli. The columns `top_type`, `right_type`, `bottom_type` and `left_type` were added to the `logger_df` dataframe. The values of these columns were populated by checking if the stimulus name was the same as the name of the referent, distractor, rhyme or cohort. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
 
 ```python
 # create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and populate them with the type of stimuli
@@ -277,7 +283,6 @@ logger_df['left_type'] = logger_df.apply(lambda row: 'referent'
 
 Now every fixation could be mapped to a stimulus type i.e. whether the participant was fixating on the referent, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function `get_seen_stimuli_type` that loops through the rows of the `logger_df` dataframe and returns the stimulus type that the participant was fixating on. This function modified the `seen` column of the `audio_df_valid_fixation` dataframe so that it now contained the stimulus type that the participant was fixating on.
 
-
 ## Issue of unequal entries per trial
 
 The task of the final analysis plot is to visualize the proportion of fixations on the each stimulus type across trials and all participants. In order to create the plot, each trial must have equal number of data points. But the number of data points per trial is not equal, the number is dependent on the number of **valid** fixations made by the participant. 
@@ -286,17 +291,17 @@ This issue is evident from the following plots:
 
 ### Plotting the number of fixations per trial for one participant
 
-This is done to visualize the number of fixations per trial for one participant. See figure below.
+This is done to visualize the number of fixations per trial for one participant. See @fig-hist-1.
 
-<!-- TODO: add plot -->
+![Plotting the number of fixations per trial for one participant](./img/hist-1.png){#fig-hist-1 width=380}
 
 It is evident from the plot that the number of fixations per trial is not equal. 
 
 ### Comparing the trial durations for each condition number
 
-The trials corresponding to each condition number posed a different task to the participant. The duration of the trials for each condition number was compared to see if the condition number had any effect on the number of fixations. See figure below.
+The trials corresponding to each condition number posed a different task to the participant. The duration of the trials for each condition number was compared to see if the condition number had any effect on the number of fixations. See @fig-hist-2.
 
-<!-- TODO: add plot -->
+![Comparing the trial durations for each condition number. Condition numbers are indicated above the bars.](./img/hist-2.png){#fig-hist-2 width=380}
 
 It is evident from the plot that the duration of the trials for each condition number does not vary significantly. For the same condition number, the duration of the trials varies slightly. This is due to the fact that the participants were allowed to take their time to respond to the audio stimulus. Overall, there is no trend showing that some condition numbers have longer trials than others.
 
@@ -348,6 +353,8 @@ See `get_relevant_rect_value()` function in source code for implementation detai
 :::
 
 A new dataframe `count_df` was created to store the binned data. The columns of this dataframe were `trial_number`, `condition_number`, `start_time`, `end_time`, `bin_start`, `bin_end`, `real_val_count`, `val_count` and `seen`.
+
+![The `count_df` dataframe contains the binned data. The highlighted columns `bin_start`, `bin_end` indicate the start and end time of the bin.](./img/bins.png){#fig-bins width=550}
 
 * `trial_number` and `condition_number` were copied from the `logger_df` dataframe.
 * `start_time` and `end_time` were the timestamps of the first and last fixation respectively belonging to the bin.
@@ -417,7 +424,6 @@ full_competitor_sets_df = one_hot_count_df[
 rhyme_competitor_sets_df = one_hot_count_df[
     one_hot_count_df["condition"].isin(rhyme_competitor_sets_cond)
 ]
-
 ```
 
 The dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.

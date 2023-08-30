@@ -3,7 +3,7 @@
 ## Line Drawings Stimuli
 For our study, we required uncomplicated and easily comprehensible stimulus images to ensure participant understanding. Therefore, we opted for line drawing images as our chosen stimuli. We sourced these stimulus images with a Creative Commons License BY-SA, obtaining them from online platforms. In cases where certain line drawings were not directly accessible, we employed an Edge Detection algorithm within GIMP to create the desired line drawing stimuli. Each individual stimulus measures 256 x 256 pixels and is saved in PNG format.
 
-![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-ui width=30%}
+![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-ui width=150}
 
 Based on the paper we referred, we have also selected the similar stimulis for our experiment to replicate it. The experiment uses eight 'referent - cohort - rhyme - unrelated' sets and thus intoal we require 32 stimulis. Below are the 8 sets of stimulis:
 

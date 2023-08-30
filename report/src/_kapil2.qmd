@@ -75,24 +75,9 @@ Subsequently, these logged details were cross-verified, ensuring their presence 
 
 ## Coordinate System
 
-OpenSesame/ Opengaze uses a different coordinate system, to have a proper analyses of our collected data, coordinates need to be converted to cartesian system. Below is the python code for coordinate system converison:
+OpenSesame/ Opengaze uses a different coordinate system, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
 
-```python
-# shift the origin from (0, 0) to (-960, 540)
-# perform the same on outer_points and inner_points
-def shift_coordinate_system(coord_dict):
-for key, value in coord_dict.items():
-coord_dict[key] = (value[0] + 960, -1 * value[1] + 540)
-# scale to [0, 1]
-coord_dict[key] = (coord_dict[key][0] / 1920, coord_dict[key][1] / 1080)
-return coord_dict
-```
-
-```python
-def shift_coordinate_system_bottom_left_to_top_left(x, y):
-return (x, -1 * y + 1)
-```
-## Plots of Fixation (spatial View)
+## Fixation Plots (Spatial View){#sec-fixation-plots}
 For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
 
 Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. Figure 6 and 7, show the plot of trials of one of the participant.
