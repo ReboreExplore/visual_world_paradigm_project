@@ -380,8 +380,8 @@ As per the conditions, the instances of `rhyme` in the `seen` column were replac
 count_df.loc[
     count_df["condition"].isin(cohort_competitor_sets_cond), "seen"
 ] = count_df["seen"].apply(lambda x: "distractor" if x == "rhyme" else x)
-
 ```
+
 Similarly, the conditions for rhyme competitor sets and distractor competitor sets were implemented.
 
 ## Prepare data for plotting
@@ -408,7 +408,9 @@ one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 2]
 one_hot_count_df = one_hot_count_df[one_hot_count_df['condition'] != 12]
 ```
 
-The groupby function was then used to group the rows by the columns `bin_start`, `bin_end` and calculate the fixation counts for each bin. The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+The groupby function was then used to group the rows by the columns `bin_start`, `bin_end` and calculate the fixation counts for each bin (See @fig-groupby). The `sum()` function was used to calculate the fixation counts. The resulting dataframe was named `grouped_time_bins_df`.
+
+![Calculation of the fixation counts for each bin.](./img/groupby.png){#fig-groupby width=550}
 
 ### Implementing the conditions of the analysis plot
 
@@ -472,6 +474,7 @@ groupby_time_bins_df['referant_value_count'] = groupby_time_bins_df_referant['va
 groupby_time_bins_df['cohort_value_count'] = groupby_time_bins_df_cohort['val_count'].values
 groupby_time_bins_df['rhyme_value_count'] = groupby_time_bins_df_rhyme['val_count'].values
 ```
+
 ## Calculating the fixation probabilities
 
 The calculation of the fixation probabilities was the simple task of dividing the stimulus fixation counts by the respective total fixation counts. The contents of the stimulus fixation count columns were updated with the fixation probabilities. 

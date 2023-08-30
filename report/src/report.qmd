@@ -74,7 +74,6 @@ bibliography: biblio.bib
 
 The visual world paradigm is an experimental framework that investigates language processing by monitoring participants' eye movements while they interact with visual stimuli. Introduced by psychologists Richard Cooper and Thomas P. McDermott in the late 1990s, this paradigm have been continuosly refined and expanded, adapting it to different research questions and using advancements in eye-tracking technology to gain deeper insights into real-time language comprehension and visual attention processes. Through this framework the researchers try to simulate the integration of spoken language and visual information as they naturally occur in everyday situations so that we can draw inferences on the attention focus on specific objects in their visual display over time. 
 
-
 ## Objective of our project
 Our research question is: 
 
@@ -91,7 +90,7 @@ We aim to explore two fundamental conclusions concerning spoken word recognition
 
 Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} investigated a similar structure of the experiment to validate the above conclusions. One of the experiment was replicated by us to validate the hypothesis by using the following results in the form of probability of fixations over time. 
 
-![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-ref-graph width=90%}
+![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-ref-graph width=450}
 
 In the graph shown in @fig-ref-graph we have the probability of fixation on four words over time. The four words are:
 
@@ -124,7 +123,7 @@ A trial in the experiment means the response to one spoken instruction.
 
 The following @fig-ui shows the user interface presented to the participants for each trial:
 
-![User Interface of one trial](img/stim_grid.png){#fig-ui width=70%}
+![User Interface of one trial](img/stim_grid.png){#fig-ui width=400}
 
 \emph{In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.}
 
@@ -230,7 +229,6 @@ The function analyzes an audio snippet to find the duration of the silence at th
 5. Use of a 3x3 grid instead of 5x5 as we didin't require the additional boxes for the drag-and-drop functionality as in the original paper.
 
 6. No calibration functionality after each trial was added until the participant was moving their head or eyes too much.
-
 
 ## Challenges
     
