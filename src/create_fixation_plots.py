@@ -46,3 +46,6 @@ def main():
 
     # plot and save the gaze data for all trials
     save_plots(audio_df_list, stimuli_loc_dict, subject_number, 'audio_target_plots_' + str(subject_number))
+
+if __name__ == "__main__":
+    main()
