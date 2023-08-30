@@ -12,13 +12,18 @@ toc: true
 format:
   titlepage-pdf:
     titlepage-logo: "img/uni_logo.png"
+    titlepage-footer: |
+        **Final report**\
+        Acquisition and Analysis of \
+        Eye Tracking Data\
     titlepage-theme:
-      elements: ["\\titleblock", "\\authorblock", "\\vfill", "A report presented at the annual\\\\meeting on 10 August 2025\\\\ \\vspace{0.8cm}",  "\\logoblock", "\\footerblock"]
+      elements: ["\\titleblock", "\\authorblock", "\\vfill", "\\today \\vspace{0.8cm}","\\footerblock", "\\logoblock", ]
       page-align: "center"
       title-style: "plain"
       title-fontstyle: ["Huge", "textbf"]
       title-space-after: "1.5cm"
-      subtitle-fontstyle: "LARGE"
+      subtitle-fontstyle: "large"
+      subtitle-spacing: 45
       title-subtitle-space-between: "0.5cm"
       author-style: "plain"
       author-sep: "newline"
@@ -29,8 +34,8 @@ format:
       affiliation-space-after: "0pt"
       footer-style: "plain"
       footer-fontstyle: ["Large", "textsc"]
-      footer-space-after: "0pt"
-      logo-size: "0.4\\textwidth"
+      footer-space-after: "1cm"
+      logo-size: "0.7\\textwidth"
       logo-space-after: "1cm"
     toc: true
     fontsize: 12pt
@@ -272,6 +277,5 @@ We summarize our conclusions as follows:
 3. The results and plots obtained by us provide an empirical support for continuous and incremental mapping models of word recognition and proves that word processing is not a discrete and all-or-nothing process.
 
 4. Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.
-
 
 # References {.unnumbered}
