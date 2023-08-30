@@ -1,9 +1,9 @@
 # Stimulus Design and Preprocessing
 
 ## Visual Stimuli
-For our study, we required uncomplicated and easily comprehensible stimulus images to ensure participant understanding. Therefore, we opted for line drawing images as our chosen stimuli. We sourced these stimulus images with a Creative Commons License BY-SA, obtaining them from online platforms. In cases where certain line drawings were not directly accessible, we employed an Edge Detection algorithm within GIMP to create the desired line drawing stimuli. Each individual stimulus measures 256 x 256 pixels and is saved in PNG format.
+For our study, we required uncomplicated and easily comprehensible stimulus images to ensure participant understanding. Therefore, we opted for line drawing images as our chosen stimuli. We sourced these stimulus images with a Creative Commons License BY-SA, obtaining them from online platforms. In cases where certain line drawings were not directly accessible, we employed an Edge Detection algorithm within GIMP to create the desired line drawing stimuli. Each individual stimulus measures 256 x 256 pixels and is saved in PNG format. The following @fig-pickle-stim illustrates an example of the stimuli used in our experiment.
 
-![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-ui width=150}
+![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-pickle-stim width=150}
 
 Based on the paper we referred, we have also selected the similar stimulis for our experiment to replicate it. The experiment uses eight 'referent - cohort - rhyme - unrelated' sets and thus intoal we require 32 stimulis. Below are the 8 sets of stimulis:
 
@@ -17,7 +17,7 @@ Based on the paper we referred, we have also selected the similar stimulis for o
 8. sandal, sandwich, candle, parrot
 
 ## Auditory Stimuli
-As outlined in the referenced paper, during the course of the experiment, the examiner verbally provided instructions to each participant for every trial, such as "pick up the beaker" However, this approach could potentially consume a significant amount of time and introduce errors, as the duration taken by the examiner to vocalize the stimulus name and instructions might differ for various participants. To prevent potential errors stemming from variations in the examiner's delivery speed, audio stimuli were generated that audibly articulated both the stimulus names and the associated actions to be performed. To facilitate this process, the "app.accoust.io" website was employed to create the essential audio stimuli. The subsequent configuration was implemented to ensure the uniformity of the experiment's execution:
+As outlined in the referenced paper, during the course of the experiment, the examiner verbally provided instructions to each participant for every trial, such as 'pick up the beaker' However, this approach could potentially consume a significant amount of time and introduce errors, as the duration taken by the examiner to vocalize the stimulus name and instructions might differ for various participants. To prevent potential errors stemming from variations in the examiner's delivery speed, audio stimuli were generated that audibly articulated both the stimulus names and the associated actions to be performed. To facilitate this process, the [acoust.io](https://www.acoust.io/) website was employed to create the essential audio stimuli. The subsequent configuration was implemented to ensure the uniformity of the experiment's execution:
 
 1. Voice Profile: DAVIS
 2. Playback speed: 0.8x
