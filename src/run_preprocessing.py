@@ -8,6 +8,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
 
+from utils import (
+    get_relevant_rect_value,
+    get_rect,
+    get_seen_stimuli_type,
+)
+
 ag = argparse.ArgumentParser()
 ag.add_argument("--subject", type=int, default=1, help="Subject number")
 
@@ -56,29 +62,6 @@ for key, selected_df in enumerate(df_list):
 
 print("Extracted {} trials in trial list".format(len(audio_df_list)))
 
-# TODO: candidate for new script
-outer_points = {'A': (-416, -416), 'B': (-416, 416), 'C': (416, 416), 'D': (416, -416)}
-inner_points = {'E': (-128, -416), 'F': (-128, 416), 'G': (128, 416), 'H': (128, -416), 'I': (-416, -128), 'J': (-416, 128), 'K': (416, 128), 'L': (416, -128), 'M': (0, 0)}
-test_points = {'P': (-960, -540), 'Q': (-960, 540), 'R': (960, 540), 'S': (960, -540)}
-
-# shift the origin from (0, 0) to (-960, 540)
-# perform the same on outer_points and inner_points
-def shift_coordinate_system(coord_dict):
-    for key, value in coord_dict.items():
-        coord_dict[key] = (value[0] + 960, -1 * value[1] + 540)
-    
-        # scale to [0, 1]
-        coord_dict[key] = (coord_dict[key][0] / 1920, coord_dict[key][1] / 1080)
-    return coord_dict
-
-def shift_coordinate_system_single(coord):
-    coord = (coord[0] + 960, -1 * coord[1] + 540)
-    coord = (coord[0] / 1920, coord[1] / 1080)
-    return coord
-
-def shift_coordinate_system_bottom_left_to_top_left(x, y):
-    return (x, -1 * y + 1)
-
 # get all rows whose indices are stored in start_indices
 # get the USER column
 # useful to extract the position of the stimuli, see later
@@ -117,25 +100,6 @@ for idx, stimuli in enumerate(zip(top_stimuli, right_stimuli, bottom_stimuli, le
 # NOTE: preview point
 # print(stimuli_loc_dict)
 
-# define the bounds of the rectangles
-top_rect = [(-128, -416), (128, -128)]
-right_rect = [(128, -128), (416, 128)]
-bottom_rect = [(-128, 128), (128, 416)]
-left_rect = [(-416, -128), (-128, 128)]
-centre_rect = [(-128, -128), (128, 128)]
-
-def check_if_within_rect(x, y, rect):
-    # convert rect to new coordinate system
-    conv_rect = [shift_coordinate_system_single(coord) for coord in rect]
-
-    # convert x, y to new coordinate system
-    x, y = shift_coordinate_system_bottom_left_to_top_left(x, y)
-    
-    if x >= conv_rect[0][0] and x <= conv_rect[1][0] and y <= conv_rect[0][1] and y >= conv_rect[1][1]:
-        return True
-    else:
-        return False
-
 # combine all audio_df_list dataframes into one dataframe, create a new column called 'trial_number' that 
 for idx, df in enumerate(audio_df_list):
     df['trial_number'] = idx
@@ -144,20 +108,6 @@ audio_df = pd.concat(audio_df_list).reset_index(drop=True)
 
 # NOTE: preview point
 # print(audio_df)
-
-def get_rect(x, y):
-    if check_if_within_rect(x, y, top_rect):
-        return 'top'
-    elif check_if_within_rect(x, y, right_rect):
-        return 'right'
-    elif check_if_within_rect(x, y, bottom_rect):
-        return 'bottom'
-    elif check_if_within_rect(x, y, left_rect):
-        return 'left'
-    elif check_if_within_rect(x, y, centre_rect):
-        return 'centre'
-    else:
-        return 'outside'
 
 use_only_valid = True
 if use_only_valid:
@@ -260,19 +210,6 @@ duration_thresholds = np.linspace(0, avg_duration, N, endpoint=True)
 
 print("Duration threshold count: {}".format(len(duration_thresholds)))
 
-def get_relevant_rect_value(list_of_val):
-    # remove 'centre' and 'outside' from the list
-    list_of_val = [val for val in list_of_val if val != 'centre' and val != 'outside']
-    # if the list is empty, return ''
-    if len(list_of_val) == 0:
-        return ''
-    # if unique() returns a list of length 1, return the value
-    elif len(np.unique(list_of_val)) == 1:
-        return list_of_val[0]
-    # if unique() returns a list of length > 1, return the value with the higher count
-    else:
-        return max(set(list_of_val), key=list_of_val.count)
-    
 count_df = pd.DataFrame(columns=['trial_number', 'condition', 'start_time', 'end_time', 'bin_start', 'bin_end', 'real_val_count', 'val_count', 'seen'])
 
 for idx, row in logger_df.iterrows():
@@ -299,30 +236,6 @@ for idx, row in logger_df.iterrows():
 # print(count_df)
 
 print("val count: {}, real val count: {}".format(count_df['val_count'].sum(), count_df['real_val_count'].sum()))
-
-def map_position_to_stimuli_type(position, map_dict):
-    if position not in map_dict.keys():
-        return ''
-    else:
-        return map_dict[position]
-    
-def get_seen_stimuli_type(count_df, logger_df):
-    # loop through each row in logger_df and get the values of 'top_type', 'right_type', 'bottom_type', 'left_type'
-    for idx, row in logger_df.iterrows():
-        # get rows in count_df where trial_number is idx
-        trial_df = count_df[count_df['trial_number'] == idx]
-        # get the values of 'top_type', 'right_type', 'bottom_type', 'left_type'
-        top_type = logger_df['top_type'][idx]
-        right_type = logger_df['right_type'][idx]
-        bottom_type = logger_df['bottom_type'][idx]
-        left_type = logger_df['left_type'][idx]
-        # create a mapping dictionary
-        mapping_dict = {'top': top_type, 'right': right_type, 'bottom': bottom_type, 'left': left_type}
-        # apply to map_position_to_stimuli_type to each row in trial_df
-        trial_df['seen'] = trial_df['seen'].apply(lambda x: map_position_to_stimuli_type(x, mapping_dict))
-        # update the values in count_df
-        count_df.loc[count_df['trial_number'] == idx, 'seen'] = trial_df['seen'].values
-    return count_df
 
 count_df = get_seen_stimuli_type(count_df, logger_df)
 
