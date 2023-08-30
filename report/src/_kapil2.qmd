@@ -1,4 +1,4 @@
-# Conditions
+## Conditions
 
 During each trial, participants were presented with four line drawings on a computer screen. They were instructed to click on one of the objects using a computer mouse. The four combinations of objects were as follows:
 
@@ -18,7 +18,7 @@ Within each competitor set, every item was utilized as the target an equal numbe
 
 ![Condition Table](img/condition_table.png){#fig-ui width=50%,fig-align="center"}
 
-# Randomization
+## Randomization
 In addition to making sure all items appeared equally as often as targets (in order to preclude frequency-based strategies by participants), the overall frequency of each item was also controlled. A randomization alogirthm was implemented that made sure following 3 randomizations were achieved. 
 
 1. Order Randomization: The order of the trials are
@@ -29,19 +29,20 @@ approx. equal number of times.
 
 3. Target Distribution: Each stimuli is chosen as the target an approx. equal number of times.
 
-Figure 4. shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 22 stimulis chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
+@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 22 stimulis chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
 
-![No of stimuli appearances](img/no_of_stimuli_app.png){#fig-ui width=50%,fig-align="center"}
+![No of stimuli appearances](img/no_of_stimuli_app.png){#fig-no-of-stimuli width=50%,fig-align="center"}
 
-Figure 5. shows the number of target appearances in 36 trials. Since there 22 stimulis, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
+@fig-no-of-target_app shows the number of target appearances in 36 trials. Since there 22 stimulis, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
 
-![No of target appearances](img/no_of_target_app.png){#fig-ui width=50%,fig-align="center"}
+![No of target appearances](img/no_of_target_app.png){#fig-no-of-targets width=50%,fig-align="center"}
 
 # Experiment Organization
 
 The experiment was carried out within a laboratory setting, where each session included only examiners and a single participant. Overall, 15 participants took part in the experiment. Participants received a meeting invitation in which they were asked about their availability. Important details regarding the experiment were shared, while the specific nature of the experiment remained undisclosed. Clear guidelines, including a PDF with directions to the laboratory's location, were provided, outlining the do's and don'ts for the day of the experiment.
+The examiners were responsible for the smooth execution of the experiment and thus we followed this [guidelines](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/before_the_experiment.md) before the experiment.
 
-Upon the arrival of participants at the laboratory on the designated experiment day, introductory details about the data collection protocol were furnished in accordance with the procedure. Additionally, participants were requested to review and sign the consent form to confirm their agreement. To minimize interruptions during the experiment, participants were instructed to either turn off their phones or set them to silent mode.
+Upon the arrival of participants at the laboratory on the designated experiment day, introductory details about the data collection protocol were adhered to in accordance with the procedure. We narrated the the [preliminary information](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/study_subject_information_and_questionaire.md) to each participants before starting the experiment. Additionally, participants were requested to review and sign the [consent form](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/consent_form.pdf) to confirm their agreement. To minimize interruptions during the experiment, participants were instructed to either turn off their phones or set them to silent mode.
 
 Before commencing the experiment, participants were acquainted with the stimuli. Visual aids, in the form of pictures on a sheet, were employed for this purpose. Each participant was then guided to audibly identify and name the objects depicted in the images until they accurately named them. This preparation process ensured that participants were thoroughly prepared for the upcoming experiment.
 
@@ -95,8 +96,8 @@ return (x, -1 * y + 1)
 ## Plots of Fixation (spatial View)
 For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
 
-Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. Figure 6 and 7, show the plot of trials of one of the participant.
+Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. @fig-t2 and @fig-t6 , show the plot of trials of one of the participant.
 
-![Fixation plot of trial 2 of a participant](img/trial2.png){#fig-ui width=50%,fig-align="center"}
+![Fixation plot of trial 2 of a participant](img/trial2.png){#fig-t2 width=50%,fig-align="center"}
 
-![Fixation plot of trial 9 of a participant](img/trial9.png){#fig-ui width=50%,fig-align="center"}
+![Fixation plot of trial 9 of a participant](img/trial9.png){#fig-t6 width=50%,fig-align="center"}
