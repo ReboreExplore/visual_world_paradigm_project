@@ -9,3 +9,17 @@ right_rect = [(128, -128), (416, 128)]
 bottom_rect = [(-128, 128), (128, 416)]
 left_rect = [(-416, -128), (-128, 128)]
 centre_rect = [(-128, -128), (128, 128)]
+
+avg_duration_agg = 1.5
+avg_duration_process = 1.6
+
+N = 80
+
+full_competitor_sets_cond = [1, 2, 3, 4]
+cohort_competitor_sets_cond = [5, 6, 7]
+rhyme_competitor_sets_cond = [8, 9, 10]
+distractor_competitor_sets_cond = [11, 12]
+
+# for the average audio stimulus offset bar
+# the average audio stimulus offset is 750.2174 ms
+average_audio_stimuli_offset = 750.2174 / 1000
