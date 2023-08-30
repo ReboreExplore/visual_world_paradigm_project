@@ -6,4 +6,4 @@ html: src/report.qmd
 
 
 pdf: src/report.qmd
-	quarto render src --to pdf
+	quarto render src --to titlepage-pdf
