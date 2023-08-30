@@ -86,18 +86,19 @@ Our project is to study the nature of spoken word recognition as the word unfold
 We aim to explore two fundamental conclusions concerning spoken word recognition and the underlying models, based upon the established research in this domain: 
 
 - Spoken word recognition is dynamic in nature which suggests that listeners continuously update and refine their interpretations as more information becomes available. It is not a discrete process rather it is a continuous process that unfolds over time which means that listeners don't just process words in isolation. As the speech or the spoken word unfolds, listeners use contextual cues, phonetic information, and their linguistic knowledge to build and revise their understanding of the spoken input. 
-- Spoken word recognition models like the Cohort model (Marslen-Wilson,1987; Marslen-Wilson & Welsh, 1978), Shortlist model (Norris, 1994), TRACE model (McClelland & Elman, 1986) etc., make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word. For example in the cohort model the authors proposes that when a word is heard, it triggers some potential words (a "cohort") that share the initial sounds. For instance, when "beaker" is heard, both "beaker" and "beetle" become active choices. As speech unfolds, mismatched sounds cause activation of irrelevant words (like "beetle" in this case) to decrease. Eventually, the correct word is chosen when there's enough evidence to support it. 
+
+- Spoken word recognition models like the \emph{Cohort model} (Marslen-Wilson,1987; Marslen-Wilson & Welsh, 1978), \emph{Shortlist model} (Norris, 1994), \emph{TRACE model} (McClelland & Elman, 1986) etc., make assumptions that multiple candidates compete for recognition during the unfolding of the spoken word. For example in the cohort model the authors proposes that when a word is heard, it triggers some potential words (a "cohort") that share the initial sounds. For instance, when "beaker" is heard, both "beaker" and "beetle" become active choices. As speech unfolds, mismatched sounds cause activation of irrelevant words (like "beetle" in this case) to decrease. Eventually, the correct word is chosen when there's enough evidence to support it. 
 
 Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} investigated a similar structure of the experiment to validate the above conclusions. One of the experiment was replicated by us to validate the hypothesis by using the following results in the form of probability of fixations over time. 
 
-![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-matrix width=90%}
+![Probability of fixating on each item type over time in the full competitor condition](img/ref_graph.png){#fig-ref-graph width=90%}
 
-In this figure we have the probability of fixation on four words:
+In the graph shown in @fig-ref-graph we have the probability of fixation on four words over time. The four words are:
 
-1. Referent (e.g., beaker): This is the target word, which is investigated for recognition.
-2. Cohort (e.g., beetle): Cohort is a similar sounding word to the target word. It shares the same initial phoneme with the target word. For example, in the word *beaker*, the cohort is *beetle* or *beagle*.
-3. Rhyme (e.g., speaker): Rhyme is the word which rhymes with the target word. For example, in the word *beaker*, the rhyme is *speaker*. or for the word *candle* the rhyme is *handle*.
-4. Unrelated (e.g., carriage): This is a word which is totally unrelated to the target word. For example, in the word *beaker*, the unrelated word is *carriage* or *sandwich*.
+1. \textbf{Referent} \emph{(e.g., beaker)}: This is the target word, which is investigated for recognition.
+2. \textbf{Cohort} \emph{(e.g., beetle)}: Cohort is a similar sounding word to the target word. It shares the same initial phoneme with the target word. For example, in the word *beaker*, the cohort is *beetle* or *beagle*.
+3. \textbf{Rhyme} \emph{(e.g., speaker)}: Rhyme is the word which rhymes with the target word. For example, in the word *beaker*, the rhyme is *speaker*. or for the word *candle* the rhyme is *handle*.
+4. \textbf{Unrelated} \emph{(e.g., carriage)}: This is a word which is totally unrelated to the target word. For example, in the word *beaker*, the unrelated word is *carriage* or *sandwich*.
 
 The figure is plotted against time in milliseconds. The x-axis represents the time in milliseconds and the y-axis represents the probability of fixation on each of the four words. The figure is plotted for the full competitor condition (more about conditions in a later section). The word offset is at around 375 ms i.e. the average duration of the auditory stimulus. The figure shows that the participants fixate on the cohort word more than the other words in the beginning. This is because the cohort word shares the same initial phoneme with the target word but also attends the rhyme word as it rhymes with the target word. The participants fixate on the target word after the word offset. The figure also shows that the participants fixate on the unrelated word the least. This is because the unrelated word is totally unrelated to the target word and thus the participants do not fixate on it.
 
@@ -105,7 +106,7 @@ With reference to the sample words used in the figure, in the beginning the part
 
 Through this project we try to replicate the same results obtained by Paul D.Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} and validate the same through the eye tracking experiment we conduct with our participants.
 
-# Experiment 
+# Experiment Design
 
 ## Software and Hardware
 
@@ -113,7 +114,7 @@ Through this project we try to replicate the same results obtained by Paul D.All
 
 - **Language**: Python was used along with the OpenSesame GUI to create the experiment. Libraries like [Pandas](https://pandas.pydata.org/docs/user_guide/index.html), [Numpy](https://numpy.org/doc/stable/user/absolute_beginners.html), [Matplotlib](https://matplotlib.org/stable/users/index.html) were used to analyze the data. For backend processing in the OpenSesame GUI, PsychoPy was used. Other options available for backend processing are PyGame, etc.
 
-- **Eye Tracker**: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz  The eye tracker is connected to the computer and the participants are seated at a distance of 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.
+- **Eye Tracker**: The experiment is conducted using the GazePoint GP3+ eye tracker. It is a binocular eye tracker that can record at 150 Hz.  The eye tracker is connected to the computer and the participants are seated at a distance of around 60 cm from the screen. The experiment was conducted in a dimly lit laboratory setup to avoid any external light source that might interfere with the eye tracking.
 
 ## Structure of the Stimulus
 
@@ -121,9 +122,11 @@ The experiment is designed to test the participants' ability to predict the upco
 
 A trial in the experiment means the response to one spoken instruction.
 
-The following User Interface is presented to the participants:
+The following @fig-ui shows the user interface presented to the participants for each trial:
 
-![User Interface of one trial - In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.](img/stim_grid.png){#fig-ui width=70%}
+![User Interface of one trial](img/stim_grid.png){#fig-ui width=70%}
+
+\emph{In each trial we have a 3x3 grid structure with four objects in it. Each trial has four stimulus displayed. The four stimulus are a combination of referent, cohort, rhyme and unrelated words. All or atleast two of the combinations are present in each trial according to the condition set (Full competitor, Rhyme competitor, Unrelated competitor etc.), which will be referred in the later part of the report. The stimulus used are only line drawings of the objects, to remove anmibuity in the visual display. The dot in the center grid is the fixation point for the participants.}
 
 ## Design of the Experiment
 
@@ -146,16 +149,19 @@ The experiment follows the following structure in OpenSesame:
             - **Target**: The target object that the participants have to click on.
             You can find the stimuli.csv file [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/stimuli-final.csv).
         2. We also have accompaning audio stimuli for each trial. The audio is digitally recorded. The audio stimuli are recorded in the following format:
-            - **Instruction**: 'FixateHow to run the analysisbject that the participants have to click on.
+            - **Instruction**: 'Fixate on the object' that the participants have to click on.
             You can find the audio stimuli [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/stimuli/audio-stimuli).
             Each response is captured with a mouse click. The mouse click is recorded and logged using the mouse_response item in OpenSesame.
     
     - **Logging**: The onset and offset of the fixation cross and the stimulus (both audio and visual) is logged for each trail. We also log the position of the mouse click and the target object along with its position (top,right, buttom, left) that the participants clicked on. (_More details will be proviided in the preprocessing and analysis section_.)
     
-    - **Gaze Contingency**: Two fixation audio prompts which says _'Fixate at the center'_ and '_Now fixate at the center_' and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt. 
+    - **Gaze Contingency**: Two fixation audio prompts which says _'Fixate at the center'_ and '_Now fixate at the center_' and marks the beginning and end of one trail.The fixation audio prompt is played to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This is implemented by introducing a delay of 1.1s after the prompt.
+
     ![Timeline of a trial](img/trial_timeline.png){#fig-ui width=90%}
 
 4. **End of Experiment**: The experiment ends with a thank you message for the participants.
+
+The timeline of one trial is shown in @fig-ui.
 
 ## Logic of the experiment
 
@@ -171,7 +177,8 @@ The experiment follows the following structure in OpenSesame:
 {{< include _kapil.qmd >}}
 
 
-# Stimuli Preprocessing
+## Stimuli Preprocessing
+
 The stimuli collected needed to be preprocessed before they could be used in the experiment. The preprocessing steps are as follows:
 
 1. Resizing the line drawings into 256x256 pixels. The OpenCV library was was used to read and resize the images.
@@ -267,7 +274,8 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
-Unrelated word to the rest (phonetically or semantically.)
+# Conclusion
+
 In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D. Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
 
 We summarize our conclusions as follows:

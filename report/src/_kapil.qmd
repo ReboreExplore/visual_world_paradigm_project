@@ -1,6 +1,6 @@
-# Stimulus Design
+# Stimulus Design and Preprocessing
 
-## Line Drawings Stimuli
+## Visual Stimuli
 For our study, we required uncomplicated and easily comprehensible stimulus images to ensure participant understanding. Therefore, we opted for line drawing images as our chosen stimuli. We sourced these stimulus images with a Creative Commons License BY-SA, obtaining them from online platforms. In cases where certain line drawings were not directly accessible, we employed an Edge Detection algorithm within GIMP to create the desired line drawing stimuli. Each individual stimulus measures 256 x 256 pixels and is saved in PNG format.
 
 ![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-ui width=150}
