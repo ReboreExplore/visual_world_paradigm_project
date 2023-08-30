@@ -6,6 +6,8 @@ report/src/_pritom_files/*
 report/src/_pritom.pdf
 report/src/_pritom.html
 report/src/_extensions/*
+report/docs/report.html
+report/docs/report.pdf
 # may remove later
 src/*.ipynb
 
