@@ -1,3 +1,6 @@
+import os
+import glob
+
 import argparse
 import numpy as np
 
@@ -22,14 +25,17 @@ def main():
 
     args = vars(ag.parse_args())
 
-    bins_bounds = np.linspace(0, avg_duration_agg, N, endpoint=True)
-
-    # subject numbers to be included in the analysis
-    relevant_csvs = [0, 2, 5, 6, 7, 11, 12, 13, 14, 15, 16, 69]
-
     # path to csv files
     csv_path = args["path"]
     save_fig = args["save"]
+
+    bins_bounds = np.linspace(0, avg_duration_agg, N, endpoint=True)
+
+    # automatically find the relevant csv files
+    relevant_csvs = [int(os.path.basename(x).split('.')[0].split('-')[1]) for x in glob.glob(os.path.join(csv_path, '*.csv'))]
+
+    print("Found %d csv files" % len(relevant_csvs))
+    print("Subject numbers: ", relevant_csvs)
 
     agg_df = prepare_agg_df(csv_path, relevant_csvs, bins_bounds)
 
