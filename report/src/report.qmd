@@ -284,7 +284,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 This projects although replicates the results of the reference paper to a great extent, there are still some improvements that can make the results and the analysis more robust and reliable. Some of the improvements are as follows:
 
-1. Moree extensive study with a larger number of participants will ensure that the results are more generalizable. The study can be conducted with participants from different age groups and educational backgrounds. Also the study can be conducted in different languages to prove the universality of the observed effects.
+1. More extensive study with a larger number of participants will ensure that the results are more generalizable. The study can be conducted with participants from different age groups and educational backgrounds. Also the study can be conducted in different languages to prove the universality of the observed effects.
 
 2. The Gazepoint GP3 eye tracker can be replaced with a more advanced eye tracker like Eyelink 1000 which can record at a higher sampling rate and thus provide more accurate results. The Eyelink 1000 eye tracker allows less head movement due to its design and thus the recording of the eye movements are more accurate.
 
