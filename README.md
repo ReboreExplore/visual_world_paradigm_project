@@ -100,6 +100,12 @@ It is necessary to follow the guidelines mentioned below to ensure that the expe
 3. [After the Experiment](docs/experiment/after_the_experiment.md)
 4. [Study Information Sheet](docs/experiment/study_subject_information_and_questionaire.md)
 
+## 🗃 Dataset
+
+The data recorded during our experiments can be obtained [here](https://drive.google.com/drive/folders/1MOGFGCpygDrBIc9OiFi1-KMkIljtp1X1?usp=sharing). The data has been anonymized and there exists no possible way to associate it with the participants.
+
+The folders `processed` and `raw` need to be placed in the `/data` folder.
+
 ## :chart_with_upwards_trend: How to run the analysis
 
 1. 
