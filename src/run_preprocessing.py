@@ -12,6 +12,7 @@ from utils import (
 )
 
 from core import (
+    prepare_logger_df,
     prepare_tsv_df,
     organize_into_trials,
     generate_stimuli_loc_dict,
@@ -95,7 +96,7 @@ def main():
     # read the csv file into a dataframe
     logger_df_raw = pd.read_csv(csv_path)
 
-    logger_df = prepare_tsv_df(logger_df_raw, audio_df_valid_fixation, stimuli_loc_dict)
+    logger_df = prepare_logger_df(logger_df_raw, audio_df_valid_fixation, stimuli_loc_dict)
 
     # NOTE: preview point
     # print(logger_df)
