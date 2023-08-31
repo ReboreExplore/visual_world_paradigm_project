@@ -43,30 +43,32 @@ approx. equal number of times.
 
 # Experiment Organization
 
-The experiment was carried out within a laboratory setting, where each session included only examiners and a single participant. Overall, 15 participants took part in the experiment. Participants received a meeting invitation in which they were asked about their availability. Important details regarding the experiment were shared, while the specific nature of the experiment remained undisclosed. Clear guidelines, including a PDF with directions to the laboratory's location, were provided, outlining the do's and don'ts for the day of the experiment.
-The examiners were responsible for the smooth execution of the experiment and thus we followed this [guidelines](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/before_the_experiment.md) before the experiment.
+The experiment was carried out within a laboratory setting, where each session included only examiners and a single participant. Overall, 15 participants took part in the experiment. Participants received a meeting invitation in which they were asked about their availability. Important details regarding the experiment were shared, while the specific nature of the experiment remained undisclosed. Clear guidelines, including a PDF with directions to the laboratory's location were provided, outlining the do's and don'ts for the day of the experiment.
+The examiners were responsible for the smooth execution of the experiment and thus we followed these [guidelines](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/before_the_experiment.md) before the experiment.
 
-Upon the arrival of participants at the laboratory on the designated experiment day, introductory details about the data collection protocol were adhered to in accordance with the procedure. We narrated the the [preliminary information](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/study_subject_information_and_questionaire.md) to each participants before starting the experiment. Additionally, participants were requested to review and sign the [consent form](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/consent_form.pdf) to confirm their agreement. To minimize interruptions during the experiment, participants were instructed to either turn off their phones or set them to silent mode.
+Upon the arrival of participants at the laboratory on the designated experiment day, introductory details about the data collection protocol were adhered to in accordance with the procedure. We narrated the [preliminary information](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/study_subject_information_and_questionaire.md) to each participants before starting the experiment. Additionally, participants were requested to review and sign the [consent form](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/consent_form.pdf) to confirm their agreement. To minimize interruptions during the experiment, participants were instructed to either turn off their phones or set them to silent mode.
 
-Before commencing the experiment, participants were acquainted with the stimuli. Visual aids, in the form of pictures on a sheet, were employed for this purpose. Each participant was then guided to audibly identify and name the objects depicted in the images until they accurately named them. This preparation process ensured that participants were thoroughly prepared for the upcoming experiment.
+Before commencing the experiment, participants were acquainted with the stimuli. Visual aids, in the form of pictures on a [sheet](https://vwp-stimuli-sheet.netlify.app/), were employed for this purpose. Each participant was then guided to audibly identify and name the objects depicted in the images until they accurately named them. This preparation process ensured that participants were thoroughly prepared for the upcoming experiment.
 
 The experiment utilized the GazePoint GP3 eye tracker as its primary tool for data collection. At the outset, participants' eye calibration was meticulously carried out using the calibration software. Particular attention was given to ensure the accuracy of the calibration process. In instances where accuracy was compromised, recalibration was promptly administered to maintain data quality.
 
 To facilitate the experiment, a setup with two distinct monitor screens was prepared. One screen was under the control of the participant, while the other was managed by the examiner. The sequence of events commenced with the examiner launching the experiment on the OpenGaze platform through their control. Subsequently, control was seamlessly transitioned to the participant for their active involvement.
 
-To assist participants during the experiment, text-based instructions were presented on the screens. These instructions provided guidance and clarity, enhancing the participants' ability to engage effectively with the task at hand.
+To assist the participants during the experiment, text-based instructions were presented on the screens. These instructions provided guidance and clarity, enhancing the participants' ability to engage effectively with the task at hand.
 
-During the course of the experiment, audio messages were introduced as additional cues. These audio cues were intentionally played at a significant volume through external speakers. Their purpose was to draw the participant's attention to the center of the screen prior to the presentation of audio stimuli. This protocol enabled the precise tracking of the commencement and conclusion of each trial.
+During the course of the experiment, audio messages were introduced as additional cues. These audio cues were intentionally played at a significant volume through external speakers. Their purpose was to draw the participants' attention to the center of the screen prior to the presentation of audio stimuli. This protocol enabled the precise tracking of the commencement and conclusion of each trial.
 
 The experiment encompassed a total of 36 trials, contributing to an overall runtime of approximately 8 to 9 minutes. This condensed timeframe was deliberate, aimed at maintaining participants' focus and engagement throughout the session.
 
-When considering the holistic experience of each participant, it's noteworthy that the entire process, from the preliminary pre-experiment information briefing to the subsequent post-experiment discussion sessions, spanned a total duration of approximately 18 minutes. 
+When considering the overall experience of each participant, it is to be noted that the entire process, from the preliminary pre-experiment information briefing to the subsequent post-experiment discussion sessions, spanned a total duration of approximately 18 minutes. 
 
-Following each experiment session, participants received a debriefing outlining the central objective of our study, and their valuable feedback was meticulously recorded. As a token of appreciation, a small energy bar was provided to each participant.
+Following each experiment session, participants received a debriefing outlining the central objective of our study, and their valuable feedback was carefully recorded. As a token of appreciation, a small energy bar was provided to each participant.
+
+After the experiment, the examiners made sure the [post-experiment guidelines](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/experiment/after_the_experiment.md) were followed. 
 
 # Quality Control
 
-Upon gathering data from all participants but prior to delving into data analysis, a vital step of quality control was essential. This step aimed to ascertain uniform data quality across the collected dataset, aligning with the criteria outlined in the referenced paper. Accordingly, trials that failed to meet the following three criteria were excluded from the subsequent analyses.
+Upon gathering data from all participants but prior to delving into data analysis, the step of quality control was essential. This step aimed to ascertain uniform data quality across the collected dataset, aligning with the criteria outlined in the referenced paper. Accordingly, trials that failed to meet the following three criteria were excluded from the subsequent analyses.
 
 1. During a trial, the calibration deteriorated to such an extent that it was not possible
 to label fixations.
@@ -76,16 +78,16 @@ began.
 
 In accordance with these criteria, data from 3 participants were excluded due to quality concerns. To facilitate thorough analysis, data logs were incorporated, documenting the commencement of auditory stimuli as `LOG_AUDIO_TARGET_START` and extending up to the conclusion marked by the mouse click response as `CLICK_RESPONSE_END`. This approach aided in identifying trial durations and associating data with specific trials.
 
-Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity and quality standards.
+Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity.
 
 ## Managing Coordinate Systems
 
-OpenSesame/Opengaze use different coordinate systems, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
+OpenSesame/Opengaze use different coordinate systems, to have a proper analysis of our collected data, coordinates needed to be converted to a common coordinate system. This section is expanded on further in @sec-coord-sys.
 
 ## Fixation Plots (Spatial view){#sec-fixation-plots}
-For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
+For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was created, including solely the samples where FPOGV equalled 1, this precaution was taken to exclusively utilize valid fixation samples.
 
-Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. @fig-t2 and @fig-t6 , show the plot of trials of one of the participant.
+Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the condition number, target, and selected stimuli. @fig-t2 and @fig-t6, show the fixation plot of two trials of one of the participant.
 
 ![Fixation plot of trial 2 of a participant](img/trial2.png){#fig-t2 width=50%,fig-align="center"}
 

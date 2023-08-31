@@ -1,6 +1,6 @@
 # Preprocessing and Analysis
 
-The objective of this section is to describe the preprocessing steps that were performed on the raw data obtained from the eyetracker experiments and the analysis that was performed on the preprocessed data. The analysis was performed in order to answer the research questions posed in the introduction section. The procedure described in the original paper was followed for the analysis. 
+The objective of this section is to describe the preprocessing steps that were performed on the raw data obtained from the eyetracker experiments and the analysis that was performed on the preprocessed data. The analysis was performed in order to answer the research questions posed in the introduction section. The procedure described in the reference paper was followed for the analysis. 
 
 ## Organizing the raw data into trial-wise data
 
@@ -27,7 +27,7 @@ df_list = [
 ]
 ```
 
-At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimilus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two specified row indices were sliced and the resulting dataframes were stored in a list named `audio_df_list`. The dataframe corresponding to one trial is shown in @fig-relevant-cols.
+At this point, the dataframes corresponding to the individual trials were ready. Our analysis is mainly concerned with the gaze data from the point of onset of the audio stimulus up till the point at which the participant clicks on a stimulus. So, the dataframes were further sliced to retain only the data from the specified interval. In order to perform this, the `USER` column was used. The rows corresponding to the start of the audio stimulus and the end of the click response were identified by the strings `LOG_AUDIO_TARGET_START` and `CLICK_RESPONSE_END` respectively. The rows between these two specified row indices were sliced and the resulting dataframes were stored in a list named `audio_df_list`. The dataframe corresponding to one trial is shown in @fig-relevant-cols.
 
 ```python
 # extract the row index where the user column contains the phrase 'LOG_AUDIO_TARGET_START'
@@ -123,7 +123,7 @@ left_stimuli = [
 
 ### Dealing with multiple coordinate systems {#sec-coord-sys}
 
-The gaze data contained in `audio_df_list` provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issues with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]^[The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.]. The functions `shift_coordinate_system` and `shift_coordinate_system_single` were defined for this purpose. The function `shift_coordinate_system` accepted a dictionary of coordinates while the function `shift_coordinate_system_single` accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.
+The gaze data contained in `audio_df_list` provided the coordinates where the participant was fixating at a given timestamp but for our task we needed to know which stimulus the participant was fixating at. The coordinates of the grid boxes were noted from the OpenSesame experiment UI. But one issue with this data is that these coordinates had the origin at the center of the screen whereas the gaze data had the origin at the top left corner of the screen. So, the coordinates of the grid boxes were converted to the coordinate system of the gaze data and then scaled to the range [0, 1]^[The scaling is performed with regard to the resolution of a screen resolution of 1920x1080. Hence, a maximum value of 1 along height and width correspond to 1080 and 1920 respectively.]. The functions `shift_coordinate_system` and `shift_coordinate_system_single` were defined for this purpose. The function `shift_coordinate_system` accepted a dictionary of coordinates while the function `shift_coordinate_system_single` accepted a single set of coordinates (tuple). The functions returned the shifted coordinates.
 
 ```python
 # shift the origin from (0, 0) to (-960, 540)
@@ -141,8 +141,7 @@ def shift_coordinate_system_single(coord):
     coord = (coord[0] / 1920, coord[1] / 1080)
     return coord
 ```
-
-The `shift_coordinate_system` function can convert OpenSesame UI coordinates to the cartesian coordinate system (origin on the bottom left corner) and scale them to the range `[0, 1]`. The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system in order to enable comparison with the transformed OpenSesame UI coordinates, the function `shift_coordinate_system_top_left_to_bottom_left` was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as *matplotlib* and *seaborn*. 
+ The gaze data acquired from the GP3 eye tracker follows a different coordinate system. The origin of the gaze data coordinate system is at the top left corner of the screen. Additionally, the y-axis is inverted, meaning that the y-coordinate increases as the participant looks down. In order to convert the gaze data to the cartesian coordinate system and to enable comparison with the transformed OpenSesame UI coordinates, the function `shift_coordinate_system_top_left_to_bottom_left` was defined. The scaled version of the cartesian coordinates was chosen in order to enable use with plotting libraries such as *matplotlib* and *seaborn*. 
 
 ```python
 def shift_coordinate_system_top_left_to_bottom_left(x, y):
@@ -193,7 +192,7 @@ ax.text(
 )
 ```
 
-2. Fixation elements: These elements are plotted in order to indicate the fixations of the participants. As indicated in the code block below, the matplotlib scatter function is used.
+2. Fixation elements: These elements are plotted in order to indicate the fixations of the participants. As indicated in the code block below, the matplotlib `scatter` function is used.
 
     ```python
     # new_fpog_x and new_fpog_y are the x and y coordinates of the fixations
@@ -202,8 +201,7 @@ ax.text(
 
 ::: {.callout-note}
 ## Note:
-The fixation plots can be generated by running the script `generate_fixation_plots.py` in the `src` directory. 
-<!-- TODO: refactor this note if the location of the script is altered -->
+The fixation plots can be generated by running the script `create_fixation_plots.py` in the `/src` directory. 
 :::
 
 ## Deduce location of fixations
@@ -262,11 +260,12 @@ logger_df["left"] = [
 
 ![The newly added columns `top`, `right`, `bottom` and `left` (highlighted in red) contain the names of the stimuli at the top, right, bottom and left positions of the grid respectively for each trial. The values of these columns were determined using `stimuli_loc_dict` dictionary and the existing columns of `logger_df` (highlighted in blue).](./img/combine-cols.png){#fig-combine-cols width=650}
 
-These new column were filled by the names of the stimuli but we are interested in the stimulus type. The next step was to add additional columns to the `logger_df` dataframe that contained the type of stimuli. The columns `top_type`, `right_type`, `bottom_type` and `left_type` were added to the `logger_df` dataframe. The values of these columns were populated by checking if the stimulus name was the same as the name of the referent, distractor, rhyme or cohort. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
+These new columns were filled by the names of the stimuli but we are interested in the stimulus type. The next step was to add additional columns to the `logger_df` dataframe that contained the type of stimuli. The columns `top_type`, `right_type`, `bottom_type` and `left_type` were added to the `logger_df` dataframe. The values of these columns were populated by checking if the stimulus name was the same as the name of the referent, distractor, rhyme or cohort. The code block below shows how the contents of the `logger_df` were utilized to fill the columns `top_type`, `right_type`, `bottom_type` and `left_type`.
 
 ```python
-# create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and populate them with the type of stimuli
-# by checking if the stimuli is a referent, distractor, rhyme or cohort
+# create columns 'top_type', 'right_type', 'bottom_type', 'left_type' and 
+# populate them with the type of stimuli by checking if the stimuli is 
+# a referent, distractor, rhyme or cohort
 logger_df['top_type'] = logger_df.apply(lambda row: 'referent' 
         if row['top'] == row['referent'] else 'distractor' 
         if row['top'] == row['distractor'] else 'rhyme' 
@@ -283,7 +282,7 @@ logger_df['left_type'] = logger_df.apply(lambda row: 'referent'
 
 Now every fixation could be mapped to a stimulus type i.e. whether the participant was fixating on the referent, distractor, rhyme or cohort. Although all required data for the mapping was available, the mapping was actually performed by the function `get_seen_stimuli_type` that loops through the rows of the `logger_df` dataframe and returns the stimulus type that the participant was fixating on. This function modified the `seen` column of the `audio_df_valid_fixation` dataframe so that it now contained the stimulus type that the participant was fixating on.
 
-## Issue of unequal entries per trial
+## Issue of unequal entries per trial {#sec-unequal-entries}
 
 The task of the final analysis plot is to visualize the proportion of fixations on the each stimulus type across trials and all participants. In order to create the plot, each trial must have equal number of data points. But the number of data points per trial is not equal, the number is dependent on the number of **valid** fixations made by the participant. 
 
@@ -325,7 +324,8 @@ The `duration_thresholds` array contains the time thresholds for each bin.
 The overall trial duration was calculated by averaging the trial duration across all trials and across all participants.
 :::
 
-For determining the duration of each trial, the timestamp of the first fixation and the timestamp of the last fixation were used. The difference between these two timestamps was calculated and this was the duration of the trial. This duration was also used in the previous section to compare the trial durations for each condition number.
+For determining the duration of each trial, the timestamp of the first fixation and the last fixation were used. The difference between these two timestamps was calculated and this was the duration of the trial. This duration was also used in the previous 
+@sec-unequal-entries to compare the trial durations for each condition number.
 
 ```python
 first_fixation_time = []
@@ -342,6 +342,7 @@ logger_df['duration'] = logger_df['last_fixation_time'] - logger_df['first_fixat
 ```
 
 After the bin thresholds were determined, the data points were binned into these thresholds. One of the most important column of the `logger_df` dataframe was the  `seen` column that contained the name of the type of stimulus that was fixated on by the participant. During binning, the `seen` column values of entries belonging to the same bin are replaced by a single value. The value is determined by the following rules:
+
 * First, the values `centre` and `outside` are replaced by `NA` (empty string).
 * If the bin contains no values, the seen value is set to `NA`.
 * If the bin contains only one value, the seen value is set to that value.
@@ -374,7 +375,7 @@ rhyme_competitor_sets_cond = [8, 9, 10]
 distractor_competitor_sets_cond = [11, 12]
 ```
 
-As per the conditions, the instances of `rhyme` in the `seen` column were replaced by `distractor` for the trials with condition numbers belonging to the cohort competitor sets.
+As per the conditions (see @sec-conditions), the instances of `rhyme` in the `seen` column were replaced by `distractor` for the trials with condition numbers belonging to the cohort competitor sets.
 
 ```python
 count_df.loc[
@@ -414,7 +415,7 @@ The groupby function was then used to group the rows by the columns `bin_start`,
 
 ### Implementing the conditions of the analysis plot
 
-The final plot consisted of lines for the referent, cohort, rhyme and distractor stimuli. As per the specification of the analysis plot, the plot for the referent stimuli was created using the fixation data from three competitor sets (full competitor set, cohort competitor set and rhyme competitor set). The plot for the cohort stimuli was created using the data only from the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using data only from the full competitor sets and the rhyme competitor sets. 
+The final plot consisted of curves for the referent, cohort, rhyme and distractor stimuli. As per the specification of the analysis plot, the plot for the referent stimuli was created using the fixation data from three competitor sets (full competitor set, cohort competitor set and rhyme competitor set). The plot for the cohort stimuli was created using the data only from the full competitor sets and the cohort competitor sets and the plot for the rhyme stimuli was created using data only from the full competitor sets and the rhyme competitor sets. 
 
 In order to implement these requirements, the dataframe `one_hot_count_df` was sliced to form three different dataframes, each corresponding to the three competitor sets. The dataframes were named `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`. The dataframe `full_competitor_sets_df` contained the data from the full competitor sets. The dataframe `cohort_competitor_sets_df` contained the data from the full competitor sets and the cohort competitor sets. The dataframe `rhyme_competitor_sets_df` contained the data from the full competitor sets and the rhyme competitor sets. The dataframes were created by filtering the rows of the `one_hot_count_df` dataframe based on the condition numbers of the competitor sets.
 
@@ -443,7 +444,7 @@ referent_calc_sets = pd.concat(
 
 Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
 
-The fixation counts for these dataframes were not the same as those obtained from the `grouped_time_bins_df` dataframe. This is because the data contained in the dataframes `referent_calc_sets`, `cohort_calc_sets` and `rhyme_calc_sets` were a subset of the data contained in the `grouped_time_bins_df` dataframe. While the `grouped_time_bins_df` dataframe contained the fixation counts disregarding the conditions necessary for the analysis.
+The fixation counts for these dataframes were not the same as those obtained from the `grouped_time_bins_df` dataframe. This is because the data contained in the dataframes `referent_calc_sets`, `cohort_calc_sets` and `rhyme_calc_sets` were a subset of the data contained in the `grouped_time_bins_df` dataframe, while the `grouped_time_bins_df` dataframe contained the fixation counts disregarding the conditions necessary for the analysis.
 
 Therefore, the groupby function for calculating the sum of the fixation counts was applied to these dataframes as well. The idea was to update these stimulus fixation counts (along with the total counts) in the `grouped_time_bins_df` dataframe. 
 
@@ -504,10 +505,6 @@ groupby_time_bins_df["seen_cohort"] = groupby_time_bins_df.apply(
     else 0,
     axis=1,
 )
-
-# special case for distractor competitor sets
-val_count = groupby_time_bins_df["val_count"].values
-
 groupby_time_bins_df["seen_distractor"] = groupby_time_bins_df.apply(
     lambda x: x["seen_distractor"] / x["val_count"] if x["val_count"] != 0 else 0,
     axis=1,
@@ -586,7 +583,7 @@ ax.plot(
 )
 ```
 
-A vertical dashed line was drawn at the point of average audio offset. The average audio offset was calculated by averaging the audio offset for all audio stimulus.
+A vertical dashed line was drawn at the point of average audio offset. The average audio offset was calculated by averaging the audio offset for all audio stimuli.
 
 ```python
 # draw a vertical line at average_audio_stimuli_offset, do not add to legend
@@ -642,12 +639,12 @@ After the data from all participants was aggregated, the final analysis plot was
 
 ::: {.callout-important}
 ## Important:
-The audio stimuli used in our experiments are longer in duration than those used in the original paper (see @sec-no-relicate). As a result of this, the inference events are not observed at the same time as in the original paper. The inference events are observed at a later time in our experiments.
+The audio stimuli used in our experiments are longer in duration than those used in the reference paper (see @sec-no-relicate). As a result of this, the inference events are not observed at the same time as in the reference paper. The inference events are observed at a later time in our experiments.
 :::
 
-The analysis plot from the original paper is shown in @fig-original-plot for comparison. 
+The analysis plot from the reference paper is shown in @fig-original-plot for comparison. 
 
-![The analysis plot from the original paper.](./img/ref_graph.png){#fig-original-plot width=350}
+![The analysis plot from the reference paper.](./img/ref_graph.png){#fig-original-plot width=350}
 
 ::: {.callout-note}
 ## Note:
@@ -656,14 +653,14 @@ The timestamps in the following section refer to the timestamps in our analysis 
 
 * In the 0 to 400 ms interval, the fixation probabilities appear to be random. This is because the participants have not yet heard the audio stimulus and hence have not yet decided which stimulus to fixate on. No specific trend is observed at this point.
 
-* In the 400 to 800 ms interval, there is a increase in the number of fixations on the referent and the cohort stimuli. 
+* In the 400 to 800 ms interval, there is a increase in the number of fixations on the referent and the cohort stimulus. 
 
-* The curve for the referent stimuli separates from the curve for the cohort stimuli in the 800 to 1000 ms interval.
+* The curve for the referent stimulus separates from the curve for the cohort stimulus in the 800 to 1000 ms interval.
 
-* Starting from 600 ms, the fixation probabilities for the rhyme stimuli start to increase. 
+* Starting from 600 ms, the fixation probabilities for the rhyme stimulus start to increase. 
 
-* Beyond the 1000 ms mark, the referent line starts to peak, leaving all the other competitors behind. At this point in the trial, the participant has identified the audio stimulus and has decided to fixate on the referent stimuli.
+* Beyond the 1000 ms mark, the referent curve starts to peak, leaving all the other competitors behind. At this point in the trial, the participant has identified the audio stimulus and has decided to fixate on the referent stimulus.
 
-* One major deviation that was observed in our analysis plot was that the fixation probabilities for the distractor stimuli didn't decrease to around 0 towards the end of the trial. A small peak was observed in the distractor line at around 1400 ms. This is not observed in the original paper.
+* One major deviation that was observed in our analysis plot was that the fixation probabilities for the distractor stimulus didn't decrease to around 0 towards the end of the trial. A small peak was observed in the distractor curve at around 1400 ms. This is not observed in the reference paper.
 
-Overall, the analysis plot obtained from our experiments is similar to the analysis plot obtained from the original paper. The trends described in the above points are also observed in the analysis plot from the original paper. 
+Overall, the analysis plot obtained from our experiments is similar to the analysis plot obtained from the reference paper. The trends described in the above points are in both the plots. 
