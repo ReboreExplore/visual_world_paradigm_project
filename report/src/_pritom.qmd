@@ -47,7 +47,7 @@ audio_df_list.append(selected_df.iloc[audio_start_index : audio_end_index + 1])
 
 ## Extracting trial information {#sec-trial-info}
 
-### Exploring the logs in the `.tsv` files
+### Exploring the logs in the `.tsv` files {#sec-logs}
 The logs present in the `.tsv` files are important for our analysis. Apart from containing the data recordings from the experiments, they also contain the information about the individual trials. In the text block below, the logs for a sample trial are shown. 
 
 ```text

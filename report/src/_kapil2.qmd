@@ -1,4 +1,4 @@
-## Conditions
+## Conditions {#sec-conditions}
 
 During each trial, participants were presented with four line drawings on a computer screen. They were instructed to click on one of the objects using a computer mouse. The four combinations of objects were as follows:
 
@@ -76,11 +76,11 @@ In accordance with these criteria, data from 3 participants were excluded due to
 
 Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity and quality standards.
 
-## Coordinate System
+## Managing Coordinate Systems
 
 OpenSesame/Opengaze use different coordinate systems, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
 
-## Fixation Plots (Spatial View){#sec-fixation-plots}
+## Fixation Plots (Spatial view){#sec-fixation-plots}
 For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
 
 Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. @fig-t2 and @fig-t6 , show the plot of trials of one of the participant.
