@@ -23,19 +23,19 @@ Within each competitor set, every item was utilized as the target an equal numbe
 ## Randomization
 In addition to making sure all items appeared equally as often as targets (in order to preclude frequency-based strategies by participants), the overall frequency of each item was also controlled. A randomization alogirthm was implemented that made sure following 3 randomizations were achieved. 
 
-1. /textbf{Order Randomization}: The order of the trials are
+1. \textbf{Order Randomization}: The order of the trials are
 randomized across participants.
 
-2. /textbf{Stimuli Distribution}: Each stimuli is shown
+2. \textbf{Stimuli Distribution}: Each stimuli is shown
 approx. equal number of times.
 
-3. /textbf{Target Distribution}: Each stimuli is chosen as the target an approx. equal number of times.
+3. \textbf{Target Distribution}: Each stimuli is chosen as the target an approx. equal number of times.
 
-@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 23 stimulis chosen for the experiment, each stimuli could get 36*4/23 = 6.26 i.e. either 6 or 7 appearances.
+@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimuli. Since there were total 22 stimuli chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
 
 ![Plot of the number of stimuli appearances](img/no_of_stimuli_app.png){#fig-no-of-stimuli width=600 fig-align="center"}
 
-@fig-no-of-targets shows the number of target appearances in 36 trials. Since there 23 stimulis, each stimuli could get 36/23 = 1.56 i.e. either 1 or 2 apppearances as a target.
+@fig-no-of-targets shows the number of target appearances in 36 trials. Since there 22 stimuli, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
 
 ![Plot of the number of target appearances](img/no_of_target_app.png){#fig-no-of-targets width=600 fig-align="center"}
 
@@ -72,13 +72,13 @@ to label fixations.
 began.
 3. The participant never fixated on or selected the correct target.
 
-In accordance with these criteria, data from 3 participants were excluded due to quality concerns. To facilitate thorough analysis, data logs were incorporated, documenting the commencement of auditory stimuli as "LOG_AUDIO_TARGET_START" and extending up to the conclusion marked by the mouse click response as "CLICK_RESPONSE_END". This approach aided in identifying trial durations and associating data with specific trials.
+In accordance with these criteria, data from 3 participants were excluded due to quality concerns. To facilitate thorough analysis, data logs were incorporated, documenting the commencement of auditory stimuli as `LOG_AUDIO_TARGET_START` and extending up to the conclusion marked by the mouse click response as `CLICK_RESPONSE_END`. This approach aided in identifying trial durations and associating data with specific trials.
 
 Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity and quality standards.
 
 ## Coordinate System
 
-OpenSesame/ Opengaze uses a different coordinate system, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
+OpenSesame/Opengaze use different coordinate systems, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
 
 ## Fixation Plots (Spatial View){#sec-fixation-plots}
 For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.

@@ -5,7 +5,7 @@ author:
   - name: Pritom Gogoi (3643765)
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
-  - name: Manpa Barman ()
+  - name: Manpa Barman (3641301)
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
   - name: Kapil Chander Mulchandani ()
@@ -139,7 +139,7 @@ The experiment follows the following structure in OpenSesame:
 
 1. **Introduction to the experiment**: It contains some preliminary instructions for the participants to understand the experiment. It also mentions that each progression will require a mouse click. The foreground color of the text is set to black and the background color is set to white throughout the experiment. @fig-intro-src shows the introduction to the experiment.
 
-![Introduction](img/intro_script.png){#fig-intro-src width=50%}
+![Introduction section of the Opensesame experiment](img/intro_script.png){#fig-intro-src width=50%}
 
 2. **Initialization of variables**: The position variables (Top, Buttom, Left and Right) are initialized and are used to set the position of the objects in the grid. The pygaze module is also intialized to record the eye movements of the participants.
 
@@ -239,36 +239,40 @@ The function analyzes an audio snippet to find the duration of the silence at th
 ## Challenges
     
 1. **Balancing of trials**: 
-    - **Challenge**: Our stimuli had a total of _23 unique` visual stimuli_, _12 different conditions_ and _4 different types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
+    - **Challenge**: Our stimuli had a total of _23 unique visual stimuli_, _12 different conditions_ and _4 different stimuli types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
     - **Solution**: Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
 
-2. **Random ‘freezes’ during experiment** : 
+2. **Random 'freezes' during experiment** : 
     - **Challenge**: The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.
     
     - **Trials**: 
 
-        1. While True loop
+        1. `While True` loop: 
+
         ```python
             while True:
-            gazepos = eyetracker.sample()
+                gazepos = eyetracker.sample()
         ```
-        2. Periodic sampling
+        2. Periodic sampling:
+
         ```python
 		    while True:
                 if clock.time() - check_timer > diff:
                     gazepos = eyetracker.sample()
         ```
-        3. Switching backend to PsychoPy
+        3. Switching backend to PsychoPy:
+
                 Made the sample rates of all the audio samples equal to work with the PsychoPy backend.
         
-        4. Number of trials
+        4. Number of trials:
+
                 Reduced the number of trials to 24 from 12 to reduce the time of the experiment but the problem still persisted.
 
     - **Solution**: Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
 
 3. **Eye tracker calibration**:
     - **Challenge**: The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
-    - **Solution**: THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
+    - **Solution**: The number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
 
 ## Limitations}
 
@@ -290,7 +294,7 @@ This projects although replicates the results of the reference paper to a great 
 
 # Conclusion
 
-In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Paul D. Allopenna, James S. Magnuson and  Michael K. Tanenhaus in their paper \enquote{Tracking the Time Course of Spoken Word Recognition Using Eye Movements: Evidence for Continuous Mapping Models} and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
+In this project we attempted to investigate the dynamics of predictive language processing through the visual world paradigm. We tried to replicate the experiment conducted by Allopenna, Magnuson and Tanenhaus [@allopenna_tracking_1998] and validate the hypothesis that the existence of similar sounding words leads to an increased number of fixations on them, reflecting the participants' evolving predictions of the upcoming word. We were able to replicate the results of the original study and thus validate the hypothesis, keeping into account the limitations of our study.
 
 We summarize our conclusions as follows:
 
@@ -303,7 +307,7 @@ We summarize our conclusions as follows:
 4. Our results suggest that as the spoken word unfolds over time, the listener gradually narrows down the set of candidate words based on the contextual information. This competition among candidate words occurs until a single word is identified or a clear winner emerges.
 
 
-# Contributions
+# Contribution Table
 
 | **Task**                                 | **Pritom** | **Kapil** | **Manpa** |
 |------------------------------------------|:----------:|:---------:|:---------:|
@@ -323,5 +327,6 @@ We summarize our conclusions as follows:
 
 - x: main contributor
 - o: supporting contributor
+
 
 # References {.unnumbered}

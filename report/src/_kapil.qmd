@@ -5,7 +5,7 @@ For our study, we required uncomplicated and easily comprehensible stimulus imag
 
 ![Line Drawing of Pickle Stimuli](../../stimuli/image-stimuli/pickle.png){#fig-pickle-stim width=150}
 
-Based on the paper we referred, we have also selected the similar stimulis for our experiment to replicate it. The experiment uses eight 'referent - cohort - rhyme - unrelated' sets and thus intoal we require 32 stimulis. Below are the 8 sets of stimulis:
+Based on the paper we referred, we have also selected the similar stimuli for our experiment to replicate it. The experiment uses eight 'referent - cohort - rhyme - unrelated' sets and thus intoal we require 32 stimuli. Below are the 8 sets of stimuli:
 
 1. beaker, beetle, speaker, dolphin
 2. carrot, carriage, parrot, nickel
