@@ -431,8 +431,14 @@ rhyme_competitor_sets_df = one_hot_count_df[
 The dataframe `referent_calc_sets` was created by concatenating the dataframes `full_competitor_sets_df`, `cohort_competitor_sets_df` and `rhyme_competitor_sets_df`.
 
 ```python
-referent_calc_sets = pd.concat([one_hot_count_df_full_competitor_sets, one_hot_count_df_cohort_competitor_sets, 
-one_hot_count_df_rhyme_competitor_sets], ignore_index=True)
+referent_calc_sets = pd.concat(
+    [
+        one_hot_count_df_full_competitor_sets,
+        one_hot_count_df_cohort_competitor_sets,
+        one_hot_count_df_rhyme_competitor_sets,
+    ],
+    ignore_index=True,
+)
 ```
 
 Similarly, the dataframes `cohort_calc_sets` and `rhyme_calc_sets` were created.
@@ -443,11 +449,17 @@ Therefore, the groupby function for calculating the sum of the fixation counts w
 
 ```python
 # groupby sum for referent_calc_sets
-groupby_time_bins_df_referent = referent_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+groupby_time_bins_df_referent = (
+    referent_calc_sets.groupby(["bin_start", "bin_end"]).sum().reset_index()
+)
 # groupby sum for cohort_calc_sets
-groupby_time_bins_df_cohort = cohort_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+groupby_time_bins_df_cohort = (
+    cohort_calc_sets.groupby(["bin_start", "bin_end"]).sum().reset_index()
+)
 # groupby sum for rhyme_calc_sets
-groupby_time_bins_df_rhyme = rhyme_calc_sets.groupby(['bin_start', 'bin_end']).sum().reset_index()
+groupby_time_bins_df_rhyme = (
+    rhyme_calc_sets.groupby(["bin_start", "bin_end"]).sum().reset_index()
+)
 ```
 
 The columns of interest from these dataframes were extracted and updated in the `grouped_time_bins_df` dataframe. The columns of interest, the dataframes from which they were extracted and the columns that were updated in the `grouped_time_bins_df` dataframe are shown in the table below:
@@ -597,3 +609,61 @@ ax.text(
 
 ## Analysis of the obtained results
 
+### Validity of the analysis plots
+
+For the final analysis of the gaze data, the fixation probabilities over time for each of the stimulus types were plotted. The plot was created by aggregating the data from all participants. Individual analysis plot consisting of fixation probabilities over time for individual participants were first created to ascertain that the data was valid. If discrepancies were found in the individual plots, the data for that participant was discarded. The data from the remaining participants was aggregated and the final analysis plot was created.
+
+In the initial stages of the trial, all the fixation probabilities should be close to zero. This is because the participant has not yet heard the audio stimulus and hence has not yet decided which stimulus to fixate on. As the trial progresses, the fixation probabilities should increase. The fixation probabilities for the referent stimuli should increase the most. This is because the participant is expected to fixate on the referent stimuli. Moreover, the increase in the fixation probabilities should not be sudden. Sudden increase would indicate that the experiment was not conducted properly. Examples of valid analysis plots are shown in @fig-valids.
+
+::: {.callout-note}
+## Note:
+The lines in the analysis plots can be identified by their markers. Refer to the legends in the plots.
+:::
+
+
+::: {#fig-valids layout-nrow=2}
+
+![Participant 12](./img/sub-12-plot.png){#fig-valid-12 width=550}
+
+![Participant 14](./img/sub-14-plot.png){#fig-valid-14 width=550}
+
+Examples of valid analysis plots
+:::
+
+See @fig-invalid-plot for an example of an invalid analysis plot. The fixation probabilities for the referent stimuli increase suddenly. This indicates that the experiment was not conducted properly.
+
+![An invalid analysis plot. Obtained from the data of participant 9.](./img/sub-9-plot.png){#fig-invalid-plot width=550}
+
+After the data from all participants was aggregated, the final analysis plot was created. See @fig-final-plot.
+
+![The final analysis plot.](./img/final-plot.png){#fig-final-plot width=600}
+
+### Inference 
+
+::: {.callout-important}
+## Important:
+The audio stimuli used in our experiments are longer in duration than those used in the original paper (see @sec-no-relicate). As a result of this, the inference events are not observed at the same time as in the original paper. The inference events are observed at a later time in our experiments.
+:::
+
+The analysis plot from the original paper is shown in @fig-original-plot for comparison. 
+
+![The analysis plot from the original paper.](./img/ref_graph.png){#fig-original-plot width=350}
+
+::: {.callout-note}
+## Note:
+The timestamps in the following section refer to the timestamps in our analysis plot. 
+:::
+
+* In the 0 to 400 ms interval, the fixation probabilities appear to be random. This is because the participants have not yet heard the audio stimulus and hence have not yet decided which stimulus to fixate on. No specific trend is observed at this point.
+
+* In the 400 to 800 ms interval, there is a increase in the number of fixations on the referent and the cohort stimuli. 
+
+* The curve for the referent stimuli separates from the curve for the cohort stimuli in the 800 to 1000 ms interval.
+
+* Starting from 600 ms, the fixation probabilities for the rhyme stimuli start to increase. 
+
+* Beyond the 1000 ms mark, the referent line starts to peak, leaving all the other competitors behind. At this point in the trial, the participant has identified the audio stimulus and has decided to fixate on the referent stimuli.
+
+* One major deviation that was observed in our analysis plot was that the fixation probabilities for the distractor stimuli didn't decrease to around 0 towards the end of the trial. A small peak was observed in the distractor line at around 1400 ms. This is not observed in the original paper.
+
+Overall, the analysis plot obtained from our experiments is similar to the analysis plot obtained from the original paper. The trends described in the above points are also observed in the analysis plot from the original paper. 

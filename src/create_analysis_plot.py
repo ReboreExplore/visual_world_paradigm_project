@@ -18,7 +18,7 @@ def main():
     bins_bounds = np.linspace(0, avg_duration_agg, N, endpoint=True)
 
     # subject numbers to be included in the analysis
-    relevant_csvs = [0, 2, 69, 5, 6, 7, 11, 12, 13, 14, 15, 16]
+    relevant_csvs = [0, 2, 5, 6, 7, 11, 12, 13, 14, 15, 16, 69]
 
     # path to csv files
     csv_path = "./intermediate_csv/"
