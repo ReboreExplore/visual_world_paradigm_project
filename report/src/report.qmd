@@ -224,62 +224,59 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 ## What we did not replicate from the reference paper? {#sec-no-relicate}
 
-1. Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to as it was more comprehensible for the participants.
-    - The average duration was calculated by taking the average of the duration of all the audio stimuli which can be found [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/analysis).
+1. Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to make it more comprehensible for the participants.
+    - The average duration was calculated by taking the average of the duration of all the audio stimuli. The calculation can be found [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/analysis).
 
 2. Number of trials for each participant was reduced from 96 to 36. It was done to reduce the time of the experiment and to avoid recalibration of the eye tracker in between the experiment.
 
-3. Audio stimuli were digital (instead of analog). It was done to avoid any noise in the audio stimuli and also to have no influence of the experimenterś accent on the participants.
+3. Audio stimuli were digital (instead of analog). It was done to avoid any noise in the audio stimuli and also to have no influence of the speaker's accent on the participants.
 
-4. Participants respond with mouse clicks instead of _drag-and-drop to the correct box_ function as does not support drag-and-drop functionality.
+4. Participants respond with mouse clicks instead of _drag-and-drop to the correct box_ function as OpenSesame does not support drag-and-drop functionality.
 
-5. Use of a 3x3 grid instead of 5x5 as we didin't require the additional boxes for the drag-and-drop functionality as in the original paper.
+5. Use of a 3x3 grid instead of 5x5 as we didin't require the additional boxes for the drag-and-drop functionality as in the reference paper.
 
-6. No calibration functionality after each trial was added until the participant was moving their head or eyes too much.
+6. No calibration functionality was added within a trial. No recalibration was performed unless the participant moved their head or eyes too much.
 
 ## Challenges
     
 1. **Balancing of trials**: 
-    - **Challenge**: Our stimuli had a total of _23 unique visual stimuli_, _12 different conditions_ and _4 different stimuli types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and each type and such that each object appeared equal number of times. 
-    - **Solution**: Although we started tith a python script to generate the trials, we had to revert to manual creation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
+    - **Challenge**: Our stimuli had a total of _23 unique visual stimuli_, _12 different conditions_ and _4 different stimuli types_. Adhering to proper randomization and balancing of trials was a challenge as we had to ensure that each participant saw the same number of trials for each condition and also of each type and such that each stimuli object appeared an equal number of times. 
+    - **Solution**: Although we started with a python script to generate the trials, we had to revert to manual formation of trials as the script was not able to generate balanced trials which was a primary requirement for our experiment.
 
 2. **Random 'freezes' during experiment** : 
-    - **Challenge**: The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment from the beginning. The most frequent freezes was found on the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was looking at the center of the screen.
+    - **Challenge**: The experiment encountered random freezes during its run. The freezes were random and could not be reproduced. This was a major challenge as we had to restart the experiment. The most frequent freezes were found during the _gaze contingency_ check, which allowed the experiment to move forward only when the participant was fixating at the center of the screen.
     
-    - **Trials**: 
+    - **Attempts to fix**: 
 
-        1. `While True` loop: 
+        1. Replacing `While True` loop with periodic sampling
 
         ```python
             while True:
                 gazepos = eyetracker.sample()
         ```
-        2. Periodic sampling:
+
+        The above code was replaced with the following code to sample the eye tracker at a fixed interval of `diff`.
 
         ```python
 		    while True:
                 if clock.time() - check_timer > diff:
                     gazepos = eyetracker.sample()
         ```
-        3. Switching backend to PsychoPy:
-
-                Made the sample rates of all the audio samples equal to work with the PsychoPy backend.
+        2. Switching backend to PsychoPy: set equal sample rates of all the audio samples to make it work with the PsychoPy backend.
         
-        4. Number of trials:
+        3. Number of trials: reduced the number of trials to 24 from 36 to reduce the time of the experiment but the problem still persisted. This didn't help so it was reverted back to 36 trials.
 
-                Reduced the number of trials to 24 from 36 to reduce the time of the experiment but the problem still persisted.
-
-    - **Solution**: Removal of gaze contingent features and instead introducing a delay to ensure that the participants are looking at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
+    - **Solution**: Removing gaze contingent features and instead introducing a delay to ensure that the participants are fixating at the center of the screen before the spoken instruction is played. This was implemented by introducing a delay of 1.1s after the prompt.
 
 3. **Eye tracker calibration**:
-    - **Challenge**: The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
+    - **Challenge**: The eye tracker calibration was a challenge as the participants were not able to calibrate with the eye tracker, due to many reasons like contact lenses, glasses, height of the participants, body posture, etc., during the experiment.
     - **Solution**: The number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
 
 ## Limitations
 
-1. Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus might have been biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e the participants might have been able to predict the target word based on the previous trials.
+1. Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus were biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e. the participants might have been able to predict the target word, based on the previous trials.
 
-2. Generalizability is affected as our study participants only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the  field of cognitive psychology.
+2. Generalizability is affected as the participants of our study only include university students of a specific age group, which does not fully represent the complexities and variations of real-world spoken word recognition scenarios. The results may not be applicable to other age groups or people with different educational backgrounds who might have more or less exposure to the field of cognitive psychology.
 
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
@@ -287,11 +284,11 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 This projects although replicates the results of the reference paper to a great extent, there are still some improvements that can make the results and the analysis more robust and reliable. Some of the improvements are as follows:
 
-1. More extensive study with a larger number of participants will ensure that the results are more reliable and robust. The study can be conducted with participants from different age groups and educational backgrounds to ensure that the results are more generalizable. Also the study can be conducted in different languages to prove the universality of the observed effects.
+1. Moree extensive study with a larger number of participants will ensure that the results are more generalizable. The study can be conducted with participants from different age groups and educational backgrounds. Also the study can be conducted in different languages to prove the universality of the observed effects.
 
-2. The Gazepoint eye tracker can be replaced with a more advanced eye tracker like Eyelink 1000 which can record at a higher sampling rate and thus provide more accurate results. The Eyelink 1000 eye tracker allows less head movement and thus the recording of the eye movements are more accurate most of the time.
+2. The Gazepoint GP3 eye tracker can be replaced with a more advanced eye tracker like Eyelink 1000 which can record at a higher sampling rate and thus provide more accurate results. The Eyelink 1000 eye tracker allows less head movement due to its design and thus the recording of the eye movements are more accurate.
 
-3. The experiment requires us to study the fixation behavior of the participants. Thus, better optimized fixation detection algorithms can be used and even integrated to the open source software like OpenSesame to make the analysis even better.
+3. The experiment requires us to study the fixation behavior of the participants. Therefore, better optimized fixation detection algorithms can be used and even integrated to the open source software like OpenSesame to improve the analysis.
 
 # Conclusion
 
