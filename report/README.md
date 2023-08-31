@@ -13,7 +13,7 @@ Check the doc at <https://quarto.org/> and simply install Quarto.
  quarto install extension nmfs-opensci/quarto_titlepages
  ```
 > [!NOTE]  
-> Install the extention in the same folder where you have the main quarto project files i.e the src folder.
+> Install the extension in the same folder where you have the main quarto project files i.e., the `report/src` folder.
 
 ## Requirements
 
@@ -33,4 +33,4 @@ make # both pdf and html
 ```
 
 
-The resulting webpage is in `docs/report.html`, which can be used directly with Github Pages. The resulting pdf is at `docs/report.pdf`.
+The resulting webpage is in `docs/index.html`, which can be used directly with Github Pages. The resulting pdf is at `docs/report.pdf`.
