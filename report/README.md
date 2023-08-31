@@ -13,7 +13,7 @@ Check the doc at <https://quarto.org/> and simply install Quarto.
  quarto install extension nmfs-opensci/quarto_titlepages
  ```
 > [!NOTE]  
-> Install the extention in the same folder where you have the main quarto project files i.e the src folder.
+> Install the extension in the same folder where you have the main quarto project files i.e., the `report/src` folder.
 
 ## Requirements
 
