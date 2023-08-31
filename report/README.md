@@ -33,4 +33,4 @@ make # both pdf and html
 ```
 
 
-The resulting webpage is in `docs/report.html`, which can be used directly with Github Pages. The resulting pdf is at `docs/report.pdf`.
+The resulting webpage is in `docs/index.html`, which can be used directly with Github Pages. The resulting pdf is at `docs/report.pdf`.
