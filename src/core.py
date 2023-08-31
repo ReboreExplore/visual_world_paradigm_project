@@ -1,6 +1,7 @@
 import re
 
 import pandas as pd
+from tqdm.auto import tqdm
 
 from utils import get_relevant_rect_value
 
@@ -132,7 +133,7 @@ def modify_seen_column_for_conditions(count_df):
 def create_count_df(logger_df, duration_thresholds, audio_df_valid_fixation):
     count_df = pd.DataFrame(columns=['trial_number', 'condition', 'start_time', 'end_time', 'bin_start', 'bin_end', 'real_val_count', 'val_count', 'seen'])
 
-    for idx, row in logger_df.iterrows():
+    for idx, row in tqdm(logger_df.iterrows(), total=logger_df.shape[0]):
         start_offset = row['first_fixation_time']
         for i in range(N - 1):
             start_val = duration_thresholds[i] + start_offset
@@ -151,6 +152,7 @@ def create_count_df(logger_df, duration_thresholds, audio_df_valid_fixation):
             # append the values to count_df using pd.concat
             concat_df = pd.DataFrame([[idx, row['condition'], start_val, end_val, duration_thresholds[i], duration_thresholds[i+1], real_val_count, val_count, seen]], columns=['trial_number', 'condition', 'start_time', 'end_time', 'bin_start', 'bin_end', 'real_val_count', 'val_count', 'seen'])
             count_df = pd.concat([count_df, concat_df], ignore_index=True)
+    return count_df
 
 def prepare_logger_df(logger_df_raw, audio_df_valid_fixation, stimuli_loc_dict):
     # extract the rows 'referant', 'cohort', 'distractor', 'target', 'count_trial_sequence', 'condition'
