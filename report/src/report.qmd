@@ -2,7 +2,7 @@
 title: "**Visual World Paradigm**"
 subtitle: "A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker"
 author:
-  - name: Pritom Gogoi ()
+  - name: Pritom Gogoi (3643765)
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
   - name: Manpa Barman ()
