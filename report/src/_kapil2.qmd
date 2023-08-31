@@ -1,6 +1,6 @@
-## Conditions
+## Conditions {#sec-conditions}
 
-During each trial, participants were presented with four line drawings on a computer screen. They were instructed to click on one of the objects using a computer mouse. The four combinations of objects were as follows:
+During each trial, participants were presented with four line drawings on a computer screen. They were instructed to click on one of the objects using a computer mouse. The four combination sets of stimuli types were as follows:
 
 1. Full Competitor Set: This set included a referent, a cohort, a rhyme, and an unrelated object (e.g., beaker, beetle, speaker, and carriage).
 
@@ -8,20 +8,20 @@ During each trial, participants were presented with four line drawings on a comp
 
 3. Rhyme Competitor Set: This set comprised a referent, a rhyme, and two unrelated objects (e.g., beaker, speaker, dolphin, and carriage).
 
-4. Unrelated Set: In this set, there was a referent and three unrelated objects (e.g., beaker, dolphin, parrot, and nickel).
+4. Unrelated Set: In this set, there was one referent and three unrelated objects (e.g., beaker, dolphin, parrot, and nickel).
 
 The illustration shown in @fig-cond-set depicts the four different types of competitor sets. 
 
 ![Conditions](img/conditions.png){#fig-cond-set width=50%,fig-align="center"}
 
-For each type of competitor set, different elements could be designated as the "target" for the trial. This determined the specific kind of lexical competition that could arise. For instance, within the full competitor set, the target could be the referent (resulting in cohort and rhyme competition), the cohort (leading to cohort competition with the referent), the rhyme (leading to rhyme competition with the referent), or the unrelated object (which was meant to eliminate competition).
+For each type of competitor set, different elements could be designated as the _target_ for the trial. This determined the specific kind of lexical competition that could arise. For instance, within the full competitor set, the referent could be the target (resulting in cohort and rhyme competition), the cohort (leading to cohort competition with the referent), the rhyme (leading to rhyme competition with the referent), or the unrelated object (which was meant to eliminate all form of competition).
 
-Within each competitor set, every item was utilized as the target an equal number of times. The number of trials i.e. 3, was the same for all conditions. The various conditions, their frequencies, and the specific items associated with them are detailed in @fig-cond-tbl.
+Within each competitor set, every item was utilized as the target an equal number of times. The number of trials was kept the same for all conditions i.e., 3 in our case. The various conditions, their frequencies, and the specific targets associated with them are mentioned in detail in @fig-cond-tbl.
 
 ![Condition Table](img/condition_table.png){#fig-cond-tbl width=50%,fig-align="center"}
 
 ## Randomization
-In addition to making sure all items appeared equally as often as targets (in order to preclude frequency-based strategies by participants), the overall frequency of each item was also controlled. A randomization alogirthm was implemented that made sure following 3 randomizations were achieved. 
+In addition to making sure all items appeared equally as often as targets (in order to preclude frequency-based strategies by participants), the overall frequency of each stimulus was also controlled. A randomization alogirthm was implemented that made sure following 3 randomizations were achieved. 
 
 1. \textbf{Order Randomization}: The order of the trials are
 randomized across participants.
@@ -31,11 +31,13 @@ approx. equal number of times.
 
 3. \textbf{Target Distribution}: Each stimuli is chosen as the target an approx. equal number of times.
 
-@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimuli. Since there were total 22 stimuli chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
+4. \textbf{Position Randomization}: The position of the stimuli in the grid box is randomized across trials.
+
+@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and 4 stimuli are displayed in each trial. Since a total of 23 stimuli were chosen for the experiment, each stimulus could get 36*4/23 = 6.26 i.e. either 6 or 7 appearances.
 
 ![Plot of the number of stimuli appearances](img/no_of_stimuli_app.png){#fig-no-of-stimuli width=600 fig-align="center"}
 
-@fig-no-of-targets shows the number of target appearances in 36 trials. Since there 22 stimuli, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
+@fig-no-of-targets shows the number of target appearances in 36 trials. Since there were 23 stimuli, each stimulus could get 36/23 = 1.565 i.e. either 1 or 2 apppearances as a target.
 
 ![Plot of the number of target appearances](img/no_of_target_app.png){#fig-no-of-targets width=600 fig-align="center"}
 
@@ -76,11 +78,11 @@ In accordance with these criteria, data from 3 participants were excluded due to
 
 Subsequently, these logged details were cross-verified, ensuring their presence for each trial. If any logs were missing, adjustments to the sampling rate were made to uphold data integrity and quality standards.
 
-## Coordinate System
+## Managing Coordinate Systems
 
 OpenSesame/Opengaze use different coordinate systems, to have a proper analysis of our collected data, coordinates need to be converted to cartesian system. This section is expanded on further in @sec-coord-sys.
 
-## Fixation Plots (Spatial View){#sec-fixation-plots}
+## Fixation Plots (Spatial view){#sec-fixation-plots}
 For data analysis and examination, fixation graphs were generated. A graph depicting FPOGX against FPOGY was crafted, including solely the samples where FPOGV equaled 1. This precaution was taken to exclusively utilize valid samples.
 
 Subsequently, a grid box representing the stimuli was incorporated, with corresponding labels for each stimuli box. Additionally, legends were introduced to the graph, encompassing information such as the Condition number, Target, and Selected Stimuli. @fig-t2 and @fig-t6 , show the plot of trials of one of the participant.
