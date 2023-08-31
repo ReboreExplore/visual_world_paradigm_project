@@ -17,7 +17,7 @@
 ## :computer: Installations
 
 Software requirements: 
-- [Python 3.7](https://www.python.org/downloads/)
+- [Python 3.9](https://www.python.org/downloads/)
 - [OpenSesame 3.3.10](https://osdoc.cogsci.nl/4.0/download/)
 
 Hardware requirements:
