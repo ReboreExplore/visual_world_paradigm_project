@@ -107,8 +107,30 @@ The data recorded during our experiments can be obtained [here](https://drive.go
 The folders `processed` and `raw` need to be placed in the `/data` folder.
 
 ## :chart_with_upwards_trend: How to run the analysis
+### Fixation plots
 
-1. 
+Run the `create_fixation_plots.py` script on the raw data recording whose fixation plot is to be viewed.
+```python
+# this runs the script for subject 12.
+# The data folder `sub-12` should exist in the given path.
+python create_fixation_plots.py --subject 12 --path ../
+```
+This step will generate the fixation plots for subject 12 in the folder `audio_target_plots_12/`.
+
+### Final analysis plot
+
+1. Run the `run_preprocessing.py` script on the raw data recording that you want to preprocess.
+ ```python
+ # this runs the script for subject 12.
+ # The data folder `sub-12` should exist in the given path.
+ python run_preprocessing.py --subject 12 --path ../
+ ```
+  This step will generate the intermediate csv file for subject 12 in the folder `intermediate_csv`.
+  
+2. Run the `create_analysis_plot.py` script to generate the final analysis plot and view it. Optionally, add `--save` flag to save it.
+ ```python
+ python create_analysis_plot.py --path ./intermediate_csv/
+ ```
 
 ## :pencil: License
 
