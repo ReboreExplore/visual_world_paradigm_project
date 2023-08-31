@@ -31,6 +31,7 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 
 ```bash
 .
+├── data # Contains the raw and processed data for the project.
 ├── docs # Contains the documentation for the project.
 │   ├── analysis
 │   └── experiment
@@ -55,8 +56,13 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 │   ├── resize_imgs.py
 │   └── run_py_for_all.sh
 ├── src # Contains all the source code for the analysis
-│   ├── generate_fixation_plots.py
-│   └── run_analysis.py
+│   ├── constants.py
+│   ├── create_analysis_plot.py
+│   ├── create_fixation_plots.py
+│   ├── utils.py
+│   ├── plots.py
+│   ├── run_preprocessing.py
+│   └── core.py
 ├──  stimuli # Contains all the stimuli files used in the experiment
 │    ├── audio-stimuli
 │    ├── grid.png

@@ -18,6 +18,7 @@ Check the doc at <https://quarto.org/> and simply install Quarto.
 ## Requirements
 
 - Working latex installation (e.g. [MikTex](https://miktex.org/download), [TinyTex](https://yihui.org/tinytex/), [TexLive](https://www.tug.org/texlive/), etc.)
+- You may need to install additional fonts from the zip file `cmu-fonts.zip` in the `report/extras` folder. 
 
 ## Usage
 

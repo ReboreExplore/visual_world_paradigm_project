@@ -280,7 +280,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 3. The study also may not fully address the universality of the observed effects across different languages as the original study as well as our replication is in English.
 
-# Future Improvements
+# Further Improvements
 
 This projects although replicates the results of the reference paper to a great extent, there are still some improvements that can make the results and the analysis more robust and reliable. Some of the improvements are as follows:
 
