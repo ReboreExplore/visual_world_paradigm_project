@@ -78,9 +78,11 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
                 verticalalignment='top', bbox=props, ha='center')
 
         fig.savefig(os.path.join(save_path, 'trial_' + str(i + 1) + '.png'))
+        # close the figure
+        plt.close(fig)
         # break
 
-def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset):
+def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset, save_fig = False):
     # plot as line plots
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(agg_df_mean['bin_start'], agg_df_mean['seen_referant'], 'ro--', label='referant')
@@ -99,9 +101,11 @@ def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset):
     ax.set_ylabel('Proportion')
     ax.set_title('Proportion of stimuli fixated over time')
     ax.legend()
-    # save the plot
-    # save_path = os.path.join('final_plots', 'final_plot_ref_target_' + str(subject_number) + '.png')
-    # plt.savefig(save_path, dpi=300)
+    if save_fig:
+        os.makedirs('final_plots', exist_ok=True)
+        # save the plot
+        save_path = os.path.join('final_plots', 'final_plot_ref_target.png')
+        plt.savefig(save_path, dpi=300)
     plt.show()
 
 def hist_num_of_entries_per_trial(audio_df_valid_fixation):

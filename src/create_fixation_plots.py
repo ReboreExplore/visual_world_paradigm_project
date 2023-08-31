@@ -16,13 +16,14 @@ from plots import (
 def main():
     ag = argparse.ArgumentParser()
     ag.add_argument("--subject", type=int, default=1, help="Subject number")
+    ag.add_argument("--path", type=str, default="./", help="Path to the data")
 
     args = vars(ag.parse_args())
 
     subject_number = args["subject"]
 
     # form the paths to the csv and tsv files
-    tsv_path = os.path.join("./sub-" + str(subject_number), "subject-" + str(subject_number) + ".tsv")
+    tsv_path = os.path.join(args["path"], "sub-" + str(subject_number), "subject-" + str(subject_number) + ".tsv")
 
     # read the tsv file
     df = pd.read_csv(tsv_path, sep='\t')

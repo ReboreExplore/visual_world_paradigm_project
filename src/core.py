@@ -1,3 +1,4 @@
+import os
 import re
 
 import pandas as pd
@@ -22,7 +23,7 @@ def prepare_agg_df(csv_path, relevant_csvs, bins_bounds):
     agg_df = pd.DataFrame()
     for csv in relevant_csvs:
         filename = "sub-" + str(csv) + ".csv"
-        df = pd.read_csv(csv_path + filename)
+        df = pd.read_csv(os.path.join(csv_path, filename))
         # replace the bin_start and bin_end with that of bounds_df
         df['bin_start'] = bounds_df['bin_start']
         df['bin_end'] = bounds_df['bin_end']
