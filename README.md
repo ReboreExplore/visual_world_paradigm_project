@@ -113,6 +113,6 @@ It is necessary to follow the guidelines mentioned below to ensure that the expe
 Give a ⭐️ if this project helped you!
 
 ## Resources
-1. https://people.ku.edu/~sjpa/Classes/CBS592/EyeTracking/visual-world-paradigm.html
-2. https://osdoc.cogsci.nl/3.3/tutorials/visual-world/
-3. https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584
+1. https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584
+2. https://people.ku.edu/~sjpa/Classes/CBS592/EyeTracking/visual-world-paradigm.html
+3. https://osdoc.cogsci.nl/3.3/tutorials/visual-world/
