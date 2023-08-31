@@ -203,7 +203,7 @@ The stimuli collected needed to be preprocessed before they could be used in the
         done
     ```
 
-3. A trailing silence after each audio was observed which would affect the response time of the participants. The silence was removed using the ```pydub``` library.
+3. A trailing silence after each audio was observed in the generated audio stimuli which could affect the response time of the participants. The silence was removed using the ```pydub``` library.
         
     ```python
         def detect_leading_silence(sound, silence_threshold, chunk_size=10):
@@ -212,7 +212,7 @@ The stimuli collected needed to be preprocessed before they could be used in the
                 trim_ms += chunk_size
             return trim_ms
     ```
-The function analyzes an audio snippet to find the duration of the silence at the beginning of the signal. It iterates over chunks of the audio and measuring the volume (dBFS) in each chunk until the volume exceeds the provided silence threshold. The accumulated time of trimmed silence is then returned as the result and then removed using the ```sound[trim_ms:]``` function, spectifying the start and the end trim duration.
+The function analyzes an audio snippet to find the duration of the silence at the end of the signal. It iterates over chunks of the audio and measures the volume (dBFS) in each chunk until the volume is below the provided silence threshold. The accumulated time of detected silence is then returned as the result and then removed using the ```sound[trim_ms:]``` function, spectifying the start and the end trim duration.
 
 4. The sampling rate of all the audio samples was also made equal to work with the ```PsychoPy``` backend. The sampling rate was changed to 48Hz.
             
