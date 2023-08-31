@@ -1,3 +1,7 @@
+import os
+import glob
+
+import argparse
 import numpy as np
 
 from constants import (
@@ -15,13 +19,23 @@ from plots import (
 )
 
 def main():
-    bins_bounds = np.linspace(0, avg_duration_agg, N, endpoint=True)
+    ag = argparse.ArgumentParser()
+    ag.add_argument("--path", type=str, default="./intermediate_csv", help="Path to the intermediate csv files")
+    ag.add_argument("--save", action="store_true", help="Save the plot")
 
-    # subject numbers to be included in the analysis
-    relevant_csvs = [0, 2, 69, 5, 6, 7, 11, 12, 13, 14, 15, 16]
+    args = vars(ag.parse_args())
 
     # path to csv files
-    csv_path = "./intermediate_csv/"
+    csv_path = args["path"]
+    save_fig = args["save"]
+
+    bins_bounds = np.linspace(0, avg_duration_agg, N, endpoint=True)
+
+    # automatically find the relevant csv files
+    relevant_csvs = [int(os.path.basename(x).split('.')[0].split('-')[1]) for x in glob.glob(os.path.join(csv_path, '*.csv'))]
+
+    print("Found %d csv files" % len(relevant_csvs))
+    print("Subject numbers: ", relevant_csvs)
 
     agg_df = prepare_agg_df(csv_path, relevant_csvs, bins_bounds)
 
@@ -30,7 +44,7 @@ def main():
     agg_df_mean = agg_df.groupby(['bin_start', 'bin_end']).mean().reset_index()
 
     # plot the analysis plot
-    plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset)
+    plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset, save_fig)
 
 if __name__ == "__main__":
     main()

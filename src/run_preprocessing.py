@@ -12,6 +12,7 @@ from utils import (
 )
 
 from core import (
+    prepare_logger_df,
     prepare_tsv_df,
     organize_into_trials,
     generate_stimuli_loc_dict,
@@ -34,14 +35,15 @@ from constants import (
 def main():
     ag = argparse.ArgumentParser()
     ag.add_argument("--subject", type=int, default=1, help="Subject number")
+    ag.add_argument("--path", type=str, default="./", help="Path to the data")
 
     args = vars(ag.parse_args())
 
     subject_number = args["subject"]
 
     # form the paths to the csv and tsv files
-    tsv_path = os.path.join("./sub-" + str(subject_number), "subject-" + str(subject_number) + ".tsv")
-    csv_path = os.path.join("./sub-" + str(subject_number), "subject-" + str(subject_number) + ".csv")
+    tsv_path = os.path.join(args["path"], "sub-" + str(subject_number), "subject-" + str(subject_number) + ".tsv")
+    csv_path = os.path.join(args["path"], "sub-" + str(subject_number), "subject-" + str(subject_number) + ".csv")
 
     # read the tsv file
     df = pd.read_csv(tsv_path, sep='\t')
@@ -94,7 +96,7 @@ def main():
     # read the csv file into a dataframe
     logger_df_raw = pd.read_csv(csv_path)
 
-    logger_df = prepare_tsv_df(logger_df_raw, audio_df_valid_fixation, stimuli_loc_dict)
+    logger_df = prepare_logger_df(logger_df_raw, audio_df_valid_fixation, stimuli_loc_dict)
 
     # NOTE: preview point
     # print(logger_df)

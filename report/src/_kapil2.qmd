@@ -31,13 +31,13 @@ approx. equal number of times.
 
 3. /textbf{Target Distribution}: Each stimuli is chosen as the target an approx. equal number of times.
 
-@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 22 stimulis chosen for the experiment, each stimuli could get 36*4/22 = 6.54 i.e. either 6 or 7 appearances.
+@fig-no-of-stimuli shows the number of stimuli appearances in the 36 trials and each trial has 4 stimulis. Since there were total 23 stimulis chosen for the experiment, each stimuli could get 36*4/23 = 6.26 i.e. either 6 or 7 appearances.
 
-![No of stimuli appearances](img/no_of_stimuli_app.png){#fig-no-of-stimuli width=50%,fig-align="center"}
+![Plot of the number of stimuli appearances](img/no_of_stimuli_app.png){#fig-no-of-stimuli width=600 fig-align="center"}
 
-@fig-no-of-targets shows the number of target appearances in 36 trials. Since there 22 stimulis, each stimuli could get 36/22 = 1.63 i.e. either 1 or 2 apppearances as a target.
+@fig-no-of-targets shows the number of target appearances in 36 trials. Since there 23 stimulis, each stimuli could get 36/23 = 1.56 i.e. either 1 or 2 apppearances as a target.
 
-![No of target appearances](img/no_of_target_app.png){#fig-no-of-targets width=50%,fig-align="center"}
+![Plot of the number of target appearances](img/no_of_target_app.png){#fig-no-of-targets width=600 fig-align="center"}
 
 # Experiment Organization
 

@@ -17,7 +17,7 @@
 ## :computer: Installations
 
 Software requirements: 
-- [Python 3.7](https://www.python.org/downloads/)
+- [Python >=3.9](https://www.python.org/downloads/)
 - [OpenSesame 3.3.10](https://osdoc.cogsci.nl/4.0/download/)
 
 Hardware requirements:
@@ -49,7 +49,6 @@ Our report is created using [Quarto](report/README.md). You can install Quarto f
 │   ├── Makefile
 │   ├── README.md
 │   └── src
-├── _research 
 ├── scripts # Contains all the scripts used for preprocessing the stimuli
 │   ├── conv_to_wav.sh
 │   ├── remove_trailing_silence.py
@@ -101,9 +100,37 @@ It is necessary to follow the guidelines mentioned below to ensure that the expe
 3. [After the Experiment](docs/experiment/after_the_experiment.md)
 4. [Study Information Sheet](docs/experiment/study_subject_information_and_questionaire.md)
 
-## :chart_with_upwards_trend: How to run the analysis
+## 🗃 Dataset
 
-1. 
+The data recorded during our experiments can be obtained [here](https://drive.google.com/drive/folders/1MOGFGCpygDrBIc9OiFi1-KMkIljtp1X1?usp=sharing). The data has been anonymized and there exists no possible way to associate it with the participants.
+
+The folders `processed` and `raw` need to be placed in the `/data` folder.
+
+## :chart_with_upwards_trend: How to run the analysis
+### Fixation plots
+
+Run the `create_fixation_plots.py` script on the raw data recording whose fixation plot is to be viewed.
+```python
+# this runs the script for subject 12.
+# The data folder `sub-12` should exist in the given path.
+python create_fixation_plots.py --subject 12 --path ../
+```
+This step will generate the fixation plots for subject 12 in the folder `audio_target_plots_12/`.
+
+### Final analysis plot
+
+1. Run the `run_preprocessing.py` script on the raw data recording that you want to preprocess.
+ ```python
+ # this runs the script for subject 12.
+ # The data folder `sub-12` should exist in the given path.
+ python run_preprocessing.py --subject 12 --path ../
+ ```
+  This step will generate the intermediate csv file for subject 12 in the folder `intermediate_csv`.
+  
+2. Run the `create_analysis_plot.py` script to generate the final analysis plot and view it. Optionally, add `--save` flag to save it.
+ ```python
+ python create_analysis_plot.py --path ./intermediate_csv/
+ ```
 
 ## :pencil: License
 
@@ -114,6 +141,6 @@ It is necessary to follow the guidelines mentioned below to ensure that the expe
 Give a ⭐️ if this project helped you!
 
 ## Resources
-1. https://people.ku.edu/~sjpa/Classes/CBS592/EyeTracking/visual-world-paradigm.html
-2. https://osdoc.cogsci.nl/3.3/tutorials/visual-world/
-3. https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584
+1. https://www.sciencedirect.com/science/article/abs/pii/S0749596X97925584
+2. https://people.ku.edu/~sjpa/Classes/CBS592/EyeTracking/visual-world-paradigm.html
+3. https://osdoc.cogsci.nl/3.3/tutorials/visual-world/

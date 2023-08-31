@@ -4,12 +4,12 @@ from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 
 from utils import (
-    shift_coordinate_system_bottom_left_to_top_left,
+    shift_coordinate_system_top_left_to_bottom_left,
 )
 
 from constants import (
-    outer_points_new,
-    inner_points_new,
+    outer_points,
+    inner_points,
 )
 
 def draw_grid(inn, out, ax):
@@ -46,7 +46,7 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
         ax.set_xlabel('FPOGx')
         ax.set_ylabel('FPOGy')
         # switch the coordinate system to move the origin to the top left corner
-        new_fpog_x, new_fpog_y = shift_coordinate_system_bottom_left_to_top_left(df_of_interest[i]['FPOGX'], df_of_interest[i]['FPOGY'])
+        new_fpog_x, new_fpog_y = shift_coordinate_system_top_left_to_bottom_left(df_of_interest[i]['FPOGX'], df_of_interest[i]['FPOGY'])
         # plot fpogx and fpogy
         # extract indices of rows where FPOGV is 1
         fpog_indices = df_of_interest[i][df_of_interest[i]['FPOGV'] == 1].index
@@ -55,7 +55,7 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
         ax.scatter(new_fpog_x, new_fpog_y, color='red', s=5)
         
         # ax.plot(new_bpog_x, new_bpog_y, color='blue')
-        draw_grid(inner_points_new, outer_points_new, ax)
+        draw_grid(inner_points, outer_points, ax)
 
         # infobox text
         text_str = 'Condition: {}\nTarget: {}\nSelected: {}'.format(stimuli_dict[i][4], stimuli_dict[i][5].lower(), stimuli_dict[i][6].lower())
@@ -78,9 +78,11 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
                 verticalalignment='top', bbox=props, ha='center')
 
         fig.savefig(os.path.join(save_path, 'trial_' + str(i + 1) + '.png'))
+        # close the figure
+        plt.close(fig)
         # break
 
-def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset):
+def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset, save_fig = False):
     # plot as line plots
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(agg_df_mean['bin_start'], agg_df_mean['seen_referant'], 'ro--', label='referant')
@@ -99,9 +101,11 @@ def plot_analysis_plot(agg_df_mean, average_audio_stimuli_offset):
     ax.set_ylabel('Proportion')
     ax.set_title('Proportion of stimuli fixated over time')
     ax.legend()
-    # save the plot
-    # save_path = os.path.join('final_plots', 'final_plot_ref_target_' + str(subject_number) + '.png')
-    # plt.savefig(save_path, dpi=300)
+    if save_fig:
+        os.makedirs('final_plots', exist_ok=True)
+        # save the plot
+        save_path = os.path.join('final_plots', 'final_plot_ref_target.png')
+        plt.savefig(save_path, dpi=300)
     plt.show()
 
 def hist_num_of_entries_per_trial(audio_df_valid_fixation):

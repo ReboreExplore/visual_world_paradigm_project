@@ -2,7 +2,7 @@
 title: "**Visual World Paradigm**"
 subtitle: "A classical visual world study showing how people predict upcoming words with the help of Gazepoint eye tracker"
 author:
-  - name: Pritom Gogoi ()
+  - name: Pritom Gogoi (3643765)
     affiliation: University of Stuttgart
     affiliation-url: https://www.uni-stuttgart.de/en/
   - name: Manpa Barman ()
@@ -221,7 +221,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
 
 # Challenges and Limitations
 
-## What we did not replicate from the reference paper?
+## What we did not replicate from the reference paper? {#sec-no-relicate}
 
 1. Average duration of auditory stimulus was changed from 375 ms to 750 ms. It was done to as it was more comprehensible for the participants.
     - The average duration was calculated by taking the average of the duration of all the audio stimuli which can be found [here](https://github.com/ReboreExplore/visual_world_paradigm_project/blob/main/docs/analysis).
@@ -270,7 +270,7 @@ The function analyzes an audio snippet to find the duration of the silence at th
     - **Challenge**: The eye tracker calibration was a challenge as the participants were not able to calibrate the eye tracker properly, due to many reasons like contact lenses, glasses, height of the participants, body posture during the experiment etc. 
     - **Solution**: THe number of participants were increased to 16 to ensure that we have atleast 12 participants with proper calibration and the timing of one full experiment was reduced to a maximum of 8 minutes to avoid recalibration in between the experiments. The participants were also given a practice trial to ensure that they are comfortable with the experiment and the eye tracker calibration.
 
-## Limitations
+## Limitations}
 
 1. Since Visual World Paradigm is a well known experimental framework, it is possible that the participants might have been aware of the purpose of the experiment and thus might have been biased in their responses despite the large number of filler trials. Also, we used a relatively small set of pictures, which might have led to a learning effect i.e the participants might have been able to predict the target word based on the previous trials.
 
