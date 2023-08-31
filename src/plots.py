@@ -4,7 +4,7 @@ from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 
 from utils import (
-    shift_coordinate_system_bottom_left_to_top_left,
+    shift_coordinate_system_top_left_to_bottom_left,
 )
 
 from constants import (
@@ -46,7 +46,7 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
         ax.set_xlabel('FPOGx')
         ax.set_ylabel('FPOGy')
         # switch the coordinate system to move the origin to the top left corner
-        new_fpog_x, new_fpog_y = shift_coordinate_system_bottom_left_to_top_left(df_of_interest[i]['FPOGX'], df_of_interest[i]['FPOGY'])
+        new_fpog_x, new_fpog_y = shift_coordinate_system_top_left_to_bottom_left(df_of_interest[i]['FPOGX'], df_of_interest[i]['FPOGY'])
         # plot fpogx and fpogy
         # extract indices of rows where FPOGV is 1
         fpog_indices = df_of_interest[i][df_of_interest[i]['FPOGV'] == 1].index
