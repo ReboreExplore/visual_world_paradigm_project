@@ -8,8 +8,8 @@ from utils import (
 )
 
 from constants import (
-    outer_points_new,
-    inner_points_new,
+    outer_points,
+    inner_points,
 )
 
 def draw_grid(inn, out, ax):
@@ -55,7 +55,7 @@ def save_plots(df_of_interest, stimuli_dict, subject_number, save_path):
         ax.scatter(new_fpog_x, new_fpog_y, color='red', s=5)
         
         # ax.plot(new_bpog_x, new_bpog_y, color='blue')
-        draw_grid(inner_points_new, outer_points_new, ax)
+        draw_grid(inner_points, outer_points, ax)
 
         # infobox text
         text_str = 'Condition: {}\nTarget: {}\nSelected: {}'.format(stimuli_dict[i][4], stimuli_dict[i][5].lower(), stimuli_dict[i][6].lower())
